@@ -30,4 +30,4 @@ def getdatasets_times():
 
 
 eeginput, eegoutput = getdatasets_eeg()
-print(eeginput.shape)
+print(eeginput)
