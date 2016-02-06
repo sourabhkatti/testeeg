@@ -1,4 +1,4 @@
-import face.face as face
+import eeg_data.face.face as face
 
 
 # [gyro_x, gyro_y, electrodes, sample_numbers, time_ms, time_s]
@@ -29,5 +29,3 @@ def getdatasets_times():
     return eeg_input[5], output
 
 
-eeginput, eegoutput = getdatasets_eeg()
-print(eeginput)
