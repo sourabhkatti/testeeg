@@ -26,6 +26,8 @@ import re
 # time_s = 21
 # time_ms = 22
 
+# 174 317
+
 
 ## import data from an csv file.
 # Input takes in a path to a directory of csv files
@@ -128,11 +130,14 @@ def get_targets_by_ms(path_blink_twice_target, time_ms):
             if ms_sum > target_counts[target_index]:
                 target_output.append(1)
                 target_index += 1
+                print(sample_index)
             else:
                 target_output.append(0)
         except:
             target_output.append(0)
 
         sample_index += 1
+
+
 
     return np.asarray(target_output).astype(float)

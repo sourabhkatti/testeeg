@@ -1,11 +1,18 @@
 <component name="ProjectDictionaryState">
   <dictionary name="SourabhKatti">
     <words>
+      <w>chainer</w>
       <w>eeginput</w>
       <w>eegoutput</w>
       <w>emotiv</w>
       <w>getdatasets</w>
       <w>gyroxy</w>
+      <w>normalizevalues</w>
+      <w>outputfile</w>
+      <w>outputpath</w>
+      <w>pltimage</w>
+      <w>preds</w>
+      <w>sampleindex</w>
       <w>samplenums</w>
       <w>timems</w>
     </words>
