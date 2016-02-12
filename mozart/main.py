@@ -86,7 +86,7 @@ def train_eeg_sample():
     for layer in eeg_model._get_sorted_funcs():
         print(layer[0], layer[1].W.shape)
 
-    for epoch in range(100):
+    for epoch in range(2):
         epochcount += 1
         print('epoch %d' % epoch)
         sum_accuracy = 0.0
