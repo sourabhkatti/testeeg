@@ -1,0 +1,120 @@
+epoch 0
+	Accuracy of training:  0.99375
+	Loss of training:  0.0375976758085
+epoch 1
+	Accuracy of training:  0.99375
+	Loss of training:  0.0219074772696
+epoch 2
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216689585355
+epoch 3
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216532657465
+epoch 4
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216586501025
+epoch 5
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216635825465
+epoch 6
+	Accuracy of training:  0.99375
+	Loss of training:  0.021666409028
+epoch 7
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216678217144
+epoch 8
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216684666168
+epoch 9
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216687148131
+epoch 10
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216687687909
+epoch 11
+	Accuracy of training:  0.99375
+	Loss of training:  0.021668726471
+epoch 12
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216686377702
+epoch 13
+	Accuracy of training:  0.99375
+	Loss of training:  0.021668523777
+epoch 14
+	Accuracy of training:  0.99375
+	Loss of training:  0.021668400936
+epoch 15
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216682738002
+epoch 16
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216681424368
+epoch 17
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216680080201
+epoch 18
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216678754812
+epoch 19
+	Accuracy of training:  0.99375
+	Loss of training:  0.021667741218
+epoch 20
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216676083241
+epoch 21
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216674740768
+epoch 22
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216673404611
+epoch 23
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216672074795
+epoch 24
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216670738573
+epoch 25
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216669387832
+epoch 26
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216668065394
+epoch 27
+	Accuracy of training:  0.99375
+	Loss of training:  0.021666672354
+epoch 28
+	Accuracy of training:  0.99375
+	Loss of training:  0.021666539611
+epoch 29
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216664056705
+epoch 30
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216662743198
+epoch 31
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216661378927
+epoch 32
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216660047776
+epoch 33
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216658731482
+epoch 34
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216657394529
+epoch 35
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216656045734
+epoch 36
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216654728723
+epoch 37
+	Accuracy of training:  0.99375
+	Loss of training:  0.021665338194
+epoch 38
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216652043866
+epoch 39
+	Accuracy of training:  0.99375
+	Loss of training:  0.0216650708473

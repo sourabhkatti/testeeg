@@ -1,0 +1,11 @@
+h1_h2 (512, 512)
+h2_h3 (256, 512)
+h3_h4 (128, 256)
+h4_y (32, 128)
+x_h1 (512, 448)
+epoch 0
+	Accuracy of training:  0.197021484375
+	Loss of training:  0.817577028845
+epoch 1
+	Accuracy of training:  0.195458984375
+	Loss of training:  0.707152530768

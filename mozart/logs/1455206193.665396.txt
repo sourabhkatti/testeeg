@@ -1,0 +1,3230 @@
+h1_h2 (512, 512)
+h2_h3 (256, 512)
+h3_h4 (128, 256)
+h4_y (32, 128)
+x_h1 (512, 448)
+epoch 0
+	Accuracy of training:  0.1
+	Loss of training:  2.05528546092
+epoch 1
+	Accuracy of training:  0.085986328125
+	Loss of training:  1.74087668727
+epoch 2
+	Accuracy of training:  0.0484375
+	Loss of training:  1.7236613952
+epoch 3
+	Accuracy of training:  0.053125
+	Loss of training:  1.69183523383
+epoch 4
+	Accuracy of training:  0.092236328125
+	Loss of training:  1.63381333305
+epoch 5
+	Accuracy of training:  0.078173828125
+	Loss of training:  1.56112898807
+epoch 6
+	Accuracy of training:  0.06416015625
+	Loss of training:  1.48934349678
+epoch 7
+	Accuracy of training:  0.050048828125
+	Loss of training:  1.44388556596
+epoch 8
+	Accuracy of training:  0.06259765625
+	Loss of training:  1.4071770611
+epoch 9
+	Accuracy of training:  0.05322265625
+	Loss of training:  1.38346571167
+epoch 10
+	Accuracy of training:  0.04384765625
+	Loss of training:  1.35992577236
+epoch 11
+	Accuracy of training:  0.050048828125
+	Loss of training:  1.3420922952
+epoch 12
+	Accuracy of training:  0.050048828125
+	Loss of training:  1.32629044195
+epoch 13
+	Accuracy of training:  0.037548828125
+	Loss of training:  1.30981706353
+epoch 14
+	Accuracy of training:  0.051611328125
+	Loss of training:  1.30063015251
+epoch 15
+	Accuracy of training:  0.0453125
+	Loss of training:  1.2870540345
+epoch 16
+	Accuracy of training:  0.035986328125
+	Loss of training:  1.2789323067
+epoch 17
+	Accuracy of training:  0.0390625
+	Loss of training:  1.2703637825
+epoch 18
+	Accuracy of training:  0.034423828125
+	Loss of training:  1.2662049573
+epoch 19
+	Accuracy of training:  0.020361328125
+	Loss of training:  1.26398598096
+epoch 20
+	Accuracy of training:  0.010986328125
+	Loss of training:  1.25514519758
+epoch 21
+	Accuracy of training:  0.0078125
+	Loss of training:  1.25033692973
+epoch 22
+	Accuracy of training:  0.00625
+	Loss of training:  1.24727012653
+epoch 23
+	Accuracy of training:  0.006298828125
+	Loss of training:  1.24119871346
+epoch 24
+	Accuracy of training:  0.0078125
+	Loss of training:  1.23966234701
+epoch 25
+	Accuracy of training:  0.006201171875
+	Loss of training:  1.23514392778
+epoch 26
+	Accuracy of training:  0.004638671875
+	Loss of training:  1.23150238623
+epoch 27
+	Accuracy of training:  0.003076171875
+	Loss of training:  1.22629292139
+epoch 28
+	Accuracy of training:  0.003125
+	Loss of training:  1.22309342854
+epoch 29
+	Accuracy of training:  0.003125
+	Loss of training:  1.21547398451
+epoch 30
+	Accuracy of training:  0.003173828125
+	Loss of training:  1.21288594965
+epoch 31
+	Accuracy of training:  0.003076171875
+	Loss of training:  1.2095104942
+epoch 32
+	Accuracy of training:  0.0015625
+	Loss of training:  1.20631458391
+epoch 33
+	Accuracy of training:  0.003076171875
+	Loss of training:  1.20495906098
+epoch 34
+	Accuracy of training:  0.0015625
+	Loss of training:  1.19687219656
+epoch 35
+	Accuracy of training:  0.001513671875
+	Loss of training:  1.19745284178
+epoch 36
+	Accuracy of training:  0.0015625
+	Loss of training:  1.19283247582
+epoch 37
+	Accuracy of training:  0.000146484375
+	Loss of training:  1.18599071839
+epoch 38
+	Accuracy of training:  0.001611328125
+	Loss of training:  1.18247836158
+epoch 39
+	Accuracy of training:  4.8828125e-05
+	Loss of training:  1.17510737403
+epoch 40
+	Accuracy of training:  0.00029296875
+	Loss of training:  1.17016542204
+epoch 41
+	Accuracy of training:  0.000341796875
+	Loss of training:  1.16168478947
+epoch 42
+	Accuracy of training:  0.000341796875
+	Loss of training:  1.15463971885
+epoch 43
+	Accuracy of training:  0.000439453125
+	Loss of training:  1.15210256393
+epoch 44
+	Accuracy of training:  0.000390625
+	Loss of training:  1.14740082015
+epoch 45
+	Accuracy of training:  0.002001953125
+	Loss of training:  1.14007171804
+epoch 46
+	Accuracy of training:  0.002001953125
+	Loss of training:  1.12968579624
+epoch 47
+	Accuracy of training:  0.00517578125
+	Loss of training:  1.12367881575
+epoch 48
+	Accuracy of training:  0.00673828125
+	Loss of training:  1.1155241809
+epoch 49
+	Accuracy of training:  0.008349609375
+	Loss of training:  1.10613798884
+epoch 50
+	Accuracy of training:  0.008349609375
+	Loss of training:  1.10179540208
+epoch 51
+	Accuracy of training:  0.00986328125
+	Loss of training:  1.0955178357
+epoch 52
+	Accuracy of training:  0.008349609375
+	Loss of training:  1.0892502468
+epoch 53
+	Accuracy of training:  0.006689453125
+	Loss of training:  1.08239810823
+epoch 54
+	Accuracy of training:  0.008251953125
+	Loss of training:  1.07536623181
+epoch 55
+	Accuracy of training:  0.00498046875
+	Loss of training:  1.06896748064
+epoch 56
+	Accuracy of training:  0.011279296875
+	Loss of training:  1.06224659049
+epoch 57
+	Accuracy of training:  0.012646484375
+	Loss of training:  1.05778693981
+epoch 58
+	Accuracy of training:  0.02041015625
+	Loss of training:  1.05391935177
+epoch 59
+	Accuracy of training:  0.0263671875
+	Loss of training:  1.04932215655
+epoch 60
+	Accuracy of training:  0.0201171875
+	Loss of training:  1.04583618544
+epoch 61
+	Accuracy of training:  0.024755859375
+	Loss of training:  1.03503887189
+epoch 62
+	Accuracy of training:  0.027880859375
+	Loss of training:  1.03026636469
+epoch 63
+	Accuracy of training:  0.026318359375
+	Loss of training:  1.0258005323
+epoch 64
+	Accuracy of training:  0.02470703125
+	Loss of training:  1.02171425232
+epoch 65
+	Accuracy of training:  0.030859375
+	Loss of training:  1.01319467298
+epoch 66
+	Accuracy of training:  0.027783203125
+	Loss of training:  1.00979287023
+epoch 67
+	Accuracy of training:  0.029296875
+	Loss of training:  1.00348873079
+epoch 68
+	Accuracy of training:  0.02939453125
+	Loss of training:  0.998814416278
+epoch 69
+	Accuracy of training:  0.033935546875
+	Loss of training:  0.995625110194
+epoch 70
+	Accuracy of training:  0.037060546875
+	Loss of training:  0.991933091101
+epoch 71
+	Accuracy of training:  0.037109375
+	Loss of training:  0.987666457282
+epoch 72
+	Accuracy of training:  0.034033203125
+	Loss of training:  0.980442158462
+epoch 73
+	Accuracy of training:  0.03564453125
+	Loss of training:  0.973871468867
+epoch 74
+	Accuracy of training:  0.037158203125
+	Loss of training:  0.971296125618
+epoch 75
+	Accuracy of training:  0.032470703125
+	Loss of training:  0.968627390673
+epoch 76
+	Accuracy of training:  0.026318359375
+	Loss of training:  0.960184388079
+epoch 77
+	Accuracy of training:  0.034033203125
+	Loss of training:  0.953058578331
+epoch 78
+	Accuracy of training:  0.03095703125
+	Loss of training:  0.952415034519
+epoch 79
+	Accuracy of training:  0.03095703125
+	Loss of training:  0.95339174681
+epoch 80
+	Accuracy of training:  0.02783203125
+	Loss of training:  0.94815841691
+epoch 81
+	Accuracy of training:  0.03095703125
+	Loss of training:  0.939092285141
+epoch 82
+	Accuracy of training:  0.02626953125
+	Loss of training:  0.936718353744
+epoch 83
+	Accuracy of training:  0.02939453125
+	Loss of training:  0.931587006694
+epoch 84
+	Accuracy of training:  0.031005859375
+	Loss of training:  0.932810174419
+epoch 85
+	Accuracy of training:  0.027880859375
+	Loss of training:  0.928107364429
+epoch 86
+	Accuracy of training:  0.0263671875
+	Loss of training:  0.924105097539
+epoch 87
+	Accuracy of training:  0.0263671875
+	Loss of training:  0.922601980216
+epoch 88
+	Accuracy of training:  0.020166015625
+	Loss of training:  0.919915442583
+epoch 89
+	Accuracy of training:  0.024853515625
+	Loss of training:  0.914908576925
+epoch 90
+	Accuracy of training:  0.026416015625
+	Loss of training:  0.90902393484
+epoch 91
+	Accuracy of training:  0.026416015625
+	Loss of training:  0.90456867804
+epoch 92
+	Accuracy of training:  0.024853515625
+	Loss of training:  0.908434558597
+epoch 93
+	Accuracy of training:  0.026416015625
+	Loss of training:  0.898950068055
+epoch 94
+	Accuracy of training:  0.024853515625
+	Loss of training:  0.897865654358
+epoch 95
+	Accuracy of training:  0.024853515625
+	Loss of training:  0.893209179536
+epoch 96
+	Accuracy of training:  0.024853515625
+	Loss of training:  0.887200555837
+epoch 97
+	Accuracy of training:  0.018603515625
+	Loss of training:  0.884402621294
+epoch 98
+	Accuracy of training:  0.02314453125
+	Loss of training:  0.889164997725
+epoch 99
+	Accuracy of training:  0.0169921875
+	Loss of training:  0.878486250555
+epoch 100
+	Accuracy of training:  0.0201171875
+	Loss of training:  0.876929017272
+epoch 101
+	Accuracy of training:  0.02314453125
+	Loss of training:  0.87714389768
+epoch 102
+	Accuracy of training:  0.018505859375
+	Loss of training:  0.873802819188
+epoch 103
+	Accuracy of training:  0.018505859375
+	Loss of training:  0.869246455449
+epoch 104
+	Accuracy of training:  0.02001953125
+	Loss of training:  0.867095013967
+epoch 105
+	Accuracy of training:  0.021484375
+	Loss of training:  0.879348063054
+epoch 106
+	Accuracy of training:  0.02314453125
+	Loss of training:  0.87153051253
+epoch 107
+	Accuracy of training:  0.023095703125
+	Loss of training:  0.865272429926
+epoch 108
+	Accuracy of training:  0.020068359375
+	Loss of training:  0.861103805331
+epoch 109
+	Accuracy of training:  0.023095703125
+	Loss of training:  0.868256660442
+epoch 110
+	Accuracy of training:  0.024658203125
+	Loss of training:  0.865754393233
+epoch 111
+	Accuracy of training:  0.02001953125
+	Loss of training:  0.867823186924
+epoch 112
+	Accuracy of training:  0.021533203125
+	Loss of training:  0.861733516667
+epoch 113
+	Accuracy of training:  0.02001953125
+	Loss of training:  0.864286955306
+epoch 114
+	Accuracy of training:  0.02001953125
+	Loss of training:  0.862279575874
+epoch 115
+	Accuracy of training:  0.0169921875
+	Loss of training:  0.858319515527
+epoch 116
+	Accuracy of training:  0.02001953125
+	Loss of training:  0.857229395463
+epoch 117
+	Accuracy of training:  0.0185546875
+	Loss of training:  0.852648334288
+epoch 118
+	Accuracy of training:  0.018505859375
+	Loss of training:  0.849331970881
+epoch 119
+	Accuracy of training:  0.015478515625
+	Loss of training:  0.848096082993
+epoch 120
+	Accuracy of training:  0.018505859375
+	Loss of training:  0.841181870096
+epoch 121
+	Accuracy of training:  0.0169921875
+	Loss of training:  0.84040900129
+epoch 122
+	Accuracy of training:  0.0201171875
+	Loss of training:  0.838078239235
+epoch 123
+	Accuracy of training:  0.0154296875
+	Loss of training:  0.83242220644
+epoch 124
+	Accuracy of training:  0.031005859375
+	Loss of training:  0.840717357175
+epoch 125
+	Accuracy of training:  0.0169921875
+	Loss of training:  0.834895127225
+epoch 126
+	Accuracy of training:  0.021630859375
+	Loss of training:  0.829297004869
+epoch 127
+	Accuracy of training:  0.0169921875
+	Loss of training:  0.825498511684
+epoch 128
+	Accuracy of training:  0.020068359375
+	Loss of training:  0.820740334082
+epoch 129
+	Accuracy of training:  0.0169921875
+	Loss of training:  0.818836535553
+epoch 130
+	Accuracy of training:  0.0169921875
+	Loss of training:  0.81754226151
+epoch 131
+	Accuracy of training:  0.0169921875
+	Loss of training:  0.81340923913
+epoch 132
+	Accuracy of training:  0.0169921875
+	Loss of training:  0.810454805603
+epoch 133
+	Accuracy of training:  0.035693359375
+	Loss of training:  0.813474406094
+epoch 134
+	Accuracy of training:  0.035791015625
+	Loss of training:  0.817166790931
+epoch 135
+	Accuracy of training:  0.012353515625
+	Loss of training:  0.802093360103
+epoch 136
+	Accuracy of training:  0.01552734375
+	Loss of training:  0.797051273188
+epoch 137
+	Accuracy of training:  0.0169921875
+	Loss of training:  0.797559448611
+epoch 138
+	Accuracy of training:  0.0138671875
+	Loss of training:  0.791715217293
+epoch 139
+	Accuracy of training:  0.01396484375
+	Loss of training:  0.788699254621
+epoch 140
+	Accuracy of training:  0.01865234375
+	Loss of training:  0.785215053467
+epoch 141
+	Accuracy of training:  0.02490234375
+	Loss of training:  0.78193944447
+epoch 142
+	Accuracy of training:  0.029541015625
+	Loss of training:  0.779886939827
+epoch 143
+	Accuracy of training:  0.023291015625
+	Loss of training:  0.777748360105
+epoch 144
+	Accuracy of training:  0.026416015625
+	Loss of training:  0.773288610054
+epoch 145
+	Accuracy of training:  0.018603515625
+	Loss of training:  0.771269811562
+epoch 146
+	Accuracy of training:  0.018603515625
+	Loss of training:  0.766658531492
+epoch 147
+	Accuracy of training:  0.018603515625
+	Loss of training:  0.764912980693
+epoch 148
+	Accuracy of training:  0.018603515625
+	Loss of training:  0.763447647047
+epoch 149
+	Accuracy of training:  0.018603515625
+	Loss of training:  0.759943353033
+epoch 150
+	Accuracy of training:  0.018603515625
+	Loss of training:  0.757299278166
+epoch 151
+	Accuracy of training:  0.015380859375
+	Loss of training:  0.757520738566
+epoch 152
+	Accuracy of training:  0.013818359375
+	Loss of training:  0.762505870488
+epoch 153
+	Accuracy of training:  0.016943359375
+	Loss of training:  0.7600492015
+epoch 154
+	Accuracy of training:  0.012255859375
+	Loss of training:  0.750832097894
+epoch 155
+	Accuracy of training:  0.01220703125
+	Loss of training:  0.747479221376
+epoch 156
+	Accuracy of training:  0.00927734375
+	Loss of training:  0.744527860083
+epoch 157
+	Accuracy of training:  0.01083984375
+	Loss of training:  0.734585956699
+epoch 158
+	Accuracy of training:  0.01376953125
+	Loss of training:  0.730740370491
+epoch 159
+	Accuracy of training:  0.01376953125
+	Loss of training:  0.725775896858
+epoch 160
+	Accuracy of training:  0.015283203125
+	Loss of training:  0.720752271163
+epoch 161
+	Accuracy of training:  0.01240234375
+	Loss of training:  0.716435911853
+epoch 162
+	Accuracy of training:  0.0154296875
+	Loss of training:  0.715901632535
+epoch 163
+	Accuracy of training:  0.0169921875
+	Loss of training:  0.712069931279
+epoch 164
+	Accuracy of training:  0.018505859375
+	Loss of training:  0.709727715203
+epoch 165
+	Accuracy of training:  0.013916015625
+	Loss of training:  0.70793026728
+epoch 166
+	Accuracy of training:  0.013916015625
+	Loss of training:  0.702343492974
+epoch 167
+	Accuracy of training:  0.01552734375
+	Loss of training:  0.70455714836
+epoch 168
+	Accuracy of training:  0.0169921875
+	Loss of training:  0.703330481994
+epoch 169
+	Accuracy of training:  0.0169921875
+	Loss of training:  0.699804170652
+epoch 170
+	Accuracy of training:  0.015478515625
+	Loss of training:  0.697524290278
+epoch 171
+	Accuracy of training:  0.015478515625
+	Loss of training:  0.695105539376
+epoch 172
+	Accuracy of training:  0.014013671875
+	Loss of training:  0.694934383452
+epoch 173
+	Accuracy of training:  0.015576171875
+	Loss of training:  0.691243536654
+epoch 174
+	Accuracy of training:  0.017138671875
+	Loss of training:  0.687767047002
+epoch 175
+	Accuracy of training:  0.014013671875
+	Loss of training:  0.688340551491
+epoch 176
+	Accuracy of training:  0.015576171875
+	Loss of training:  0.68794298737
+epoch 177
+	Accuracy of training:  0.015576171875
+	Loss of training:  0.686501779076
+epoch 178
+	Accuracy of training:  0.015576171875
+	Loss of training:  0.683120425874
+epoch 179
+	Accuracy of training:  0.017138671875
+	Loss of training:  0.680638415639
+epoch 180
+	Accuracy of training:  0.017138671875
+	Loss of training:  0.678139530736
+epoch 181
+	Accuracy of training:  0.017138671875
+	Loss of training:  0.675616301877
+epoch 182
+	Accuracy of training:  0.018701171875
+	Loss of training:  0.672906267271
+epoch 183
+	Accuracy of training:  0.018701171875
+	Loss of training:  0.670215703963
+epoch 184
+	Accuracy of training:  0.018701171875
+	Loss of training:  0.667851150063
+epoch 185
+	Accuracy of training:  0.018701171875
+	Loss of training:  0.666979821228
+epoch 186
+	Accuracy of training:  0.021826171875
+	Loss of training:  0.667663421673
+epoch 187
+	Accuracy of training:  0.02021484375
+	Loss of training:  0.667657530884
+epoch 188
+	Accuracy of training:  0.02021484375
+	Loss of training:  0.66591613045
+epoch 189
+	Accuracy of training:  0.02333984375
+	Loss of training:  0.667238966312
+epoch 190
+	Accuracy of training:  0.02333984375
+	Loss of training:  0.666301031679
+epoch 191
+	Accuracy of training:  0.024951171875
+	Loss of training:  0.668516545128
+epoch 192
+	Accuracy of training:  0.02802734375
+	Loss of training:  0.665666845403
+epoch 193
+	Accuracy of training:  0.028076171875
+	Loss of training:  0.668970314524
+epoch 194
+	Accuracy of training:  0.02802734375
+	Loss of training:  0.66595591231
+epoch 195
+	Accuracy of training:  0.02802734375
+	Loss of training:  0.665932722365
+epoch 196
+	Accuracy of training:  0.03115234375
+	Loss of training:  0.666821310241
+epoch 197
+	Accuracy of training:  0.03115234375
+	Loss of training:  0.669128048791
+epoch 198
+	Accuracy of training:  0.03271484375
+	Loss of training:  0.664699386302
+epoch 199
+	Accuracy of training:  0.0328125
+	Loss of training:  0.678123038846
+epoch 200
+	Accuracy of training:  0.034228515625
+	Loss of training:  0.680783884206
+epoch 201
+	Accuracy of training:  0.038916015625
+	Loss of training:  0.680746600039
+epoch 202
+	Accuracy of training:  0.035986328125
+	Loss of training:  0.681517352693
+epoch 203
+	Accuracy of training:  0.0375
+	Loss of training:  0.682842941761
+epoch 204
+	Accuracy of training:  0.045263671875
+	Loss of training:  0.682900320459
+epoch 205
+	Accuracy of training:  0.075048828125
+	Loss of training:  0.800923782054
+epoch 206
+	Accuracy of training:  0.015771484375
+	Loss of training:  0.811900685102
+epoch 207
+	Accuracy of training:  0.0875
+	Loss of training:  0.787194774315
+epoch 208
+	Accuracy of training:  0.086083984375
+	Loss of training:  0.783082883223
+epoch 209
+	Accuracy of training:  0.090771484375
+	Loss of training:  0.742874284294
+epoch 210
+	Accuracy of training:  0.123388671875
+	Loss of training:  0.745412074685
+epoch 211
+	Accuracy of training:  0.126513671875
+	Loss of training:  0.73905713884
+epoch 212
+	Accuracy of training:  0.11884765625
+	Loss of training:  0.728647240026
+epoch 213
+	Accuracy of training:  0.129638671875
+	Loss of training:  0.725514902587
+epoch 214
+	Accuracy of training:  0.1048828125
+	Loss of training:  0.719505224553
+epoch 215
+	Accuracy of training:  0.121923828125
+	Loss of training:  0.719029360207
+epoch 216
+	Accuracy of training:  0.167236328125
+	Loss of training:  0.715771689303
+epoch 217
+	Accuracy of training:  0.1171875
+	Loss of training:  0.702478165538
+epoch 218
+	Accuracy of training:  0.184375
+	Loss of training:  0.692180708223
+epoch 219
+	Accuracy of training:  0.182861328125
+	Loss of training:  0.695481150883
+epoch 220
+	Accuracy of training:  0.1578125
+	Loss of training:  0.702647837979
+epoch 221
+	Accuracy of training:  0.181201171875
+	Loss of training:  0.694069196662
+epoch 222
+	Accuracy of training:  0.167041015625
+	Loss of training:  0.691410765994
+epoch 223
+	Accuracy of training:  0.1951171875
+	Loss of training:  0.699931048981
+epoch 224
+	Accuracy of training:  0.206201171875
+	Loss of training:  0.688974905401
+epoch 225
+	Accuracy of training:  0.223291015625
+	Loss of training:  0.6887905692
+epoch 226
+	Accuracy of training:  0.2388671875
+	Loss of training:  0.686306504921
+epoch 227
+	Accuracy of training:  0.22314453125
+	Loss of training:  0.684591180786
+epoch 228
+	Accuracy of training:  0.1966796875
+	Loss of training:  0.680983274925
+epoch 229
+	Accuracy of training:  0.196630859375
+	Loss of training:  0.678086814063
+epoch 230
+	Accuracy of training:  0.185498046875
+	Loss of training:  0.674045645898
+epoch 231
+	Accuracy of training:  0.182470703125
+	Loss of training:  0.672720831316
+epoch 232
+	Accuracy of training:  0.179345703125
+	Loss of training:  0.669477648571
+epoch 233
+	Accuracy of training:  0.196533203125
+	Loss of training:  0.666227933724
+epoch 234
+	Accuracy of training:  0.176220703125
+	Loss of training:  0.669405128747
+epoch 235
+	Accuracy of training:  0.184033203125
+	Loss of training:  0.674656708866
+epoch 236
+	Accuracy of training:  0.205810546875
+	Loss of training:  0.681757878725
+epoch 237
+	Accuracy of training:  0.197998046875
+	Loss of training:  0.705168515668
+epoch 238
+	Accuracy of training:  0.127734375
+	Loss of training:  0.697016621128
+epoch 239
+	Accuracy of training:  0.166748046875
+	Loss of training:  0.722398111965
+epoch 240
+	Accuracy of training:  0.133935546875
+	Loss of training:  0.71635495662
+epoch 241
+	Accuracy of training:  0.110546875
+	Loss of training:  0.723799972687
+epoch 242
+	Accuracy of training:  0.107666015625
+	Loss of training:  0.705430239836
+epoch 243
+	Accuracy of training:  0.109130859375
+	Loss of training:  0.701657203255
+epoch 244
+	Accuracy of training:  0.124755859375
+	Loss of training:  0.702336456559
+epoch 245
+	Accuracy of training:  0.097998046875
+	Loss of training:  0.70888411947
+epoch 246
+	Accuracy of training:  0.088720703125
+	Loss of training:  0.696841934231
+epoch 247
+	Accuracy of training:  0.09658203125
+	Loss of training:  0.687310211554
+epoch 248
+	Accuracy of training:  0.08720703125
+	Loss of training:  0.681419545961
+epoch 249
+	Accuracy of training:  0.08720703125
+	Loss of training:  0.676808320306
+epoch 250
+	Accuracy of training:  0.087158203125
+	Loss of training:  0.676104270762
+epoch 251
+	Accuracy of training:  0.093408203125
+	Loss of training:  0.660878589997
+epoch 252
+	Accuracy of training:  0.048095703125
+	Loss of training:  0.657724298638
+epoch 253
+	Accuracy of training:  0.040234375
+	Loss of training:  0.651550023899
+epoch 254
+	Accuracy of training:  0.038623046875
+	Loss of training:  0.64975631907
+epoch 255
+	Accuracy of training:  0.038623046875
+	Loss of training:  0.648445955796
+epoch 256
+	Accuracy of training:  0.041845703125
+	Loss of training:  0.646644945118
+epoch 257
+	Accuracy of training:  0.038720703125
+	Loss of training:  0.644988085649
+epoch 258
+	Accuracy of training:  0.03720703125
+	Loss of training:  0.641277096793
+epoch 259
+	Accuracy of training:  0.03251953125
+	Loss of training:  0.637825356074
+epoch 260
+	Accuracy of training:  0.03251953125
+	Loss of training:  0.635097525553
+epoch 261
+	Accuracy of training:  0.03720703125
+	Loss of training:  0.633779097652
+epoch 262
+	Accuracy of training:  0.03720703125
+	Loss of training:  0.632972271135
+epoch 263
+	Accuracy of training:  0.03408203125
+	Loss of training:  0.627765963668
+epoch 264
+	Accuracy of training:  0.03251953125
+	Loss of training:  0.628723785051
+epoch 265
+	Accuracy of training:  0.032421875
+	Loss of training:  0.627929336966
+epoch 266
+	Accuracy of training:  0.032421875
+	Loss of training:  0.630912756587
+epoch 267
+	Accuracy of training:  0.030908203125
+	Loss of training:  0.627999103633
+epoch 268
+	Accuracy of training:  0.033984375
+	Loss of training:  0.623345062228
+epoch 269
+	Accuracy of training:  0.037109375
+	Loss of training:  0.618773446849
+epoch 270
+	Accuracy of training:  0.037060546875
+	Loss of training:  0.614641592056
+epoch 271
+	Accuracy of training:  0.035498046875
+	Loss of training:  0.61359804224
+epoch 272
+	Accuracy of training:  0.03095703125
+	Loss of training:  0.612982445381
+epoch 273
+	Accuracy of training:  0.030908203125
+	Loss of training:  0.614174708447
+epoch 274
+	Accuracy of training:  0.0232421875
+	Loss of training:  0.608283585922
+epoch 275
+	Accuracy of training:  0.026318359375
+	Loss of training:  0.596591629378
+epoch 276
+	Accuracy of training:  0.0232421875
+	Loss of training:  0.593261790055
+epoch 277
+	Accuracy of training:  0.0326171875
+	Loss of training:  0.590868703703
+epoch 278
+	Accuracy of training:  0.0357421875
+	Loss of training:  0.58827341985
+epoch 279
+	Accuracy of training:  0.034228515625
+	Loss of training:  0.586985507789
+epoch 280
+	Accuracy of training:  0.0341796875
+	Loss of training:  0.588571492068
+epoch 281
+	Accuracy of training:  0.03583984375
+	Loss of training:  0.589054407298
+epoch 282
+	Accuracy of training:  0.034130859375
+	Loss of training:  0.591375271076
+epoch 283
+	Accuracy of training:  0.0357421875
+	Loss of training:  0.583587196136
+epoch 284
+	Accuracy of training:  0.035791015625
+	Loss of training:  0.58157924262
+epoch 285
+	Accuracy of training:  0.037255859375
+	Loss of training:  0.581229021152
+epoch 286
+	Accuracy of training:  0.035693359375
+	Loss of training:  0.574025557551
+epoch 287
+	Accuracy of training:  0.034130859375
+	Loss of training:  0.56751835245
+epoch 288
+	Accuracy of training:  0.026220703125
+	Loss of training:  0.551887607028
+epoch 289
+	Accuracy of training:  0.024755859375
+	Loss of training:  0.557656745253
+epoch 290
+	Accuracy of training:  0.0232421875
+	Loss of training:  0.554453344885
+epoch 291
+	Accuracy of training:  0.0201171875
+	Loss of training:  0.552830765481
+epoch 292
+	Accuracy of training:  0.0201171875
+	Loss of training:  0.554215391761
+epoch 293
+	Accuracy of training:  0.0201171875
+	Loss of training:  0.55536762225
+epoch 294
+	Accuracy of training:  0.023046875
+	Loss of training:  0.561090236295
+epoch 295
+	Accuracy of training:  0.02314453125
+	Loss of training:  0.558781676768
+epoch 296
+	Accuracy of training:  0.02158203125
+	Loss of training:  0.550674819682
+epoch 297
+	Accuracy of training:  0.021630859375
+	Loss of training:  0.554991236169
+epoch 298
+	Accuracy of training:  0.023193359375
+	Loss of training:  0.554611501891
+epoch 299
+	Accuracy of training:  0.021630859375
+	Loss of training:  0.555594586223
+epoch 300
+	Accuracy of training:  0.023193359375
+	Loss of training:  0.555429935822
+epoch 301
+	Accuracy of training:  0.024755859375
+	Loss of training:  0.555380249207
+epoch 302
+	Accuracy of training:  0.020068359375
+	Loss of training:  0.555368436829
+epoch 303
+	Accuracy of training:  0.02314453125
+	Loss of training:  0.551091077387
+epoch 304
+	Accuracy of training:  0.02001953125
+	Loss of training:  0.551859412252
+epoch 305
+	Accuracy of training:  0.020068359375
+	Loss of training:  0.543479236483
+epoch 306
+	Accuracy of training:  0.018505859375
+	Loss of training:  0.535332849997
+epoch 307
+	Accuracy of training:  0.0169921875
+	Loss of training:  0.53434102432
+epoch 308
+	Accuracy of training:  0.0185546875
+	Loss of training:  0.533578140468
+epoch 309
+	Accuracy of training:  0.017041015625
+	Loss of training:  0.525998925413
+epoch 310
+	Accuracy of training:  0.020166015625
+	Loss of training:  0.524436545159
+epoch 311
+	Accuracy of training:  0.018603515625
+	Loss of training:  0.514833525974
+epoch 312
+	Accuracy of training:  0.018603515625
+	Loss of training:  0.507230490066
+epoch 313
+	Accuracy of training:  0.01552734375
+	Loss of training:  0.509210174362
+epoch 314
+	Accuracy of training:  0.017041015625
+	Loss of training:  0.504613418199
+epoch 315
+	Accuracy of training:  0.017041015625
+	Loss of training:  0.500521896263
+epoch 316
+	Accuracy of training:  0.014013671875
+	Loss of training:  0.500906141645
+epoch 317
+	Accuracy of training:  0.014013671875
+	Loss of training:  0.50207359233
+epoch 318
+	Accuracy of training:  0.014013671875
+	Loss of training:  0.495272486313
+epoch 319
+	Accuracy of training:  0.0140625
+	Loss of training:  0.499745442158
+epoch 320
+	Accuracy of training:  0.0140625
+	Loss of training:  0.491746306304
+epoch 321
+	Accuracy of training:  0.014013671875
+	Loss of training:  0.491161317916
+epoch 322
+	Accuracy of training:  0.0125
+	Loss of training:  0.496141649112
+epoch 323
+	Accuracy of training:  0.01396484375
+	Loss of training:  0.479804625253
+epoch 324
+	Accuracy of training:  0.0154296875
+	Loss of training:  0.488493572514
+epoch 325
+	Accuracy of training:  0.01552734375
+	Loss of training:  0.512192816479
+epoch 326
+	Accuracy of training:  0.013818359375
+	Loss of training:  0.490192199546
+epoch 327
+	Accuracy of training:  0.013916015625
+	Loss of training:  0.497812362226
+epoch 328
+	Accuracy of training:  0.01240234375
+	Loss of training:  0.48619178146
+epoch 329
+	Accuracy of training:  0.010986328125
+	Loss of training:  0.483975786471
+epoch 330
+	Accuracy of training:  0.0140625
+	Loss of training:  0.480235720916
+epoch 331
+	Accuracy of training:  0.0125
+	Loss of training:  0.491182607864
+epoch 332
+	Accuracy of training:  0.013916015625
+	Loss of training:  0.494975840406
+epoch 333
+	Accuracy of training:  0.012548828125
+	Loss of training:  0.479636295448
+epoch 334
+	Accuracy of training:  0.0125
+	Loss of training:  0.476028885628
+epoch 335
+	Accuracy of training:  0.0125
+	Loss of training:  0.467611183041
+epoch 336
+	Accuracy of training:  0.012548828125
+	Loss of training:  0.463125974764
+epoch 337
+	Accuracy of training:  0.012548828125
+	Loss of training:  0.46140660239
+epoch 338
+	Accuracy of training:  0.012548828125
+	Loss of training:  0.45820851076
+epoch 339
+	Accuracy of training:  0.0125
+	Loss of training:  0.458030886213
+epoch 340
+	Accuracy of training:  0.0125
+	Loss of training:  0.454968710974
+epoch 341
+	Accuracy of training:  0.0125
+	Loss of training:  0.452365634078
+epoch 342
+	Accuracy of training:  0.01396484375
+	Loss of training:  0.444092553771
+epoch 343
+	Accuracy of training:  0.01396484375
+	Loss of training:  0.438875910502
+epoch 344
+	Accuracy of training:  0.013916015625
+	Loss of training:  0.436807898573
+epoch 345
+	Accuracy of training:  0.0125
+	Loss of training:  0.434465346629
+epoch 346
+	Accuracy of training:  0.0125
+	Loss of training:  0.434160628525
+epoch 347
+	Accuracy of training:  0.0140625
+	Loss of training:  0.431452227941
+epoch 348
+	Accuracy of training:  0.015576171875
+	Loss of training:  0.429791997746
+epoch 349
+	Accuracy of training:  0.0140625
+	Loss of training:  0.425920480843
+epoch 350
+	Accuracy of training:  0.0140625
+	Loss of training:  0.423318985065
+epoch 351
+	Accuracy of training:  0.0140625
+	Loss of training:  0.421272588208
+epoch 352
+	Accuracy of training:  0.015576171875
+	Loss of training:  0.419900329814
+epoch 353
+	Accuracy of training:  0.015576171875
+	Loss of training:  0.41930503603
+epoch 354
+	Accuracy of training:  0.017138671875
+	Loss of training:  0.419060391615
+epoch 355
+	Accuracy of training:  0.017138671875
+	Loss of training:  0.419208161209
+epoch 356
+	Accuracy of training:  0.017138671875
+	Loss of training:  0.416957790502
+epoch 357
+	Accuracy of training:  0.0185546875
+	Loss of training:  0.413179586993
+epoch 358
+	Accuracy of training:  0.017041015625
+	Loss of training:  0.409884769088
+epoch 359
+	Accuracy of training:  0.017041015625
+	Loss of training:  0.405458557294
+epoch 360
+	Accuracy of training:  0.017041015625
+	Loss of training:  0.402672689049
+epoch 361
+	Accuracy of training:  0.017041015625
+	Loss of training:  0.396102801689
+epoch 362
+	Accuracy of training:  0.017041015625
+	Loss of training:  0.398623066938
+epoch 363
+	Accuracy of training:  0.0185546875
+	Loss of training:  0.386550938815
+epoch 364
+	Accuracy of training:  0.017041015625
+	Loss of training:  0.387308967012
+epoch 365
+	Accuracy of training:  0.01845703125
+	Loss of training:  0.382901814262
+epoch 366
+	Accuracy of training:  0.017041015625
+	Loss of training:  0.378588905639
+epoch 367
+	Accuracy of training:  0.015478515625
+	Loss of training:  0.3787356136
+epoch 368
+	Accuracy of training:  0.01552734375
+	Loss of training:  0.375367779591
+epoch 369
+	Accuracy of training:  0.015576171875
+	Loss of training:  0.37097786571
+epoch 370
+	Accuracy of training:  0.015576171875
+	Loss of training:  0.371348593424
+epoch 371
+	Accuracy of training:  0.01552734375
+	Loss of training:  0.383475319255
+epoch 372
+	Accuracy of training:  0.017041015625
+	Loss of training:  0.396037223459
+epoch 373
+	Accuracy of training:  0.01845703125
+	Loss of training:  0.463632077659
+epoch 374
+	Accuracy of training:  0.016796875
+	Loss of training:  0.533504091698
+epoch 375
+	Accuracy of training:  0.01103515625
+	Loss of training:  0.576154523661
+epoch 376
+	Accuracy of training:  0.015673828125
+	Loss of training:  0.59857398099
+epoch 377
+	Accuracy of training:  0.0154296875
+	Loss of training:  0.583416641951
+epoch 378
+	Accuracy of training:  0.018896484375
+	Loss of training:  0.628055479416
+epoch 379
+	Accuracy of training:  0.017138671875
+	Loss of training:  0.71513379765
+epoch 380
+	Accuracy of training:  0.010888671875
+	Loss of training:  0.650359772737
+epoch 381
+	Accuracy of training:  0.017236328125
+	Loss of training:  0.632011998612
+epoch 382
+	Accuracy of training:  0.020556640625
+	Loss of training:  0.714035215779
+epoch 383
+	Accuracy of training:  0.031005859375
+	Loss of training:  0.683698347908
+epoch 384
+	Accuracy of training:  0.033935546875
+	Loss of training:  0.687988222779
+epoch 385
+	Accuracy of training:  0.028076171875
+	Loss of training:  0.690502170156
+epoch 386
+	Accuracy of training:  0.0544921875
+	Loss of training:  0.664006673253
+epoch 387
+	Accuracy of training:  0.026904296875
+	Loss of training:  0.640120884698
+epoch 388
+	Accuracy of training:  0.03564453125
+	Loss of training:  0.638136608994
+epoch 389
+	Accuracy of training:  0.0275390625
+	Loss of training:  0.685911216367
+epoch 390
+	Accuracy of training:  0.024365234375
+	Loss of training:  0.671528297521
+epoch 391
+	Accuracy of training:  0.02275390625
+	Loss of training:  0.659753086552
+epoch 392
+	Accuracy of training:  0.019873046875
+	Loss of training:  0.671685414632
+epoch 393
+	Accuracy of training:  0.02158203125
+	Loss of training:  0.702637570467
+epoch 394
+	Accuracy of training:  0.02626953125
+	Loss of training:  0.767045188313
+epoch 395
+	Accuracy of training:  0.03095703125
+	Loss of training:  0.734855761921
+epoch 396
+	Accuracy of training:  0.0248046875
+	Loss of training:  0.705176416326
+epoch 397
+	Accuracy of training:  0.02333984375
+	Loss of training:  0.703114492672
+epoch 398
+	Accuracy of training:  0.020166015625
+	Loss of training:  0.680158407062
+epoch 399
+	Accuracy of training:  0.016943359375
+	Loss of training:  0.674019647592
+epoch 400
+	Accuracy of training:  0.018505859375
+	Loss of training:  0.738806283178
+epoch 401
+	Accuracy of training:  0.015380859375
+	Loss of training:  0.735398837386
+epoch 402
+	Accuracy of training:  0.013916015625
+	Loss of training:  0.714712528303
+epoch 403
+	Accuracy of training:  0.01845703125
+	Loss of training:  0.695218402432
+epoch 404
+	Accuracy of training:  0.02158203125
+	Loss of training:  0.674949231467
+epoch 405
+	Accuracy of training:  0.038818359375
+	Loss of training:  0.647334268913
+epoch 406
+	Accuracy of training:  0.018603515625
+	Loss of training:  0.622468438002
+epoch 407
+	Accuracy of training:  0.023193359375
+	Loss of training:  0.604265050956
+epoch 408
+	Accuracy of training:  0.05283203125
+	Loss of training:  0.641771097813
+epoch 409
+	Accuracy of training:  0.045068359375
+	Loss of training:  0.648016866103
+epoch 410
+	Accuracy of training:  0.063720703125
+	Loss of training:  0.64972495483
+epoch 411
+	Accuracy of training:  0.0654296875
+	Loss of training:  0.615710686369
+epoch 412
+	Accuracy of training:  0.024560546875
+	Loss of training:  0.595082965086
+epoch 413
+	Accuracy of training:  0.024658203125
+	Loss of training:  0.606872844931
+epoch 414
+	Accuracy of training:  0.02158203125
+	Loss of training:  0.605193077376
+epoch 415
+	Accuracy of training:  0.02607421875
+	Loss of training:  0.658164778747
+epoch 416
+	Accuracy of training:  0.024560546875
+	Loss of training:  0.74730423778
+epoch 417
+	Accuracy of training:  0.079345703125
+	Loss of training:  0.767583718219
+epoch 418
+	Accuracy of training:  0.092041015625
+	Loss of training:  0.695109410956
+epoch 419
+	Accuracy of training:  0.116943359375
+	Loss of training:  0.689450093858
+epoch 420
+	Accuracy of training:  0.085546875
+	Loss of training:  0.613877499821
+epoch 421
+	Accuracy of training:  0.080908203125
+	Loss of training:  0.60581702259
+epoch 422
+	Accuracy of training:  0.082470703125
+	Loss of training:  0.654600572357
+epoch 423
+	Accuracy of training:  0.034130859375
+	Loss of training:  0.589700443675
+epoch 424
+	Accuracy of training:  0.05283203125
+	Loss of training:  0.665247108397
+epoch 425
+	Accuracy of training:  0.097998046875
+	Loss of training:  0.670902776139
+epoch 426
+	Accuracy of training:  0.063720703125
+	Loss of training:  0.637553279628
+epoch 427
+	Accuracy of training:  0.069921875
+	Loss of training:  0.675085365599
+epoch 428
+	Accuracy of training:  0.057568359375
+	Loss of training:  0.680305218743
+epoch 429
+	Accuracy of training:  0.074609375
+	Loss of training:  0.661650604749
+epoch 430
+	Accuracy of training:  0.038916015625
+	Loss of training:  0.658560226779
+epoch 431
+	Accuracy of training:  0.02939453125
+	Loss of training:  0.666365246056
+epoch 432
+	Accuracy of training:  0.037255859375
+	Loss of training:  0.665039461544
+epoch 433
+	Accuracy of training:  0.027880859375
+	Loss of training:  0.625620482649
+epoch 434
+	Accuracy of training:  0.0279296875
+	Loss of training:  0.647711242488
+epoch 435
+	Accuracy of training:  0.0232421875
+	Loss of training:  0.64358360737
+epoch 436
+	Accuracy of training:  0.023046875
+	Loss of training:  0.643973913152
+epoch 437
+	Accuracy of training:  0.027734375
+	Loss of training:  0.636013206262
+epoch 438
+	Accuracy of training:  0.0169921875
+	Loss of training:  0.669096025935
+epoch 439
+	Accuracy of training:  0.0185546875
+	Loss of training:  0.61956074461
+epoch 440
+	Accuracy of training:  0.013916015625
+	Loss of training:  0.619136619074
+epoch 441
+	Accuracy of training:  0.01396484375
+	Loss of training:  0.581778601509
+epoch 442
+	Accuracy of training:  0.0125
+	Loss of training:  0.624191156817
+epoch 443
+	Accuracy of training:  0.015576171875
+	Loss of training:  0.609309049667
+epoch 444
+	Accuracy of training:  0.017041015625
+	Loss of training:  0.571885999847
+epoch 445
+	Accuracy of training:  0.0154296875
+	Loss of training:  0.555459912108
+epoch 446
+	Accuracy of training:  0.013916015625
+	Loss of training:  0.539422887842
+epoch 447
+	Accuracy of training:  0.0109375
+	Loss of training:  0.549776266383
+epoch 448
+	Accuracy of training:  0.01396484375
+	Loss of training:  0.551493531702
+epoch 449
+	Accuracy of training:  0.012451171875
+	Loss of training:  0.550801647599
+epoch 450
+	Accuracy of training:  0.009375
+	Loss of training:  0.539196064013
+epoch 451
+	Accuracy of training:  0.0109375
+	Loss of training:  0.52966325486
+epoch 452
+	Accuracy of training:  0.01240234375
+	Loss of training:  0.526323392407
+epoch 453
+	Accuracy of training:  0.01552734375
+	Loss of training:  0.524117341847
+epoch 454
+	Accuracy of training:  0.01552734375
+	Loss of training:  0.516109669319
+epoch 455
+	Accuracy of training:  0.010888671875
+	Loss of training:  0.51143666888
+epoch 456
+	Accuracy of training:  0.010888671875
+	Loss of training:  0.500991866683
+epoch 457
+	Accuracy of training:  0.0109375
+	Loss of training:  0.491834296264
+epoch 458
+	Accuracy of training:  0.0109375
+	Loss of training:  0.482250825464
+epoch 459
+	Accuracy of training:  0.0140625
+	Loss of training:  0.482511986101
+epoch 460
+	Accuracy of training:  0.01416015625
+	Loss of training:  0.475802713544
+epoch 461
+	Accuracy of training:  0.01875
+	Loss of training:  0.482055889008
+epoch 462
+	Accuracy of training:  0.017138671875
+	Loss of training:  0.475840591246
+epoch 463
+	Accuracy of training:  0.020068359375
+	Loss of training:  0.478788522392
+epoch 464
+	Accuracy of training:  0.014013671875
+	Loss of training:  0.46814144578
+epoch 465
+	Accuracy of training:  0.01259765625
+	Loss of training:  0.461692483262
+epoch 466
+	Accuracy of training:  0.011083984375
+	Loss of training:  0.452345027133
+epoch 467
+	Accuracy of training:  0.014208984375
+	Loss of training:  0.448778157934
+epoch 468
+	Accuracy of training:  0.01416015625
+	Loss of training:  0.448060165357
+epoch 469
+	Accuracy of training:  0.01416015625
+	Loss of training:  0.447649297839
+epoch 470
+	Accuracy of training:  0.015625
+	Loss of training:  0.456924253752
+epoch 471
+	Accuracy of training:  0.02021484375
+	Loss of training:  0.441324354291
+epoch 472
+	Accuracy of training:  0.0216796875
+	Loss of training:  0.424031335718
+epoch 473
+	Accuracy of training:  0.021728515625
+	Loss of training:  0.410638396603
+epoch 474
+	Accuracy of training:  0.017138671875
+	Loss of training:  0.402722827666
+epoch 475
+	Accuracy of training:  0.017138671875
+	Loss of training:  0.402332857388
+epoch 476
+	Accuracy of training:  0.018701171875
+	Loss of training:  0.402237632083
+epoch 477
+	Accuracy of training:  0.018701171875
+	Loss of training:  0.393453045819
+epoch 478
+	Accuracy of training:  0.018701171875
+	Loss of training:  0.396378772959
+epoch 479
+	Accuracy of training:  0.0171875
+	Loss of training:  0.440501412769
+epoch 480
+	Accuracy of training:  0.024853515625
+	Loss of training:  0.422839109589
+epoch 481
+	Accuracy of training:  0.02021484375
+	Loss of training:  0.409060193238
+epoch 482
+	Accuracy of training:  0.017041015625
+	Loss of training:  0.382792980796
+epoch 483
+	Accuracy of training:  0.014111328125
+	Loss of training:  0.414454790972
+epoch 484
+	Accuracy of training:  0.013916015625
+	Loss of training:  0.379224988223
+epoch 485
+	Accuracy of training:  0.013818359375
+	Loss of training:  0.401322979938
+epoch 486
+	Accuracy of training:  0.01708984375
+	Loss of training:  0.378375390909
+epoch 487
+	Accuracy of training:  0.020068359375
+	Loss of training:  0.360731452309
+epoch 488
+	Accuracy of training:  0.0169921875
+	Loss of training:  0.437458401054
+epoch 489
+	Accuracy of training:  0.0125
+	Loss of training:  0.395416887651
+epoch 490
+	Accuracy of training:  0.009326171875
+	Loss of training:  0.390403503221
+epoch 491
+	Accuracy of training:  0.014013671875
+	Loss of training:  0.361943306058
+epoch 492
+	Accuracy of training:  0.01396484375
+	Loss of training:  0.354933608729
+epoch 493
+	Accuracy of training:  0.01240234375
+	Loss of training:  0.3563593892
+epoch 494
+	Accuracy of training:  0.010791015625
+	Loss of training:  0.360190441718
+epoch 495
+	Accuracy of training:  0.01083984375
+	Loss of training:  0.356772244819
+epoch 496
+	Accuracy of training:  0.01240234375
+	Loss of training:  0.341777268627
+epoch 497
+	Accuracy of training:  0.01240234375
+	Loss of training:  0.322607820306
+epoch 498
+	Accuracy of training:  0.012353515625
+	Loss of training:  0.322459792579
+epoch 499
+	Accuracy of training:  0.01083984375
+	Loss of training:  0.307700830994
+epoch 500
+	Accuracy of training:  0.015478515625
+	Loss of training:  0.300780649325
+epoch 501
+	Accuracy of training:  0.0107421875
+	Loss of training:  0.328493787861
+epoch 502
+	Accuracy of training:  0.010791015625
+	Loss of training:  0.304458431863
+epoch 503
+	Accuracy of training:  0.01083984375
+	Loss of training:  0.306368367851
+epoch 504
+	Accuracy of training:  0.01083984375
+	Loss of training:  0.294613845361
+epoch 505
+	Accuracy of training:  0.009326171875
+	Loss of training:  0.291499699616
+epoch 506
+	Accuracy of training:  0.00927734375
+	Loss of training:  0.314331186173
+epoch 507
+	Accuracy of training:  0.014013671875
+	Loss of training:  0.287332653507
+epoch 508
+	Accuracy of training:  0.007763671875
+	Loss of training:  0.356330617788
+epoch 509
+	Accuracy of training:  0.010693359375
+	Loss of training:  0.296877812443
+epoch 510
+	Accuracy of training:  0.0138671875
+	Loss of training:  0.304976771924
+epoch 511
+	Accuracy of training:  0.010791015625
+	Loss of training:  0.298099556495
+epoch 512
+	Accuracy of training:  0.0109375
+	Loss of training:  0.302496659973
+epoch 513
+	Accuracy of training:  0.01396484375
+	Loss of training:  0.295325596784
+epoch 514
+	Accuracy of training:  0.01396484375
+	Loss of training:  0.289829729302
+epoch 515
+	Accuracy of training:  0.013916015625
+	Loss of training:  0.274041922453
+epoch 516
+	Accuracy of training:  0.0154296875
+	Loss of training:  0.25716993205
+epoch 517
+	Accuracy of training:  0.013916015625
+	Loss of training:  0.269837000387
+epoch 518
+	Accuracy of training:  0.0169921875
+	Loss of training:  0.251136311151
+epoch 519
+	Accuracy of training:  0.015478515625
+	Loss of training:  0.261153251904
+epoch 520
+	Accuracy of training:  0.015478515625
+	Loss of training:  0.272411009989
+epoch 521
+	Accuracy of training:  0.01689453125
+	Loss of training:  0.275790682328
+epoch 522
+	Accuracy of training:  0.021630859375
+	Loss of training:  0.288494416799
+epoch 523
+	Accuracy of training:  0.018603515625
+	Loss of training:  0.267530360807
+epoch 524
+	Accuracy of training:  0.017041015625
+	Loss of training:  0.294637183138
+epoch 525
+	Accuracy of training:  0.02177734375
+	Loss of training:  0.286215589451
+epoch 526
+	Accuracy of training:  0.015625
+	Loss of training:  0.272543947285
+epoch 527
+	Accuracy of training:  0.021826171875
+	Loss of training:  0.270500061588
+epoch 528
+	Accuracy of training:  0.018701171875
+	Loss of training:  0.270669423264
+epoch 529
+	Accuracy of training:  0.018701171875
+	Loss of training:  0.271487774587
+epoch 530
+	Accuracy of training:  0.01728515625
+	Loss of training:  0.264730462849
+epoch 531
+	Accuracy of training:  0.0173828125
+	Loss of training:  0.279680117764
+epoch 532
+	Accuracy of training:  0.034375
+	Loss of training:  0.338489702496
+epoch 533
+	Accuracy of training:  0.03125
+	Loss of training:  0.313070865613
+epoch 534
+	Accuracy of training:  0.04375
+	Loss of training:  0.314628426416
+epoch 535
+	Accuracy of training:  0.034521484375
+	Loss of training:  0.342931181187
+epoch 536
+	Accuracy of training:  0.040673828125
+	Loss of training:  0.337280316452
+epoch 537
+	Accuracy of training:  0.037548828125
+	Loss of training:  0.339920348185
+epoch 538
+	Accuracy of training:  0.043701171875
+	Loss of training:  0.320289241767
+epoch 539
+	Accuracy of training:  0.051513671875
+	Loss of training:  0.301663102086
+epoch 540
+	Accuracy of training:  0.04833984375
+	Loss of training:  0.315366018078
+epoch 541
+	Accuracy of training:  0.04677734375
+	Loss of training:  0.294350618482
+epoch 542
+	Accuracy of training:  0.04833984375
+	Loss of training:  0.273233031809
+epoch 543
+	Accuracy of training:  0.054638671875
+	Loss of training:  0.274332515459
+epoch 544
+	Accuracy of training:  0.0451171875
+	Loss of training:  0.253818145323
+epoch 545
+	Accuracy of training:  0.062451171875
+	Loss of training:  0.280091463093
+epoch 546
+	Accuracy of training:  0.06552734375
+	Loss of training:  0.248302073014
+epoch 547
+	Accuracy of training:  0.067138671875
+	Loss of training:  0.235776914664
+epoch 548
+	Accuracy of training:  0.046826171875
+	Loss of training:  0.237779921027
+epoch 549
+	Accuracy of training:  0.067138671875
+	Loss of training:  0.278641665273
+epoch 550
+	Accuracy of training:  0.06240234375
+	Loss of training:  0.252709879504
+epoch 551
+	Accuracy of training:  0.05615234375
+	Loss of training:  0.259126700188
+epoch 552
+	Accuracy of training:  0.0388671875
+	Loss of training:  0.22643674112
+epoch 553
+	Accuracy of training:  0.03271484375
+	Loss of training:  0.217836573505
+epoch 554
+	Accuracy of training:  0.0326171875
+	Loss of training:  0.221820472853
+epoch 555
+	Accuracy of training:  0.027880859375
+	Loss of training:  0.20628459739
+epoch 556
+	Accuracy of training:  0.027783203125
+	Loss of training:  0.206286915111
+epoch 557
+	Accuracy of training:  0.02919921875
+	Loss of training:  0.22827450462
+epoch 558
+	Accuracy of training:  0.029248046875
+	Loss of training:  0.216120695249
+epoch 559
+	Accuracy of training:  0.024560546875
+	Loss of training:  0.194300529238
+epoch 560
+	Accuracy of training:  0.040185546875
+	Loss of training:  0.210458454952
+epoch 561
+	Accuracy of training:  0.04375
+	Loss of training:  0.262567818971
+epoch 562
+	Accuracy of training:  0.060791015625
+	Loss of training:  0.251797792411
+epoch 563
+	Accuracy of training:  0.071826171875
+	Loss of training:  0.240442396077
+epoch 564
+	Accuracy of training:  0.071826171875
+	Loss of training:  0.226787845207
+epoch 565
+	Accuracy of training:  0.071826171875
+	Loss of training:  0.220140054286
+epoch 566
+	Accuracy of training:  0.07353515625
+	Loss of training:  0.206491494323
+epoch 567
+	Accuracy of training:  0.07353515625
+	Loss of training:  0.202440285427
+epoch 568
+	Accuracy of training:  0.0734375
+	Loss of training:  0.188228909306
+epoch 569
+	Accuracy of training:  0.071875
+	Loss of training:  0.187302945432
+epoch 570
+	Accuracy of training:  0.0703125
+	Loss of training:  0.186468649087
+epoch 571
+	Accuracy of training:  0.070263671875
+	Loss of training:  0.179168387925
+epoch 572
+	Accuracy of training:  0.065625
+	Loss of training:  0.179418017415
+epoch 573
+	Accuracy of training:  0.05625
+	Loss of training:  0.175536185894
+epoch 574
+	Accuracy of training:  0.0578125
+	Loss of training:  0.173216655112
+epoch 575
+	Accuracy of training:  0.056201171875
+	Loss of training:  0.179432619336
+epoch 576
+	Accuracy of training:  0.046875
+	Loss of training:  0.165833852518
+epoch 577
+	Accuracy of training:  0.065625
+	Loss of training:  0.176211148744
+epoch 578
+	Accuracy of training:  0.070263671875
+	Loss of training:  0.188186067476
+epoch 579
+	Accuracy of training:  0.059375
+	Loss of training:  0.209733494032
+epoch 580
+	Accuracy of training:  0.049951171875
+	Loss of training:  0.17376873102
+epoch 581
+	Accuracy of training:  0.0390625
+	Loss of training:  0.156903153033
+epoch 582
+	Accuracy of training:  0.04521484375
+	Loss of training:  0.148281608379
+epoch 583
+	Accuracy of training:  0.053076171875
+	Loss of training:  0.162013039263
+epoch 584
+	Accuracy of training:  0.059326171875
+	Loss of training:  0.178504404117
+epoch 585
+	Accuracy of training:  0.056201171875
+	Loss of training:  0.196104458238
+epoch 586
+	Accuracy of training:  0.054638671875
+	Loss of training:  0.199385028432
+epoch 587
+	Accuracy of training:  0.051513671875
+	Loss of training:  0.162507142901
+epoch 588
+	Accuracy of training:  0.048388671875
+	Loss of training:  0.159941342399
+epoch 589
+	Accuracy of training:  0.0513671875
+	Loss of training:  0.154108334446
+epoch 590
+	Accuracy of training:  0.049853515625
+	Loss of training:  0.164599997685
+epoch 591
+	Accuracy of training:  0.049853515625
+	Loss of training:  0.150135836156
+epoch 592
+	Accuracy of training:  0.054638671875
+	Loss of training:  0.206248439902
+epoch 593
+	Accuracy of training:  0.060986328125
+	Loss of training:  0.219590976894
+epoch 594
+	Accuracy of training:  0.0591796875
+	Loss of training:  0.196465447334
+epoch 595
+	Accuracy of training:  0.0607421875
+	Loss of training:  0.188298532687
+epoch 596
+	Accuracy of training:  0.05166015625
+	Loss of training:  0.204123549222
+epoch 597
+	Accuracy of training:  0.0623046875
+	Loss of training:  0.197776493521
+epoch 598
+	Accuracy of training:  0.060888671875
+	Loss of training:  0.217082497009
+epoch 599
+	Accuracy of training:  0.060888671875
+	Loss of training:  0.204793084169
+epoch 600
+	Accuracy of training:  0.051611328125
+	Loss of training:  0.18471803401
+epoch 601
+	Accuracy of training:  0.04677734375
+	Loss of training:  0.181116446525
+epoch 602
+	Accuracy of training:  0.065478515625
+	Loss of training:  0.225545276457
+epoch 603
+	Accuracy of training:  0.070263671875
+	Loss of training:  0.168852778263
+epoch 604
+	Accuracy of training:  0.070263671875
+	Loss of training:  0.177112894857
+epoch 605
+	Accuracy of training:  0.070263671875
+	Loss of training:  0.175878103924
+epoch 606
+	Accuracy of training:  0.0484375
+	Loss of training:  0.1607079635
+epoch 607
+	Accuracy of training:  0.04521484375
+	Loss of training:  0.147289626005
+epoch 608
+	Accuracy of training:  0.05
+	Loss of training:  0.137364811651
+epoch 609
+	Accuracy of training:  0.056201171875
+	Loss of training:  0.120223182617
+epoch 610
+	Accuracy of training:  0.057763671875
+	Loss of training:  0.0858213954494
+epoch 611
+	Accuracy of training:  0.0578125
+	Loss of training:  0.0871453499209
+epoch 612
+	Accuracy of training:  0.0515625
+	Loss of training:  0.0800508639476
+epoch 613
+	Accuracy of training:  0.051416015625
+	Loss of training:  0.0659533695903
+epoch 614
+	Accuracy of training:  0.0529296875
+	Loss of training:  0.0705390522278
+epoch 615
+	Accuracy of training:  0.046826171875
+	Loss of training:  0.100279176355
+epoch 616
+	Accuracy of training:  0.046728515625
+	Loss of training:  0.0903829481921
+epoch 617
+	Accuracy of training:  0.04052734375
+	Loss of training:  0.145886856701
+epoch 618
+	Accuracy of training:  0.0482421875
+	Loss of training:  0.126395847275
+epoch 619
+	Accuracy of training:  0.063916015625
+	Loss of training:  0.127830746245
+epoch 620
+	Accuracy of training:  0.071728515625
+	Loss of training:  0.100133761984
+epoch 621
+	Accuracy of training:  0.0748046875
+	Loss of training:  0.106917862771
+epoch 622
+	Accuracy of training:  0.073388671875
+	Loss of training:  0.0942309191806
+epoch 623
+	Accuracy of training:  0.073388671875
+	Loss of training:  0.0816168379504
+epoch 624
+	Accuracy of training:  0.074853515625
+	Loss of training:  0.0798594107712
+epoch 625
+	Accuracy of training:  0.054541015625
+	Loss of training:  0.0986560839089
+epoch 626
+	Accuracy of training:  0.033056640625
+	Loss of training:  0.20442306418
+epoch 627
+	Accuracy of training:  0.03916015625
+	Loss of training:  0.240648720886
+epoch 628
+	Accuracy of training:  0.046923828125
+	Loss of training:  0.181376679658
+epoch 629
+	Accuracy of training:  0.0751953125
+	Loss of training:  0.261619118595
+epoch 630
+	Accuracy of training:  0.0580078125
+	Loss of training:  0.155115444024
+epoch 631
+	Accuracy of training:  0.0580078125
+	Loss of training:  0.13803333179
+epoch 632
+	Accuracy of training:  0.078369140625
+	Loss of training:  0.146209818745
+epoch 633
+	Accuracy of training:  0.08779296875
+	Loss of training:  0.113899701106
+epoch 634
+	Accuracy of training:  0.05341796875
+	Loss of training:  0.0694307860949
+epoch 635
+	Accuracy of training:  0.0330078125
+	Loss of training:  0.0441292492585
+epoch 636
+	Accuracy of training:  0.022119140625
+	Loss of training:  0.075142976872
+epoch 637
+	Accuracy of training:  0.01103515625
+	Loss of training:  0.0747843188219
+epoch 638
+	Accuracy of training:  0.0658203125
+	Loss of training:  0.040388663625
+epoch 639
+	Accuracy of training:  0.02216796875
+	Loss of training:  0.0210621348596
+epoch 640
+	Accuracy of training:  0.068798828125
+	Loss of training:  0.241302618504
+epoch 641
+	Accuracy of training:  0.13779296875
+	Loss of training:  0.0661493900217
+epoch 642
+	Accuracy of training:  0.10185546875
+	Loss of training:  0.00573964619511
+epoch 643
+	Accuracy of training:  0.069091796875
+	Loss of training:  0.0120535976144
+epoch 644
+	Accuracy of training:  0.032763671875
+	Loss of training:  0.0414978194052
+epoch 645
+	Accuracy of training:  0.015673828125
+	Loss of training:  0.113909155456
+epoch 646
+	Accuracy of training:  0.02333984375
+	Loss of training:  0.0124281759276
+epoch 647
+	Accuracy of training:  0.02333984375
+	Loss of training:  0.0219529655804
+epoch 648
+	Accuracy of training:  0.020458984375
+	Loss of training:  -0.0179785749188
+epoch 649
+	Accuracy of training:  0.01865234375
+	Loss of training:  -0.00131585126738
+epoch 650
+	Accuracy of training:  0.012548828125
+	Loss of training:  -0.0326019814929
+epoch 651
+	Accuracy of training:  0.021728515625
+	Loss of training:  -0.0373062424983
+epoch 652
+	Accuracy of training:  0.01728515625
+	Loss of training:  -0.0483683708207
+epoch 653
+	Accuracy of training:  0.018798828125
+	Loss of training:  -0.0502422893839
+epoch 654
+	Accuracy of training:  0.015673828125
+	Loss of training:  -0.0484275831124
+epoch 655
+	Accuracy of training:  0.017236328125
+	Loss of training:  -0.0592657871239
+epoch 656
+	Accuracy of training:  0.015673828125
+	Loss of training:  -0.0978141026392
+epoch 657
+	Accuracy of training:  0.0390625
+	Loss of training:  -0.0671524440781
+epoch 658
+	Accuracy of training:  0.079931640625
+	Loss of training:  -0.064745675956
+epoch 659
+	Accuracy of training:  0.09404296875
+	Loss of training:  -0.0538537289052
+epoch 660
+	Accuracy of training:  0.0314453125
+	Loss of training:  -0.0917245337815
+epoch 661
+	Accuracy of training:  0.090625
+	Loss of training:  -0.0799032425664
+epoch 662
+	Accuracy of training:  0.03154296875
+	Loss of training:  -0.108339467457
+epoch 663
+	Accuracy of training:  0.02197265625
+	Loss of training:  -0.118072717918
+epoch 664
+	Accuracy of training:  0.014111328125
+	Loss of training:  -0.114682047139
+epoch 665
+	Accuracy of training:  0.028125
+	Loss of training:  -0.151875532301
+epoch 666
+	Accuracy of training:  0.01416015625
+	Loss of training:  -0.121251236012
+epoch 667
+	Accuracy of training:  0.015625
+	Loss of training:  -0.139704638583
+epoch 668
+	Accuracy of training:  0.0234375
+	Loss of training:  -0.144634398209
+epoch 669
+	Accuracy of training:  0.015673828125
+	Loss of training:  -0.11556260101
+epoch 670
+	Accuracy of training:  0.017138671875
+	Loss of training:  -0.137604074149
+epoch 671
+	Accuracy of training:  0.021875
+	Loss of training:  -0.138278329136
+epoch 672
+	Accuracy of training:  0.012548828125
+	Loss of training:  -0.165461650533
+epoch 673
+	Accuracy of training:  0.039013671875
+	Loss of training:  -0.137178240634
+epoch 674
+	Accuracy of training:  0.0203125
+	Loss of training:  0.026738184471
+epoch 675
+	Accuracy of training:  0.013916015625
+	Loss of training:  -0.031189489441
+epoch 676
+	Accuracy of training:  0.025
+	Loss of training:  -0.0251419147052
+epoch 677
+	Accuracy of training:  0.010986328125
+	Loss of training:  -0.0721100526559
+epoch 678
+	Accuracy of training:  0.0109375
+	Loss of training:  -0.103647894847
+epoch 679
+	Accuracy of training:  0.009423828125
+	Loss of training:  -0.105732033248
+epoch 680
+	Accuracy of training:  0.010986328125
+	Loss of training:  -0.116060686691
+epoch 681
+	Accuracy of training:  0.01240234375
+	Loss of training:  -0.133090096232
+epoch 682
+	Accuracy of training:  0.009326171875
+	Loss of training:  -0.147215581386
+epoch 683
+	Accuracy of training:  0.012451171875
+	Loss of training:  -0.144912820471
+epoch 684
+	Accuracy of training:  0.0185546875
+	Loss of training:  -0.133675361956
+epoch 685
+	Accuracy of training:  0.010791015625
+	Loss of training:  -0.132528642257
+epoch 686
+	Accuracy of training:  0.009326171875
+	Loss of training:  -0.187756014762
+epoch 687
+	Accuracy of training:  0.016943359375
+	Loss of training:  -0.14946262683
+epoch 688
+	Accuracy of training:  0.01083984375
+	Loss of training:  -0.134118526401
+epoch 689
+	Accuracy of training:  0.0138671875
+	Loss of training:  -0.183256137814
+epoch 690
+	Accuracy of training:  0.012451171875
+	Loss of training:  -0.199559530289
+epoch 691
+	Accuracy of training:  0.010888671875
+	Loss of training:  -0.176771323649
+epoch 692
+	Accuracy of training:  0.010888671875
+	Loss of training:  -0.124759329964
+epoch 693
+	Accuracy of training:  0.009423828125
+	Loss of training:  -0.215733238745
+epoch 694
+	Accuracy of training:  0.010986328125
+	Loss of training:  -0.124689108124
+epoch 695
+	Accuracy of training:  0.010986328125
+	Loss of training:  -0.174596439323
+epoch 696
+	Accuracy of training:  0.089111328125
+	Loss of training:  -0.175318412779
+epoch 697
+	Accuracy of training:  0.089111328125
+	Loss of training:  -0.166375637449
+epoch 698
+	Accuracy of training:  0.0890625
+	Loss of training:  -0.218468491571
+epoch 699
+	Accuracy of training:  0.0765625
+	Loss of training:  -0.125490692032
+epoch 700
+	Accuracy of training:  0.0890625
+	Loss of training:  -0.18790356256
+epoch 701
+	Accuracy of training:  0.153076171875
+	Loss of training:  -0.226423051425
+epoch 702
+	Accuracy of training:  0.145361328125
+	Loss of training:  -0.153756277869
+epoch 703
+	Accuracy of training:  0.104833984375
+	Loss of training:  -0.173500602364
+epoch 704
+	Accuracy of training:  0.1095703125
+	Loss of training:  -0.0432838747914
+epoch 705
+	Accuracy of training:  0.10625
+	Loss of training:  -0.175910830339
+epoch 706
+	Accuracy of training:  0.08125
+	Loss of training:  -0.196721195129
+epoch 707
+	Accuracy of training:  0.02822265625
+	Loss of training:  -0.210786952383
+epoch 708
+	Accuracy of training:  0.028369140625
+	Loss of training:  -0.20495247181
+epoch 709
+	Accuracy of training:  0.026708984375
+	Loss of training:  -0.234384903747
+epoch 710
+	Accuracy of training:  0.02666015625
+	Loss of training:  -0.262279400055
+epoch 711
+	Accuracy of training:  0.017431640625
+	Loss of training:  -0.228900021973
+epoch 712
+	Accuracy of training:  0.0189453125
+	Loss of training:  -0.221142664167
+epoch 713
+	Accuracy of training:  0.018798828125
+	Loss of training:  -0.239429952645
+epoch 714
+	Accuracy of training:  0.017431640625
+	Loss of training:  -0.272723646965
+epoch 715
+	Accuracy of training:  0.01845703125
+	Loss of training:  -0.264196028998
+epoch 716
+	Accuracy of training:  0.015380859375
+	Loss of training:  -0.210106093431
+epoch 717
+	Accuracy of training:  0.009375
+	Loss of training:  -0.222670038991
+epoch 718
+	Accuracy of training:  0.04208984375
+	Loss of training:  0.297776410371
+epoch 719
+	Accuracy of training:  0.06240234375
+	Loss of training:  0.613879913054
+epoch 720
+	Accuracy of training:  0.045361328125
+	Loss of training:  0.587038580634
+epoch 721
+	Accuracy of training:  0.1234375
+	Loss of training:  0.392728460086
+epoch 722
+	Accuracy of training:  0.031494140625
+	Loss of training:  0.254645783262
+epoch 723
+	Accuracy of training:  0.054443359375
+	Loss of training:  0.233383998889
+epoch 724
+	Accuracy of training:  0.090625
+	Loss of training:  0.142207531423
+epoch 725
+	Accuracy of training:  0.08564453125
+	Loss of training:  0.153521752674
+epoch 726
+	Accuracy of training:  0.08251953125
+	Loss of training:  0.210345347497
+epoch 727
+	Accuracy of training:  0.056005859375
+	Loss of training:  0.255804360599
+epoch 728
+	Accuracy of training:  0.109033203125
+	Loss of training:  0.0719957157401
+epoch 729
+	Accuracy of training:  0.16064453125
+	Loss of training:  0.0343692462132
+epoch 730
+	Accuracy of training:  0.0794921875
+	Loss of training:  0.00298234168587
+epoch 731
+	Accuracy of training:  0.07470703125
+	Loss of training:  -0.0730846831958
+epoch 732
+	Accuracy of training:  0.079443359375
+	Loss of training:  -0.0839865530602
+epoch 733
+	Accuracy of training:  0.0703125
+	Loss of training:  -0.0441732390702
+epoch 734
+	Accuracy of training:  0.106103515625
+	Loss of training:  -0.0202978290439
+epoch 735
+	Accuracy of training:  0.12646484375
+	Loss of training:  -0.157571158492
+epoch 736
+	Accuracy of training:  0.129443359375
+	Loss of training:  -0.139851694212
+epoch 737
+	Accuracy of training:  0.01708984375
+	Loss of training:  -0.158997657631
+epoch 738
+	Accuracy of training:  0.0716796875
+	Loss of training:  -0.19803754725
+epoch 739
+	Accuracy of training:  0.09208984375
+	Loss of training:  -0.18911288956
+epoch 740
+	Accuracy of training:  0.115380859375
+	Loss of training:  -0.234732071322
+epoch 741
+	Accuracy of training:  0.13740234375
+	Loss of training:  -0.254986630534
+epoch 742
+	Accuracy of training:  0.14052734375
+	Loss of training:  -0.225629231908
+epoch 743
+	Accuracy of training:  0.15771484375
+	Loss of training:  -0.259193112959
+epoch 744
+	Accuracy of training:  0.11865234375
+	Loss of training:  -0.257040374331
+epoch 745
+	Accuracy of training:  0.01728515625
+	Loss of training:  -0.274333361632
+epoch 746
+	Accuracy of training:  0.068798828125
+	Loss of training:  -0.213177956498
+epoch 747
+	Accuracy of training:  0.04228515625
+	Loss of training:  -0.275260763218
+epoch 748
+	Accuracy of training:  0.014013671875
+	Loss of training:  -0.106070412016
+epoch 749
+	Accuracy of training:  0.0109375
+	Loss of training:  -0.208888461379
+epoch 750
+	Accuracy of training:  0.009326171875
+	Loss of training:  -0.313143723574
+epoch 751
+	Accuracy of training:  0.01396484375
+	Loss of training:  -0.124939481839
+epoch 752
+	Accuracy of training:  0.00927734375
+	Loss of training:  -0.310984909593
+epoch 753
+	Accuracy of training:  0.015478515625
+	Loss of training:  -0.215242373867
+epoch 754
+	Accuracy of training:  0.0140625
+	Loss of training:  -0.284779213003
+epoch 755
+	Accuracy of training:  0.010791015625
+	Loss of training:  -0.342157770393
+epoch 756
+	Accuracy of training:  0.014013671875
+	Loss of training:  -0.297216873426
+epoch 757
+	Accuracy of training:  0.01220703125
+	Loss of training:  -0.361146829374
+epoch 758
+	Accuracy of training:  0.01689453125
+	Loss of training:  -0.284438845747
+epoch 759
+	Accuracy of training:  0.0123046875
+	Loss of training:  -0.331440110018
+epoch 760
+	Accuracy of training:  0.017041015625
+	Loss of training:  -0.343657214445
+epoch 761
+	Accuracy of training:  0.01240234375
+	Loss of training:  -0.379397964866
+epoch 762
+	Accuracy of training:  0.009375
+	Loss of training:  -0.353298541109
+epoch 763
+	Accuracy of training:  0.01240234375
+	Loss of training:  -0.378519499523
+epoch 764
+	Accuracy of training:  0.01083984375
+	Loss of training:  -0.398705155481
+epoch 765
+	Accuracy of training:  0.010888671875
+	Loss of training:  -0.407815082626
+epoch 766
+	Accuracy of training:  0.00927734375
+	Loss of training:  -0.393949488244
+epoch 767
+	Accuracy of training:  0.01220703125
+	Loss of training:  -0.391667108125
+epoch 768
+	Accuracy of training:  0.0138671875
+	Loss of training:  -0.419820987325
+epoch 769
+	Accuracy of training:  0.012353515625
+	Loss of training:  -0.430828731523
+epoch 770
+	Accuracy of training:  0.00771484375
+	Loss of training:  -0.416073461319
+epoch 771
+	Accuracy of training:  0.009326171875
+	Loss of training:  -0.388612383357
+epoch 772
+	Accuracy of training:  0.009326171875
+	Loss of training:  -0.436488751748
+epoch 773
+	Accuracy of training:  0.009326171875
+	Loss of training:  -0.427455363954
+epoch 774
+	Accuracy of training:  0.009326171875
+	Loss of training:  -0.471842990472
+epoch 775
+	Accuracy of training:  0.009326171875
+	Loss of training:  -0.446026879357
+epoch 776
+	Accuracy of training:  0.006201171875
+	Loss of training:  -0.421765333645
+epoch 777
+	Accuracy of training:  0.013818359375
+	Loss of training:  -0.396894053681
+epoch 778
+	Accuracy of training:  0.0123046875
+	Loss of training:  -0.470628082034
+epoch 779
+	Accuracy of training:  0.01240234375
+	Loss of training:  -0.442506630432
+epoch 780
+	Accuracy of training:  0.010888671875
+	Loss of training:  -0.521447701604
+epoch 781
+	Accuracy of training:  0.013916015625
+	Loss of training:  -0.474921754063
+epoch 782
+	Accuracy of training:  0.009326171875
+	Loss of training:  -0.533031770906
+epoch 783
+	Accuracy of training:  0.012451171875
+	Loss of training:  -0.507883651558
+epoch 784
+	Accuracy of training:  0.014013671875
+	Loss of training:  -0.538182173641
+epoch 785
+	Accuracy of training:  0.012548828125
+	Loss of training:  -0.451090446069
+epoch 786
+	Accuracy of training:  0.0140625
+	Loss of training:  -0.482700901262
+epoch 787
+	Accuracy of training:  0.017236328125
+	Loss of training:  -0.502517034607
+epoch 788
+	Accuracy of training:  0.0126953125
+	Loss of training:  -0.510921915385
+epoch 789
+	Accuracy of training:  0.0048828125
+	Loss of training:  -0.52909084781
+epoch 790
+	Accuracy of training:  0.0080078125
+	Loss of training:  -0.495004983096
+epoch 791
+	Accuracy of training:  0.015673828125
+	Loss of training:  -0.534802984237
+epoch 792
+	Accuracy of training:  0.014111328125
+	Loss of training:  -0.546377932227
+epoch 793
+	Accuracy of training:  0.007763671875
+	Loss of training:  -0.541509314913
+epoch 794
+	Accuracy of training:  0.01083984375
+	Loss of training:  -0.532817218848
+epoch 795
+	Accuracy of training:  0.010986328125
+	Loss of training:  -0.539584035872
+epoch 796
+	Accuracy of training:  0.010888671875
+	Loss of training:  -0.499629042967
+epoch 797
+	Accuracy of training:  0.0078125
+	Loss of training:  -0.572004772625
+epoch 798
+	Accuracy of training:  0.009375
+	Loss of training:  -0.565630926712
+epoch 799
+	Accuracy of training:  0.009326171875
+	Loss of training:  -0.562057641791
+epoch 800
+	Accuracy of training:  0.006298828125
+	Loss of training:  -0.604224250503
+epoch 801
+	Accuracy of training:  0.009375
+	Loss of training:  -0.585609263219
+epoch 802
+	Accuracy of training:  0.0078125
+	Loss of training:  -0.616283006149
+epoch 803
+	Accuracy of training:  0.010888671875
+	Loss of training:  -0.610973853788
+epoch 804
+	Accuracy of training:  0.009326171875
+	Loss of training:  -0.631575053462
+epoch 805
+	Accuracy of training:  0.0125
+	Loss of training:  -0.618009006809
+epoch 806
+	Accuracy of training:  0.0109375
+	Loss of training:  -0.67691243761
+epoch 807
+	Accuracy of training:  0.0109375
+	Loss of training:  -0.614733332087
+epoch 808
+	Accuracy of training:  0.009375
+	Loss of training:  -0.655736163023
+epoch 809
+	Accuracy of training:  0.01396484375
+	Loss of training:  -0.616727804521
+epoch 810
+	Accuracy of training:  0.009375
+	Loss of training:  -0.684170810806
+epoch 811
+	Accuracy of training:  0.0125
+	Loss of training:  -0.663818714236
+epoch 812
+	Accuracy of training:  0.01083984375
+	Loss of training:  -0.670932635449
+epoch 813
+	Accuracy of training:  0.010986328125
+	Loss of training:  -0.577543097325
+epoch 814
+	Accuracy of training:  0.035888671875
+	Loss of training:  -0.449388466235
+epoch 815
+	Accuracy of training:  0.01103515625
+	Loss of training:  -0.595041785401
+epoch 816
+	Accuracy of training:  0.009326171875
+	Loss of training:  -0.597508200997
+epoch 817
+	Accuracy of training:  0.0109375
+	Loss of training:  -0.606352096282
+epoch 818
+	Accuracy of training:  0.013916015625
+	Loss of training:  -0.686500006045
+epoch 819
+	Accuracy of training:  0.015478515625
+	Loss of training:  -0.676939492345
+epoch 820
+	Accuracy of training:  0.015576171875
+	Loss of training:  -0.705078238531
+epoch 821
+	Accuracy of training:  0.012353515625
+	Loss of training:  -0.704217153329
+epoch 822
+	Accuracy of training:  0.012451171875
+	Loss of training:  -0.664604274874
+epoch 823
+	Accuracy of training:  0.010888671875
+	Loss of training:  -0.661136741893
+epoch 824
+	Accuracy of training:  0.01396484375
+	Loss of training:  -0.725134651988
+epoch 825
+	Accuracy of training:  0.009375
+	Loss of training:  -0.74283419925
+epoch 826
+	Accuracy of training:  0.01083984375
+	Loss of training:  -0.707676091769
+epoch 827
+	Accuracy of training:  0.009326171875
+	Loss of training:  -0.726998044216
+epoch 828
+	Accuracy of training:  0.01083984375
+	Loss of training:  -0.724277805053
+epoch 829
+	Accuracy of training:  0.00927734375
+	Loss of training:  -0.758889407309
+epoch 830
+	Accuracy of training:  0.00927734375
+	Loss of training:  -0.796537230431
+epoch 831
+	Accuracy of training:  0.012548828125
+	Loss of training:  -0.764046721978
+epoch 832
+	Accuracy of training:  0.015576171875
+	Loss of training:  -0.743803022992
+epoch 833
+	Accuracy of training:  0.0109375
+	Loss of training:  -0.795870010762
+epoch 834
+	Accuracy of training:  0.0138671875
+	Loss of training:  -0.80176563728
+epoch 835
+	Accuracy of training:  0.015673828125
+	Loss of training:  -0.79615378965
+epoch 836
+	Accuracy of training:  0.013818359375
+	Loss of training:  -0.827543055863
+epoch 837
+	Accuracy of training:  0.015576171875
+	Loss of training:  -0.822772687582
+epoch 838
+	Accuracy of training:  0.01416015625
+	Loss of training:  -0.83356557986
+epoch 839
+	Accuracy of training:  0.0140625
+	Loss of training:  -0.804910616105
+epoch 840
+	Accuracy of training:  0.01259765625
+	Loss of training:  -0.815780963228
+epoch 841
+	Accuracy of training:  0.0109375
+	Loss of training:  -0.838454148
+epoch 842
+	Accuracy of training:  0.0140625
+	Loss of training:  -0.86067203284
+epoch 843
+	Accuracy of training:  0.0125
+	Loss of training:  -0.864313634266
+epoch 844
+	Accuracy of training:  0.014013671875
+	Loss of training:  -0.895371500174
+epoch 845
+	Accuracy of training:  0.0140625
+	Loss of training:  -0.894294528213
+epoch 846
+	Accuracy of training:  0.009521484375
+	Loss of training:  -0.88057913826
+epoch 847
+	Accuracy of training:  0.010986328125
+	Loss of training:  -0.905441875432
+epoch 848
+	Accuracy of training:  0.01572265625
+	Loss of training:  -0.908453179994
+epoch 849
+	Accuracy of training:  0.010986328125
+	Loss of training:  -0.906146799092
+epoch 850
+	Accuracy of training:  0.014013671875
+	Loss of training:  -0.913791046896
+epoch 851
+	Accuracy of training:  0.01416015625
+	Loss of training:  -0.914877419714
+epoch 852
+	Accuracy of training:  0.012548828125
+	Loss of training:  -0.955713584882
+epoch 853
+	Accuracy of training:  0.014013671875
+	Loss of training:  -0.960722975462
+epoch 854
+	Accuracy of training:  0.015673828125
+	Loss of training:  -0.959628005719
+epoch 855
+	Accuracy of training:  0.014208984375
+	Loss of training:  -0.983481465134
+epoch 856
+	Accuracy of training:  0.018798828125
+	Loss of training:  -0.918854155793
+epoch 857
+	Accuracy of training:  0.017236328125
+	Loss of training:  -0.604653428724
+epoch 858
+	Accuracy of training:  0.01259765625
+	Loss of training:  -0.91109287679
+epoch 859
+	Accuracy of training:  0.01259765625
+	Loss of training:  -0.916119476936
+epoch 860
+	Accuracy of training:  0.0095703125
+	Loss of training:  -0.973295982482
+epoch 861
+	Accuracy of training:  0.012744140625
+	Loss of training:  -0.840817256452
+epoch 862
+	Accuracy of training:  0.01572265625
+	Loss of training:  -0.766928687624
+epoch 863
+	Accuracy of training:  0.028271484375
+	Loss of training:  -0.0917736746764
+epoch 864
+	Accuracy of training:  0.0111328125
+	Loss of training:  -0.425337214281
+epoch 865
+	Accuracy of training:  0.0125
+	Loss of training:  -0.681063551806
+epoch 866
+	Accuracy of training:  0.02041015625
+	Loss of training:  -0.845058400879
+epoch 867
+	Accuracy of training:  0.0203125
+	Loss of training:  -0.583586529641
+epoch 868
+	Accuracy of training:  0.015673828125
+	Loss of training:  -0.750846477695
+epoch 869
+	Accuracy of training:  0.017138671875
+	Loss of training:  -0.582610765688
+epoch 870
+	Accuracy of training:  0.017138671875
+	Loss of training:  -0.806743987759
+epoch 871
+	Accuracy of training:  0.017236328125
+	Loss of training:  -0.65812334806
+epoch 872
+	Accuracy of training:  0.02822265625
+	Loss of training:  -0.800461380299
+epoch 873
+	Accuracy of training:  0.014013671875
+	Loss of training:  -0.846498009866
+epoch 874
+	Accuracy of training:  0.01259765625
+	Loss of training:  -0.644634088227
+epoch 875
+	Accuracy of training:  0.01865234375
+	Loss of training:  -0.662764067615
+epoch 876
+	Accuracy of training:  0.012451171875
+	Loss of training:  -0.65493361893
+epoch 877
+	Accuracy of training:  0.014111328125
+	Loss of training:  -0.773213295524
+epoch 878
+	Accuracy of training:  0.0109375
+	Loss of training:  -0.52561508441
+epoch 879
+	Accuracy of training:  0.018798828125
+	Loss of training:  -0.543242323576
+epoch 880
+	Accuracy of training:  0.0140625
+	Loss of training:  -0.854223228355
+epoch 881
+	Accuracy of training:  0.0126953125
+	Loss of training:  -0.927523442378
+epoch 882
+	Accuracy of training:  0.00947265625
+	Loss of training:  -0.908239741534
+epoch 883
+	Accuracy of training:  0.009423828125
+	Loss of training:  -0.866829663613
+epoch 884
+	Accuracy of training:  0.018603515625
+	Loss of training:  -0.790303120218
+epoch 885
+	Accuracy of training:  0.01875
+	Loss of training:  -0.885420301495
+epoch 886
+	Accuracy of training:  0.018701171875
+	Loss of training:  -0.916107790709
+epoch 887
+	Accuracy of training:  0.018701171875
+	Loss of training:  -0.944269523461
+epoch 888
+	Accuracy of training:  0.0126953125
+	Loss of training:  -0.963439404385
+epoch 889
+	Accuracy of training:  0.018701171875
+	Loss of training:  -0.995323530973
+epoch 890
+	Accuracy of training:  0.011083984375
+	Loss of training:  -0.996103018229
+epoch 891
+	Accuracy of training:  0.018505859375
+	Loss of training:  -1.07604800945
+epoch 892
+	Accuracy of training:  0.01103515625
+	Loss of training:  -1.0406447743
+epoch 893
+	Accuracy of training:  0.0140625
+	Loss of training:  -1.08101426062
+epoch 894
+	Accuracy of training:  0.012451171875
+	Loss of training:  -1.07719547186
+epoch 895
+	Accuracy of training:  0.01240234375
+	Loss of training:  -1.11312474138
+epoch 896
+	Accuracy of training:  0.015478515625
+	Loss of training:  -1.13811264907
+epoch 897
+	Accuracy of training:  0.01103515625
+	Loss of training:  -1.11615538646
+epoch 898
+	Accuracy of training:  0.018701171875
+	Loss of training:  -1.09579386186
+epoch 899
+	Accuracy of training:  0.01259765625
+	Loss of training:  -1.10873215945
+epoch 900
+	Accuracy of training:  0.018798828125
+	Loss of training:  -1.12479581596
+epoch 901
+	Accuracy of training:  0.013916015625
+	Loss of training:  -1.14290929698
+epoch 902
+	Accuracy of training:  0.0140625
+	Loss of training:  -1.1465646211
+epoch 903
+	Accuracy of training:  0.018701171875
+	Loss of training:  -1.17015116938
+epoch 904
+	Accuracy of training:  0.0171875
+	Loss of training:  -1.14163529966
+epoch 905
+	Accuracy of training:  0.017041015625
+	Loss of training:  -1.1756644149
+epoch 906
+	Accuracy of training:  0.015478515625
+	Loss of training:  -1.14727133373
+epoch 907
+	Accuracy of training:  0.015478515625
+	Loss of training:  -1.1487842681
+epoch 908
+	Accuracy of training:  0.020263671875
+	Loss of training:  -1.21678481336
+epoch 909
+	Accuracy of training:  0.01103515625
+	Loss of training:  -1.08039681082
+epoch 910
+	Accuracy of training:  0.015966796875
+	Loss of training:  -1.08067765761
+epoch 911
+	Accuracy of training:  0.018701171875
+	Loss of training:  -0.918620403177
+epoch 912
+	Accuracy of training:  0.018701171875
+	Loss of training:  -1.15567982746
+epoch 913
+	Accuracy of training:  0.026318359375
+	Loss of training:  -1.11490892338
+epoch 914
+	Accuracy of training:  0.023486328125
+	Loss of training:  -1.15595286777
+epoch 915
+	Accuracy of training:  0.015625
+	Loss of training:  -1.22388533287
+epoch 916
+	Accuracy of training:  0.013818359375
+	Loss of training:  -1.22955843677
+epoch 917
+	Accuracy of training:  0.02470703125
+	Loss of training:  -1.15228188665
+epoch 918
+	Accuracy of training:  0.023388671875
+	Loss of training:  -1.14289078853
+epoch 919
+	Accuracy of training:  0.048583984375
+	Loss of training:  -1.15426645352
+epoch 920
+	Accuracy of training:  0.011083984375
+	Loss of training:  -1.19546003681
+epoch 921
+	Accuracy of training:  0.0125
+	Loss of training:  -1.22184457473
+epoch 922
+	Accuracy of training:  0.014013671875
+	Loss of training:  -1.22306174178
+epoch 923
+	Accuracy of training:  0.015576171875
+	Loss of training:  -1.26160881929
+epoch 924
+	Accuracy of training:  0.013916015625
+	Loss of training:  -1.25476272665
+epoch 925
+	Accuracy of training:  0.0078125
+	Loss of training:  -1.28615681906
+epoch 926
+	Accuracy of training:  0.009423828125
+	Loss of training:  -1.20600180071
+epoch 927
+	Accuracy of training:  0.009423828125
+	Loss of training:  -1.1771920692
+epoch 928
+	Accuracy of training:  0.01240234375
+	Loss of training:  -1.27102801142
+epoch 929
+	Accuracy of training:  0.00927734375
+	Loss of training:  -1.27676217914
+epoch 930
+	Accuracy of training:  0.0078125
+	Loss of training:  -1.29651088085
+epoch 931
+	Accuracy of training:  0.0109375
+	Loss of training:  -1.31419371967
+epoch 932
+	Accuracy of training:  0.0109375
+	Loss of training:  -1.33518861899
+epoch 933
+	Accuracy of training:  0.0154296875
+	Loss of training:  -1.36093017631
+epoch 934
+	Accuracy of training:  0.018701171875
+	Loss of training:  -1.34825713717
+epoch 935
+	Accuracy of training:  0.009423828125
+	Loss of training:  -1.35745061255
+epoch 936
+	Accuracy of training:  0.010888671875
+	Loss of training:  -1.39620765273
+epoch 937
+	Accuracy of training:  0.0123046875
+	Loss of training:  -1.39995315387
+epoch 938
+	Accuracy of training:  0.009326171875
+	Loss of training:  -1.40036855183
+epoch 939
+	Accuracy of training:  0.010791015625
+	Loss of training:  -1.44182269778
+epoch 940
+	Accuracy of training:  0.00927734375
+	Loss of training:  -1.45348849329
+epoch 941
+	Accuracy of training:  0.014013671875
+	Loss of training:  -1.35316300128
+epoch 942
+	Accuracy of training:  0.009375
+	Loss of training:  -1.21100990078
+epoch 943
+	Accuracy of training:  0.018798828125
+	Loss of training:  -0.615723693526
+epoch 944
+	Accuracy of training:  0.009521484375
+	Loss of training:  -1.13392391776
+epoch 945
+	Accuracy of training:  0.0171875
+	Loss of training:  -1.15902005773
+epoch 946
+	Accuracy of training:  0.01240234375
+	Loss of training:  -1.32732065996
+epoch 947
+	Accuracy of training:  0.00791015625
+	Loss of training:  -1.42414668523
+epoch 948
+	Accuracy of training:  0.015380859375
+	Loss of training:  -1.39325288603
+epoch 949
+	Accuracy of training:  0.012451171875
+	Loss of training:  -0.799316985895
+epoch 950
+	Accuracy of training:  0.009521484375
+	Loss of training:  -1.24893811406
+epoch 951
+	Accuracy of training:  0.01083984375
+	Loss of training:  -1.20360091158
+epoch 952
+	Accuracy of training:  0.010986328125
+	Loss of training:  -1.32764394217
+epoch 953
+	Accuracy of training:  0.013916015625
+	Loss of training:  -1.37574632486
+epoch 954
+	Accuracy of training:  0.010888671875
+	Loss of training:  -1.48833665932
+epoch 955
+	Accuracy of training:  0.010888671875
+	Loss of training:  -1.52825680807
+epoch 956
+	Accuracy of training:  0.0138671875
+	Loss of training:  -1.53910345117
+epoch 957
+	Accuracy of training:  0.00927734375
+	Loss of training:  -1.5556356044
+epoch 958
+	Accuracy of training:  0.009375
+	Loss of training:  -1.58471150852
+epoch 959
+	Accuracy of training:  0.009423828125
+	Loss of training:  -1.59425567472
+epoch 960
+	Accuracy of training:  0.009375
+	Loss of training:  -1.60061622325
+epoch 961
+	Accuracy of training:  0.009326171875
+	Loss of training:  -1.61577789736
+epoch 962
+	Accuracy of training:  0.01240234375
+	Loss of training:  -1.63942621679
+epoch 963
+	Accuracy of training:  0.0169921875
+	Loss of training:  -1.6660684592
+epoch 964
+	Accuracy of training:  0.012451171875
+	Loss of training:  -1.67632294469
+epoch 965
+	Accuracy of training:  0.01240234375
+	Loss of training:  -1.68801791739
+epoch 966
+	Accuracy of training:  0.015576171875
+	Loss of training:  -1.70594193354
+epoch 967
+	Accuracy of training:  0.014013671875
+	Loss of training:  -1.71859996366
+epoch 968
+	Accuracy of training:  0.017138671875
+	Loss of training:  -1.72716445427
+epoch 969
+	Accuracy of training:  0.017138671875
+	Loss of training:  -1.74028518172
+epoch 970
+	Accuracy of training:  0.017138671875
+	Loss of training:  -1.74985535227
+epoch 971
+	Accuracy of training:  0.017138671875
+	Loss of training:  -1.75861749049
+epoch 972
+	Accuracy of training:  0.017138671875
+	Loss of training:  -1.7698757625
+epoch 973
+	Accuracy of training:  0.0216796875
+	Loss of training:  -1.76212392763
+epoch 974
+	Accuracy of training:  0.0171875
+	Loss of training:  -1.69461071024
+epoch 975
+	Accuracy of training:  0.01865234375
+	Loss of training:  -1.75799401348
+epoch 976
+	Accuracy of training:  0.015673828125
+	Loss of training:  -1.79525519473
+epoch 977
+	Accuracy of training:  0.017138671875
+	Loss of training:  -1.79973512376
+epoch 978
+	Accuracy of training:  0.0171875
+	Loss of training:  -1.17289694816
+epoch 979
+	Accuracy of training:  0.009326171875
+	Loss of training:  -1.05886340657
+epoch 980
+	Accuracy of training:  0.014111328125
+	Loss of training:  -1.21045686451
+epoch 981
+	Accuracy of training:  0.02021484375
+	Loss of training:  -1.15495106754
+epoch 982
+	Accuracy of training:  0.01396484375
+	Loss of training:  -1.14903346513
+epoch 983
+	Accuracy of training:  0.026611328125
+	Loss of training:  -0.368191490833
+epoch 984
+	Accuracy of training:  0.02509765625
+	Loss of training:  -0.551737321706
+epoch 985
+	Accuracy of training:  0.01259765625
+	Loss of training:  0.0232136078305
+epoch 986
+	Accuracy of training:  0.01123046875
+	Loss of training:  -0.47776378444
+epoch 987
+	Accuracy of training:  0.01728515625
+	Loss of training:  -0.192923738311
+epoch 988
+	Accuracy of training:  0.017431640625
+	Loss of training:  -0.446760672581
+epoch 989
+	Accuracy of training:  0.017236328125
+	Loss of training:  -0.2272731738
+epoch 990
+	Accuracy of training:  0.02021484375
+	Loss of training:  0.059472030912
+epoch 991
+	Accuracy of training:  0.021728515625
+	Loss of training:  -0.629554440489
+epoch 992
+	Accuracy of training:  0.017236328125
+	Loss of training:  -0.715845032456
+epoch 993
+	Accuracy of training:  0.017236328125
+	Loss of training:  -0.849998212347
+epoch 994
+	Accuracy of training:  0.01103515625
+	Loss of training:  -0.927257928352
+epoch 995
+	Accuracy of training:  0.020263671875
+	Loss of training:  -1.13324638106
+epoch 996
+	Accuracy of training:  0.0140625
+	Loss of training:  -0.955484763194
+epoch 997
+	Accuracy of training:  0.012548828125
+	Loss of training:  -0.948175310507
+epoch 998
+	Accuracy of training:  0.048291015625
+	Loss of training:  -0.755263680649
+epoch 999
+	Accuracy of training:  0.010986328125
+	Loss of training:  -0.867645132567
+174
+317
+138
+318
+0 0.341515104403
+1 0.341515104403
+2 0.341515104403
+3 0.341515104403
+4 0.341515104403
+5 0.341515104403
+6 0.341515104403
+7 0.341515104403
+8 0.341515104403
+9 0.341515104403
+10 0.341515104403
+11 0.341515104403
+12 0.341515104403
+13 0.341515104403
+14 0.341515104403
+15 0.341515104403
+16 0.341515104403
+17 0.341515104403
+18 0.341515104403
+19 0.341515104403
+20 0.341515104403
+21 0.341515104403
+22 0.341515104403
+23 0.341515104403
+24 0.341515104403
+25 0.341515104403
+26 0.341515104403
+27 0.341515104403
+28 0.341515104403
+29 0.341515104403
+30 0.341515104403
+31 0.341515104403
+32 0.341515104403
+33 0.341515104403
+34 0.341515104403
+35 0.341515104403
+36 0.341515104403
+37 0.341515104403
+38 0.341515104403
+39 0.341515104403
+40 0.341515104403
+41 0.341515104403
+42 0.341515104403
+43 0.341515104403
+44 0.341515104403
+45 0.341515104403
+46 0.341515104403
+47 0.341515104403
+48 0.341515104403
+49 0.341515104403
+50 0.341515104403
+51 0.341515104403
+52 0.341515104403
+53 0.341515104403
+54 0.341515104403
+55 0.341515104403
+56 0.341515104403
+57 0.341515104403
+58 0.341515104403
+59 0.341515104403
+60 0.341515104403
+61 0.341515104403
+62 0.341515104403
+63 0.341515104403
+64 0.341515104403
+65 0.341515104403
+66 0.341515104403
+67 0.341515104403
+68 0.341515104403
+69 0.341515104403
+70 0.341515104403
+71 0.341515104403
+72 0.341515104403
+73 0.341515104403
+74 0.341515104403
+75 0.341515104403
+76 0.341515104403
+77 0.341515104403
+78 0.341515104403
+79 0.341515104403
+80 0.341515104403
+81 0.341515104403
+82 0.341515104403
+83 0.341515104403
+84 0.341515104403
+85 0.341515104403
+86 0.341515104403
+87 0.341515104403
+88 0.341515104403
+89 0.341515104403
+90 0.341515104403
+91 0.341515104403
+92 0.341515104403
+93 0.341515104403
+94 0.341515104403
+95 0.341515104403
+96 0.341515104403
+97 0.341515104403
+98 0.341515104403
+99 0.341515104403
+100 0.341515104403
+101 0.341515104403
+102 0.341455133515
+103 0.317976410035
+104 0.31595102849
+105 0.312161156442
+106 0.312161156442
+107 0.312161156442
+108 0.312161156442
+109 0.312161156442
+110 0.312161156442
+111 0.312161156442
+112 0.33652790403
+113 0.340960207162
+114 0.341515104403
+115 0.341515104403
+116 0.341515104403
+117 0.341515104403
+118 0.341515104403
+119 0.341515104403
+120 0.341515104403
+121 0.341515104403
+122 0.341515104403
+123 0.341515104403
+124 0.341515104403
+125 0.341515104403
+126 0.341515104403
+127 0.341515104403
+128 0.341515104403
+129 0.341515104403
+130 0.341515104403
+131 0.341515104403
+132 0.341515104403
+133 0.341515104403
+134 0.341515104403
+135 0.341515104403
+136 0.341515104403
+137 0.341515104403
+138 0.327191343298
+139 0.325546557317
+140 0.323654534703
+141 0.323654534703
+142 0.323654534703
+143 0.323654534703
+144 0.323654534703
+145 0.323654534703
+146 0.323654534703
+147 0.323654534703
+148 0.323654534703
+149 0.323654534703
+150 0.323654534703
+151 0.323654534703
+152 0.323654534703
+153 0.323654534703
+154 0.323654534703
+155 0.323654534703
+156 0.323654534703
+157 0.323654534703
+158 0.323654534703
+159 0.34088289924
+160 0.344958266243
+161 0.341515104403
+162 0.341515104403
+163 0.341515104403
+164 0.341515104403
+165 0.341515104403
+166 0.341515104403
+167 0.341515104403
+168 0.341515104403
+169 0.341515104403
+170 0.341515104403
+171 0.341515104403
+172 0.341515104403
+173 0.341515104403
+174 0.341515104403
+175 0.341515104403
+176 0.341515104403
+177 0.341515104403
+178 0.341515104403
+179 0.341515104403
+180 0.341515104403
+181 0.341515104403
+182 0.341515104403
+183 0.341515104403
+184 0.341515104403
+185 0.341515104403
+186 0.341515104403
+187 0.341515104403
+188 0.341515104403
+189 0.341515104403
+190 0.341515104403
+191 0.341515104403
+192 0.341515104403
+193 0.341515104403
+194 0.341515104403
+195 0.341515104403
+196 0.341515104403
+197 0.341515104403
+198 0.341515104403
+199 0.341515104403
+200 0.341515104403
+201 0.341515104403
+202 0.341515104403
+203 0.341515104403
+204 0.341515104403
+205 0.341515104403
+206 0.341515104403
+207 0.341515104403
+208 0.341515104403
+209 0.341515104403
+210 0.341515104403
+211 0.341515104403
+212 0.341515104403
+213 0.341515104403
+214 0.341515104403
+215 0.341515104403
+216 0.341515104403
+217 0.341515104403
+218 0.341515104403
+219 0.341515104403
+220 0.341515104403

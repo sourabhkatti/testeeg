@@ -81,6 +81,7 @@ def importfile(path):
 
     return gyro_x, gyro_y, electrodes, sample_numbers, time_ms, time_s
 
+
 # Clean out the special characters in an edf and convert to float
 def sanitizeedf(raw_edf):
     raw_edf = np.asarray(raw_edf)
@@ -97,47 +98,46 @@ def sanitizeedf(raw_edf):
     return sanitized_edf
 
 
-
-
 # Return a list of targets based on a provided text file
 def get_targets_by_ms(path_blink_twice_target, time_ms):
     # Load up values of ms to compare to
     target_counts = np.loadtxt(path_blink_twice_target, dtype=float, delimiter=' ')
-    target_index = 0
+
+    target_shape = target_counts.shape
 
     samples = time_ms.__len__()
-    sample_index = 0
+
 
     ms_sum = 0
 
-    target_output = []
+    target_output = np.zeros(samples)
 
     # For each sample in time_ms array, write a 0 as long as the target_counts have not been reached.
     # If a target count is reached, write a 1 for the next sample
 
     # Add a 0 to help the array sizes match up later
-    target_output.append(0)
+    p = 0
+    while p < target_shape[0]:
+        target = target_counts[p][2]
+        sample_index = 0
+        target_index = 0
+        ms_sum = 0.0
+        while sample_index < samples - 1:
+            time_diff = time_ms[sample_index + 1] - time_ms[sample_index]
 
-    while sample_index < samples - 1:
-        time_diff = time_ms[sample_index + 1] - time_ms[sample_index]
+            if time_diff < 0:
+                time_diff += 1000.0
 
-        if time_diff < 0:
-            time_diff += 1000.0
+            ms_sum += time_diff
 
-        ms_sum += time_diff
-
-        try:
-            if ms_sum > target_counts[target_index]:
-                target_output.append(1)
+            if ms_sum > target_counts[p][target_index]:
+                target_output[sample_index] = target
                 target_index += 1
                 print(sample_index)
-            else:
-                target_output.append(0)
-        except:
-            target_output.append(0)
-
-        sample_index += 1
+                if target_index == target_shape[1] - 1:
+                    break
 
 
-
+            sample_index += 1
+        p += 1
     return np.asarray(target_output).astype(float)

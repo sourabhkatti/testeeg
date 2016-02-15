@@ -1,6 +1,9 @@
 <component name="ProjectDictionaryState">
   <dictionary name="SourabhKatti">
     <words>
+      <w>actualfigdb</w>
+      <w>batchsize</w>
+      <w>blinkonce</w>
       <w>chainer</w>
       <w>eeginput</w>
       <w>eegoutput</w>
@@ -11,9 +14,13 @@
       <w>outputfile</w>
       <w>outputpath</w>
       <w>pltimage</w>
+      <w>predfigsb</w>
       <w>preds</w>
+      <w>predsfig</w>
+      <w>predsfile</w>
       <w>sampleindex</w>
       <w>samplenums</w>
+      <w>savernn</w>
       <w>timems</w>
     </words>
   </dictionary>

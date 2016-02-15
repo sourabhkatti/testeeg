@@ -13,3 +13,6 @@ def get_blink_twice_ds():
     train_y = edf.get_targets_by_ms(path_blink_twice_target, time_ms)
 
     return [gyro_x, gyro_y, electrodes, sample_numbers, time_ms, time_s], train_y
+
+def get_blink_once_ds():
+    pass
