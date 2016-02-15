@@ -307,10 +307,10 @@ class eeg_learner():
 
 eeg_learner = eeg_learner()
 
-training_data = eeg_learner.train_timeonly()
-raw_data, predictions = eeg_learner.test_eeg_sample()
-eeg_learner.plot_predictions(raw_data, predictions)
+#training_data = eeg_learner.train_timeonly()
+#raw_data, predictions = eeg_learner.test_eeg_sample()
+#eeg_learner.plot_predictions(raw_data, predictions)
 
-#eeg_learner.train_timefreq()
+eeg_learner.train_timefreq()
 
 

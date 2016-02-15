@@ -1,5 +1,5 @@
 import eeg_data.face.face as face
-#from scipy import signal
+from scipy import signal
 from scipy.interpolate import interp1d
 from scipy.signal import butter, filtfilt, iirdesign, zpk2tf, freqz
 from scipy.fftpack import fft
@@ -42,7 +42,7 @@ def getfft(raw_data):
     plt.grid()
     plt.xlabel("Frequency")
     plt.ylabel("Magnitude (db)")
-    plt.savefig("C:/Users/SourabhKatti/Documents/engine/mozart/logs/fft.png")
+    plt.savefig("C:/testeeg/testeeg/mozart/logs/fft.png")
 
     plt.show()
     plotspectrogram(x, xf, raw_data, n, fs)
