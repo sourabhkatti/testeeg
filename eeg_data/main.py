@@ -39,6 +39,7 @@ def getfft(raw_data):
         y = channel_data
         yf = fft(y)
         plt.semilogy(xf[0: n / 2], 2.0 / n * np.abs(yf[0:n / 2]))
+
     plt.grid()
     plt.xlabel("Frequency")
     plt.ylabel("Magnitude (db)")
@@ -56,23 +57,23 @@ def plotspectrogram(x, xf, raw_data, nfft, fs):
     print("Generating spectrogram...")
     f_lim_Hz = [0, 50]  # frequency limits for plotting
     plt.figure(figsize=(10, 5))
-    for i in range(12, data_shape[1]):
-        plt.clf()
-        ax1 = plt.subplot(211)
+    plt_num = 1
+    plt.clf()
+    plt.figure(1)
+    i = 0
+    for i in range(0, data_shape[1]):
+        plt.subplot(4, 4, plt_num)
 
 
-
-        plt.subplot(212, sharex=ax1)
-        f, t, Sxx = signal.spectrogram(x=raw_data[:, i], nfft=nfft, fs=fs, noverlap=100)  # returns PSD power per Hz
+        f, t, Sxx = signal.spectrogram(x=raw_data[:, i], nfft=nfft, fs=fs, noverlap=127, nperseg=128, scaling='density')  # returns PSD power per Hz
         plt.pcolormesh(t, f, Sxx)
 
-
-        plt.clim([-25, 26])
         plt.xlabel('Time (sec)')
         plt.ylabel('Frequency (Hz)')
-        plt.title('Spectrogram')
+        plt.title('Channel %s' % i)
+        plt_num += 1
 
-        plt.show()
+    plt.show()
 
 
 def getdatasets_blinkonce():
