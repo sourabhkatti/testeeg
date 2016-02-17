@@ -59,21 +59,27 @@ def plot_spectrogram(raw_data, nfft, fs):
     plt_num = 1
     plt.clf()
     plt.figure(1)
+    channel_data = []
     for i in range(0, data_shape[1]):
         plt.subplot(4, 4, plt_num)
 
-        f, t, Sxx = signal.spectrogram(x=raw_data[:, i], nfft=nfft, fs=fs, noverlap=127, nperseg=128, scaling='density')  # returns PSD power per Hz
+        f, t, Sxx = signal.spectrogram(x=raw_data[:, i], nfft=nfft, fs=fs, noverlap=127, nperseg=128,
+                                       scaling='density')  # returns PSD power per Hz
         plt.pcolormesh(t, f, Sxx)
 
         plt.xlabel('Time (sec)')
         plt.ylabel('Frequency (Hz)')
         plt.title('Channel %s' % i)
         plt_num += 1
+        channel_data.append([f, t, Sxx])
 
     plt.show()
+    return channel_data
+
 
 def plot_csd(raw_data, nfft, fs):
     data_shape = raw_data.shape
+    channel_data = []
 
     print("Generating cross spectral density graph...")
     plt_num = 1
@@ -89,9 +95,10 @@ def plot_csd(raw_data, nfft, fs):
         plt.ylabel('CSD [V**2/Hz]')
         plt.title('Channel %s' % i)
         plt_num += 1
+        channel_data.append([f, Pxy])
 
     plt.show()
-
+    return channel_data
 
 
 def getdatasets_blinkonce():
