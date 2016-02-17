@@ -46,24 +46,21 @@ def getfft(raw_data):
     plt.savefig("C:/testeeg/testeeg/mozart/logs/fft.png")
 
     plt.show()
-    plotspectrogram(x, xf, raw_data, n, fs)
+    plot_spectrogram(raw_data, n, fs)
+    plot_csd(raw_data, n, fs)
 
     return xf, yf
 
 
-def plotspectrogram(x, xf, raw_data, nfft, fs):
+def plot_spectrogram(raw_data, nfft, fs):
     data_shape = raw_data.shape
 
     print("Generating spectrogram...")
-    f_lim_Hz = [0, 50]  # frequency limits for plotting
-    plt.figure(figsize=(10, 5))
     plt_num = 1
     plt.clf()
     plt.figure(1)
-    i = 0
     for i in range(0, data_shape[1]):
         plt.subplot(4, 4, plt_num)
-
 
         f, t, Sxx = signal.spectrogram(x=raw_data[:, i], nfft=nfft, fs=fs, noverlap=127, nperseg=128, scaling='density')  # returns PSD power per Hz
         plt.pcolormesh(t, f, Sxx)
@@ -74,6 +71,27 @@ def plotspectrogram(x, xf, raw_data, nfft, fs):
         plt_num += 1
 
     plt.show()
+
+def plot_csd(raw_data, nfft, fs):
+    data_shape = raw_data.shape
+
+    print("Generating cross spectral density graph...")
+    plt_num = 1
+    plt.clf()
+    plt.figure(1)
+    for i in range(0, data_shape[1] - 1):
+        plt.subplot(4, 4, plt_num)
+        x = raw_data[:, i]
+        y = raw_data[:, i + 1]
+        f, Pxy = signal.csd(x, y, nfft=nfft, fs=fs)  # returns PSD power per Hz
+        plt.semilogy(f, np.abs(Pxy))
+        plt.xlabel('frequency [Hz]')
+        plt.ylabel('CSD [V**2/Hz]')
+        plt.title('Channel %s' % i)
+        plt_num += 1
+
+    plt.show()
+
 
 
 def getdatasets_blinkonce():
