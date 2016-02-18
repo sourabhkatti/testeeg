@@ -22,8 +22,8 @@ class Logger(object):
 class eeg_learner():
     outputfile = ""
     model_to_use = FunctionSet()
-    optimizer = optimizers.SGD(lr=0.1)
-    model_path = "C:/Users/SourabhKatti/Documents/engine/mozart/models/" + outputfile + ".model"
+    optimizer = optimizers.SGD(lr=0.01)
+    model_path = "C:/testeeg/testeeg/mozart/models" + outputfile + ".model"
 
     def __init__(self):
         self.initialsetup()
@@ -55,30 +55,30 @@ class eeg_learner():
         previous_output = Variable(y_batch_prev, volatile=volatile)
 
         h1_current = F.sigmoid(self.model_to_use.x_h1(current_sample))
-        h1_previous = F.sigmoid(self.model_to_use.x_h1(previous_sample))
-        h1_next = F.sigmoid(self.model_to_use.x_h1(next_sample))
-        h1_diff_previous = h1_current - h1_previous
-        h1_diff_next = h1_next - h1_current
+        #h1_previous = F.sigmoid(self.model_to_use.x_h1(previous_sample))
+        #h1_next = F.sigmoid(self.model_to_use.x_h1(next_sample))
+        #h1_diff_previous = h1_current - h1_previous
+        #h1_diff_next = h1_next - h1_current
 
         h2_current = F.sigmoid(self.model_to_use.h1_h2(h1_current))
-        h2_diff_n = F.sigmoid(self.model_to_use.h1_h2(h1_diff_next))
-        h2_diff_p = F.sigmoid(self.model_to_use.h1_h2(h1_diff_previous))
-        h2_diff_next = h2_diff_n - h2_current
-        h2_diff_previous = h2_current - h2_diff_p
+        #h2_diff_n = F.sigmoid(self.model_to_use.h1_h2(h1_diff_next))
+        #h2_diff_p = F.sigmoid(self.model_to_use.h1_h2(h1_diff_previous))
+        #h2_diff_next = h2_diff_n - h2_current
+        #h2_diff_previous = h2_current - h2_diff_p
 
         h3_current = F.sigmoid(self.model_to_use.h2_h3(h2_current))
-        h3_diff_p = F.sigmoid(self.model_to_use.h2_h3(h2_diff_previous))
-        h3_diff_n = F.sigmoid(self.model_to_use.h2_h3(h2_diff_next))
-        h3_diff_next = h3_diff_n - h3_current
-        h3_diff_previous = h3_current - h3_diff_p
+        #h3_diff_p = F.sigmoid(self.model_to_use.h2_h3(h2_diff_previous))
+        #h3_diff_n = F.sigmoid(self.model_to_use.h2_h3(h2_diff_next))
+        #h3_diff_next = h3_diff_n - h3_current
+        #h3_diff_previous = h3_current - h3_diff_p
 
         h4_current = F.sigmoid(self.model_to_use.h3_h4(h3_current))
-        h4_diff_previous = F.sigmoid(self.model_to_use.h3_h4(h3_diff_previous))
-        h4_diff_next = F.sigmoid(self.model_to_use.h3_h4(h3_diff_next))
-        h4_diff = h4_diff_next + h4_diff_previous
-        h4 = h4_current * h4_diff
+        #h4_diff_previous = F.sigmoid(self.model_to_use.h3_h4(h3_diff_previous))
+        #h4_diff_next = F.sigmoid(self.model_to_use.h3_h4(h3_diff_next))
+        #h4_diff = h4_diff_next + h4_diff_previous
+        #h4 = h4_current * h4_diff
 
-        # h4 = h4_current
+        h4 = h4_current
         y = self.model_to_use.h4_y(h4)
 
         loss = F.sigmoid_cross_entropy(y, current_output)
@@ -107,7 +107,7 @@ class eeg_learner():
         epoch_loss = []
         epochs = []
 
-        outputpath = "C:/Users/SourabhKatti/Documents/engine/mozart/logs/" + self.outputfile + ".txt"
+        outputpath = "C:/testeeg/testeeg/mozart/logs" + self.outputfile + ".txt"
         sys.stdout = Logger(outputpath)
         for layer in self.model_to_use._get_sorted_funcs():
             print(layer[0], layer[1].W.shape)
@@ -286,7 +286,7 @@ class eeg_learner():
 
         # Plot the predictions and raw EEG signals
         plt.clf()
-        predsfile = "C:/Users/SourabhKatti/Documents/engine/mozart/logs/" + self.outputfile + "-preds.png"
+        predsfile = "C:/testeeg/testeeg/mozart/logs/" + self.outputfile + "-preds.png"
         predsfig = plt.figure(2)
         predfigsb = predsfig.add_subplot(211)
         predfigsb.plot(indices, predictions)
@@ -307,10 +307,10 @@ class eeg_learner():
 
 eeg_learner = eeg_learner()
 
-#training_data = eeg_learner.train_timeonly()
-#raw_data, predictions = eeg_learner.test_eeg_sample()
-#eeg_learner.plot_predictions(raw_data, predictions)
+training_data = eeg_learner.train_timeonly()
+raw_data, predictions = eeg_learner.test_eeg_sample()
+eeg_learner.plot_predictions(raw_data, predictions)
 
-eeg_learner.train_timefreq()
+#eeg_learner.train_timefreq()
 
 
