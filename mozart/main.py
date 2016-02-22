@@ -22,8 +22,8 @@ class Logger(object):
 class eeg_learner():
     outputfile = ""
     model_to_use = FunctionSet()
-    optimizer = optimizers.SGD(lr=0.01)
-    model_path = "C:/testeeg/testeeg/mozart/models" + outputfile + ".model"
+    optimizer = optimizers.SGD(lr=0.1)
+    model_path = "C:/testeeg/testeeg/mozart/models/" + outputfile + ".model"
 
     def __init__(self):
         self.initialsetup()
@@ -107,12 +107,12 @@ class eeg_learner():
         epoch_loss = []
         epochs = []
 
-        outputpath = "C:/testeeg/testeeg/mozart/logs" + self.outputfile + ".txt"
+        outputpath = "C:/testeeg/testeeg/mozart/logs/" + self.outputfile + ".txt"
         sys.stdout = Logger(outputpath)
         for layer in self.model_to_use._get_sorted_funcs():
             print(layer[0], layer[1].W.shape)
 
-        for epoch in range(10000):
+        for epoch in range(1000):
             epochcount += 1
             print('epoch %d' % epoch)
             sum_accuracy = 0.0
@@ -262,7 +262,7 @@ class eeg_learner():
 
         avg_preds = []
         i = 0
-        averaging_window = 8
+        averaging_window = 1
         print("Averaging predictions with a %d sample window" % averaging_window)
         while i < pred_size - averaging_window:
             avg_pred = np.mean(preds[i:i + averaging_window])
