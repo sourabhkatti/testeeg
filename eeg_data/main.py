@@ -6,7 +6,7 @@ from scipy.fftpack import fft
 import matplotlib.pyplot as plt
 import matplotlib.mlab as mlab
 import numpy as np
-
+import time
 
 # [gyro_x, gyro_y, electrodes, sample_numbers, time_ms, time_s]
 #     0      1          2             3            4       5
@@ -15,12 +15,30 @@ def getdatasets_eeg():
     eeg_input, output = face.get_blink_twice_ds()
     return eeg_input[2], output
 
+def getdatasets_eyes_open():
+    eeg_input = face.get_eyes_open_ds()
+    return eeg_input[2]
 
-def getfft(raw_data):
-    raw_data = np.asarray(raw_data)
+def getdatasets_eyes_closed():
+    eeg_input = face.get_eyes_closed_ds()
+    return eeg_input[2]
+
+def getdatasets_test_eye_states():
+    eeg_input = face.get_eye_states_test_ds()
+    return eeg_input
+
+
+
+
+def getfft(raw_data_all):
+
+    # Define the channels to get from the 14 channel raw data
+    channel_bottom = 5
+    channel_top = 13
+    raw_data = np.asarray(raw_data_all[:, channel_bottom:channel_top])
 
     # Sampling frequency
-    fs = 128.0
+    fs = 64.0
 
     # Time sampling interval in s
     T = 1 / fs
@@ -43,22 +61,23 @@ def getfft(raw_data):
     plt.grid()
     plt.xlabel("Frequency")
     plt.ylabel("Magnitude (db)")
-    plt.savefig("C:/testeeg/testeeg/mozart/logs/fft.png")
+    plt.savefig("C:/Users/SourabhKatti/Documents/engine/mozart/logs/fft.png")
 
     plt.show()
-    plot_spectrogram(raw_data, n, fs)
-    plot_csd(raw_data, n, fs)
+    plot_spectrogram(raw_data, n, fs, channel_bottom + 1)
+    plot_csd(raw_data, n, fs, channel_bottom + 1)
 
     return xf, yf
 
 
-def plot_spectrogram(raw_data, nfft, fs):
+def plot_spectrogram(raw_data, nfft, fs, channel_bottom):
     data_shape = raw_data.shape
 
     print("Generating spectrogram...")
     plt_num = 1
     plt.clf()
     plt.figure(1)
+
     channel_data = []
     for i in range(0, data_shape[1]):
         plt.subplot(4, 4, plt_num)
@@ -69,15 +88,16 @@ def plot_spectrogram(raw_data, nfft, fs):
 
         plt.xlabel('Time (sec)')
         plt.ylabel('Frequency (Hz)')
-        plt.title('Channel %s' % i)
+        plt.title('Channel %s' % (i + channel_bottom))
         plt_num += 1
         channel_data.append([f, t, Sxx])
+        time.sleep(0.5)
 
     plt.show()
     return channel_data
 
 
-def plot_csd(raw_data, nfft, fs):
+def plot_csd(raw_data, nfft, fs, channel_bottom):
     data_shape = raw_data.shape
     channel_data = []
 
@@ -93,7 +113,7 @@ def plot_csd(raw_data, nfft, fs):
         plt.semilogy(f, np.abs(Pxy))
         plt.xlabel('frequency [Hz]')
         plt.ylabel('CSD [V**2/Hz]')
-        plt.title('Channel %s' % i)
+        plt.title('Channel %s' % (i + channel_bottom))
         plt_num += 1
         channel_data.append([f, Pxy])
 
