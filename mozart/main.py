@@ -18,12 +18,21 @@ class Logger(object):
         self.terminal.write(message)
         self.log.write(message)
 
+    def flush(self):
+        pass
+
 
 class eeg_learner():
     outputfile = ""
-    model_to_use = FunctionSet()
-    optimizer = optimizers.SGD(lr=0.1)
-    model_path = "C:/testeeg/testeeg/mozart/models/" + outputfile + ".model"
+    model_to_use = FunctionSet(
+            x_h1=F.Linear(448, 512),
+            h1_h2=F.Linear(512, 1024),
+            h2_h3=F.Linear(1024, 1024),
+            h3_h4=F.Linear(1024, 512),
+            h4_y=F.Linear(512, 32),
+    )
+    optimizer = optimizers.SGD(lr=0.01)
+    model_path = "C:/Users/SourabhKatti/Documents/engine/mozart/models" + outputfile + ".model"
 
     def __init__(self):
         self.initialsetup()
@@ -34,10 +43,10 @@ class eeg_learner():
     def getmodel_eeg(self):
         eeg_model = FunctionSet(
                 x_h1=F.Linear(448, 512),
-                h1_h2=F.Linear(512, 512),
-                h2_h3=F.Linear(512, 256),
-                h3_h4=F.Linear(256, 128),
-                h4_y=F.Linear(128, 32),
+                h1_h2=F.Linear(512, 1024),
+                h2_h3=F.Linear(1024, 1024),
+                h3_h4=F.Linear(1024, 512),
+                h4_y=F.Linear(512, 32),
         )
         return eeg_model
 
@@ -82,9 +91,40 @@ class eeg_learner():
         y = self.model_to_use.h4_y(h4)
 
         loss = F.sigmoid_cross_entropy(y, current_output)
+        current_output.data = np.squeeze(current_output.data)
+        y.data = y.data.reshape(-1, 1)
         accuracy = F.accuracy(y, current_output)
 
         return accuracy, loss, y
+
+    def forward_eye_states(self, x_batch_curr, y_batch_curr, volatile):
+        accuracy = 0
+        loss = 0
+
+        current_sample = Variable(x_batch_curr, volatile=volatile)
+
+        y_batch_curr = np.asarray(y_batch_curr).reshape(32, -1)
+        current_output = Variable(y_batch_curr, volatile=volatile)
+
+        h1_current = F.sigmoid(self.model_to_use.x_h1(current_sample))
+
+        h2_current = F.sigmoid(self.model_to_use.h1_h2(h1_current))
+
+        h3_current = F.sigmoid(self.model_to_use.h2_h3(h2_current))
+
+        h4_current = F.sigmoid(self.model_to_use.h3_h4(h3_current))
+
+        h4 = h4_current
+        y = self.model_to_use.h4_y(h4)
+
+        y.data = y.data.reshape(32, -1)
+        loss = F.sigmoid_cross_entropy(y, current_output)
+        current_output.data = np.squeeze(current_output.data)
+
+        accuracy = F.accuracy(y, current_output)
+
+        return accuracy, loss, y
+
 
     def train_timeonly(self, savemodel=True):
         train_plot = plt.figure()
@@ -103,16 +143,18 @@ class eeg_learner():
         epochcount = 0
         datasize = train_X.shape[0]
 
+        train_Y = self.gettargetdataset(target_state, datasize)
+
         epoch_sums = []
         epoch_loss = []
         epochs = []
 
-        outputpath = "C:/testeeg/testeeg/mozart/logs/" + self.outputfile + ".txt"
+        outputpath = "C:/Users/SourabhKatti/Documents/engine/mozart/logs" + self.outputfile + ".txt"
         sys.stdout = Logger(outputpath)
-        for layer in self.model_to_use._get_sorted_funcs():
-            print(layer[0], layer[1].W.shape)
+#        for layer in self.model_to_use._children:
+#            print(layer[0], layer[1].W.shape)
 
-        for epoch in range(1000):
+        for epoch in range(20):
             epochcount += 1
             print('epoch %d' % epoch)
             sum_accuracy = 0.0
@@ -137,6 +179,8 @@ class eeg_learner():
                 sum_accuracy += accuracy.data
                 sum_loss += loss.data
 
+                output.data = output.data.reshape(1, -1)
+
                 loss.backward()
                 self.optimizer.update()
 
@@ -159,10 +203,168 @@ class eeg_learner():
             self.savernn()
         return train_X
 
+    def train_eyes_open_close(self):
+
+        # Get a fresh neural net and setup the optimizer with it
+        self.model_to_use = self.getmodel_eeg()
+        self.optimizer.setup(self.model_to_use)
+
+        epochs_total = 1
+
+        self.train_eyes_open_only(epochs_total)
+        self.train_eyes_closed_only(epochs_total)
+
+    def train_eyes_open_only(self, epochs_total, savemodel=True):
+        train_plot = plt.figure()
+        plt1 = train_plot.add_subplot(211)
+        plt2 = train_plot.add_subplot(212)
+
+        target_state = 2
+
+        # Get EEG data to train with
+        train_X_raw = eeg_data.main.getdatasets_eyes_open()
+
+        train_X = np.asarray(train_X_raw)
+        train_shape = train_X.shape
+
+        epochcount = 0
+        datasize = train_shape[0]
+
+        train_Y = self.gettargetdataset(target_state, datasize)
+
+        epoch_sums = []
+        epoch_loss = []
+        epochs = []
+
+        outputpath = "C:/Users/SourabhKatti/Documents/engine/mozart/logs/eyes_open/" + self.outputfile + ".txt"
+        sys.stdout = Logger(outputpath)
+        print("\nStarting to train model on eyes_open samples.\n\tDataset size: ", train_shape)
+        print("\tTarget state: ", target_state)
+
+        for epoch in range(epochs_total):
+            epochcount += 1
+            print('epoch %d' % (epoch+1))
+            sum_accuracy = 0.0
+            sum_loss = 0.0
+            batchsize = 32
+
+            for i in range(0, datasize - batchsize):
+                # Get current, previous and next sample from EEG recording to send through the net
+                x_batch_curr = np.asarray(train_X[i:i + batchsize]).astype(np.float32).reshape(1, -1)
+                max_value = np.max(x_batch_curr)
+                x_batch_curr = np.divide(x_batch_curr, max_value)
+
+                # Get current, previous and next sample from target output ready
+                y_batch_curr = np.asarray(train_Y[i:i + batchsize]).astype(np.int32)
+
+                self.optimizer.zero_grads()
+                accuracy, loss, output = self.forward_eye_states(x_batch_curr, y_batch_curr, volatile=False)
+
+                sum_accuracy += accuracy.data
+                sum_loss += loss.data
+
+                output.data = output.data.reshape(1, -1)
+
+                loss.backward()
+                self.optimizer.update()
+
+            print("\tAccuracy of training: ", sum_accuracy / datasize)
+            print("\tLoss of training: ", sum_loss / datasize)
+
+            epoch_sums.append(sum_accuracy / datasize)
+            epoch_loss.append(sum_loss / datasize)
+            epochs.append(epoch)
+
+        #self.optimizer.lr += 0.00005
+
+        plt1.plot(epochs, epoch_sums)
+        plt2.plot(epochs, epoch_loss)
+        pltimage = outputpath + '.png'
+        train_plot.show()
+        train_plot.savefig(pltimage)
+        if savemodel:
+            self.outputfile += str(np.max(epochs))
+            self.savernn()
+
+    def train_eyes_closed_only(self, epochs_total, savemodel=True):
+        train_plot = plt.figure()
+        plt1 = train_plot.add_subplot(211)
+        plt2 = train_plot.add_subplot(212)
+
+        # Get EEG data to train with
+        train_X_raw = eeg_data.main.getdatasets_eyes_closed()
+        train_X = np.asarray(train_X_raw)
+        train_shape = train_X.shape
+
+        target_state = 1
+
+        epochcount = 0
+        datasize = train_shape[0]
+
+        train_Y = self.gettargetdataset(target_state, datasize)
+
+        epoch_sums = []
+        epoch_loss = []
+        epochs = []
+
+        outputpath = "C:/Users/SourabhKatti/Documents/engine/mozart/logs/eyes_close/" + self.outputfile + ".txt"
+        sys.stdout = Logger(outputpath)
+
+        print("\nStarting to train model on eyes_closed samples.\n\tDataset size: ", train_shape)
+        print("\tTarget state: ", target_state)
+
+        for epoch in range(epochs_total):
+            epochcount += 1
+            print('epoch %d' % (epoch + 1))
+            sum_accuracy = 0.0
+            sum_loss = 0.0
+            batchsize = 32
+
+            for i in range(0, datasize - batchsize):
+                # Get current, previous and next sample from EEG recording to send through the net
+                x_batch_curr = np.asarray(train_X[i:i + batchsize]).astype(np.float32).reshape(1, -1)
+                max_value = np.max(x_batch_curr)
+                x_batch_curr = np.divide(x_batch_curr, max_value)
+
+                # Get current, previous and next sample from target output ready
+                y_batch_curr = np.asarray(train_Y[i:i + batchsize]).astype(np.int32)
+
+                self.optimizer.zero_grads()
+                accuracy, loss, output = self.forward_eye_states(x_batch_curr, y_batch_curr, volatile=False)
+
+                sum_accuracy += accuracy.data
+                sum_loss += loss.data
+
+                output.data = output.data.reshape(1, -1)
+
+                loss.backward()
+                self.optimizer.update()
+
+            print("\tAccuracy of training: ", sum_accuracy / datasize)
+            print("\tLoss of training: ", sum_loss / datasize)
+
+            epoch_sums.append(sum_accuracy / datasize)
+            epoch_loss.append(sum_loss / datasize)
+            epochs.append(epoch)
+
+        #self.optimizer.lr += 0.00005
+
+        plt1.plot(epochs, epoch_sums)
+        plt2.plot(epochs, epoch_loss)
+        pltimage = outputpath + '.png'
+        train_plot.show()
+        train_plot.savefig(pltimage)
+        if savemodel:
+            self.outputfile += str(np.max(epochs))
+            self.savernn()
+
+    def gettargetdataset(self, target_state, size):
+        return np.full((size, 1), target_state, dtype=int)
+
     def train_timefreq(self, savemodel=True):
 
         # Get raw data
-        train_X_raw, train_Y = eeg_data.main.getdatasets_eeg()
+        train_X_raw, y = eeg_data.main.getdatasets_eeg()
 
         # Get fft values
         freqs, pf = eeg_data.main.getfft(train_X_raw)
@@ -233,6 +435,52 @@ class eeg_learner():
 
         return test_X, normalized_preds
 
+    def test_eye_states_model(self):
+        test_X_raw = eeg_data.main.getdatasets_test_eye_states()
+        test_X = np.asarray(test_X_raw)
+
+
+        datasize = test_X.shape[0]
+
+        sum_accuracy = 0.0
+        sum_loss = 0.0
+
+        sample_preds = []
+        batchsize = 32
+
+        # Check if there is a saved model to use and load it if there is
+        if self.get_savedrnn() != -1:
+            self.model_to_use = self.get_savedrnn()
+            self.optimizer.setup(self.model_to_use)
+
+        for i in range(2, datasize - batchsize):
+            x_batch_curr = np.asarray(test_X[i:i + batchsize]).astype(np.float32).reshape(1, -1)
+            y_batch_curr = np.zeros_like(x_batch_curr).astype(np.int32)
+            max_value = np.max(x_batch_curr)
+            x_batch_curr = np.divide(x_batch_curr, max_value)
+
+            self.optimizer.zero_grads()
+
+            accuracy, loss, output = self.forward_eye_states(x_batch_curr, y_batch_curr, volatile=True)
+
+            sum_accuracy += accuracy.data
+            sum_loss += loss.data
+
+            loss.backward()
+            self.optimizer.update()
+
+            sample_preds.append(output.data)
+
+        min_preds = np.min(sample_preds)
+        normalized_preds = []
+        for value in sample_preds:
+            normalized_preds.append(np.divide(value, min_preds).astype(float))
+        # max_preds = np.max(normalized_preds)
+        # normalized_max_preds = np.divide(normalized_preds, max_preds)
+
+        return test_X, normalized_preds
+
+
     def savernn(self):
         pickle.dump(self.model_to_use, open(self.model_path, 'wb'))
 
@@ -286,7 +534,7 @@ class eeg_learner():
 
         # Plot the predictions and raw EEG signals
         plt.clf()
-        predsfile = "C:/testeeg/testeeg/mozart/logs/" + self.outputfile + "-preds.png"
+        predsfile = "C:/Users/SourabhKatti/Documents/engine/mozart/logs/" + self.outputfile + "-preds.png"
         predsfig = plt.figure(2)
         predfigsb = predsfig.add_subplot(211)
         predfigsb.plot(indices, predictions)
@@ -307,10 +555,13 @@ class eeg_learner():
 
 eeg_learner = eeg_learner()
 
-training_data = eeg_learner.train_timeonly()
-raw_data, predictions = eeg_learner.test_eeg_sample()
-eeg_learner.plot_predictions(raw_data, predictions)
+#training_data = eeg_learner.train_timeonly()
+#raw_data, predictions = eeg_learner.test_eeg_sample()
+#eeg_learner.plot_predictions(raw_data, predictions)
 
-#eeg_learner.train_timefreq()
+#eeg_learner.train_eyes_open_close()
+#test_input, predictions = eeg_learner.test_eye_states_model()
+#eeg_learner.plot_predictions(test_input, predictions)
 
 
+eeg_learner.train_timefreq()
