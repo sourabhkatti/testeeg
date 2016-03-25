@@ -133,7 +133,7 @@ def get_targets_by_ms(path_blink_twice_target, time_ms):
             if ms_sum > target_counts[p][target_index]:
                 target_output[sample_index] = target
                 target_index += 1
-                print(sample_index)
+                print(float(sample_index) / 128.0)
                 if target_index == target_shape[1] - 1:
                     break
 
