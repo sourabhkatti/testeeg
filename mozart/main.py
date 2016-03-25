@@ -586,4 +586,4 @@ eeg_learner = eeg_learner()
 # eeg_learner.plot_predictions(test_input, predictions)
 
 
-eeg_learner.train_timefreq(print_frequency_graph=True)
+eeg_learner.train_timefreq(print_frequency_graph=False)
