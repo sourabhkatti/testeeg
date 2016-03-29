@@ -32,13 +32,10 @@ def getdatasets_test_eye_states():
     return eeg_input
 
 
-def getfft(raw_data_all, print_frequency_graph):
+def getfft(raw_data_all, print_frequency_graph, channel_bottom=5, channel_top=13):
     # Define the channels to get from the 14 channel raw data
     rs = np.asarray(raw_data_all[0])
     rs_shape = np.shape(rs)
-
-    channel_bottom = 5
-    channel_top = 13
     raw_data = rs[:, channel_bottom:channel_top]
 
     # Sampling frequency

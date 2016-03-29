@@ -1,5 +1,6 @@
 import eeg_data.main
-from chainer import cuda, Function, FunctionSet, gradient_check, Variable, optimizers, utils
+from chainer import cuda, Function, FunctionSet, gradient_check, Variable, optimizers, utils, serializers, Chain
+import chainer.links as L
 import chainer.functions as F
 from scipy import *
 import numpy as np
@@ -22,6 +23,32 @@ class Logger(object):
         pass
 
 
+class RNNLM(Chain):
+    """Recurrent neural net languabe model for penn tree bank corpus.
+    This is an example of deep LSTM network for infinite length input.
+    """
+
+    def __init__(self, n_vocab, n_units, train=True):
+        super(RNNLM, self).__init__(
+            embed=L.EmbedID(n_vocab, n_units),
+            l1=L.LSTM(n_units, n_units),
+            l2=L.LSTM(n_units, n_units),
+            l3=L.Linear(n_units, n_vocab),
+        )
+        self.train = train
+
+    def reset_state(self):
+        self.l1.reset_state()
+        self.l2.reset_state()
+
+    def __call__(self, x):
+        h0 = self.embed(x)
+        h1 = self.l1(F.dropout(h0, train=self.train))
+        h2 = self.l2(F.dropout(h1, train=self.train))
+        y = self.l3(F.dropout(h2, train=self.train))
+        return y
+
+
 # noinspection PyMethodMayBeStatic,PyUnusedLocal,PyShadowingNames,PyTypeChecker
 class eeg_learner:
     outputfile = ""
@@ -33,7 +60,8 @@ class eeg_learner:
         h4_y=F.Linear(512, 32),
     )
     optimizer = optimizers.SGD(lr=0.01)
-    model_path = "C:/Users/SourabhKatti/Documents/engine/mozart/models" + outputfile + ".model"
+    model_path = "C:/Users/SourabhKatti/Documents/engine/mozart/models" + outputfile + ".lr" + str(
+        optimizer.lr) + ".model"
 
     def __init__(self):
         self.initialsetup()
@@ -50,6 +78,10 @@ class eeg_learner:
             h3_h4=F.Linear(1024, 512),
             h4_y=F.Linear(512, 32),
         )
+        return eeg_model
+
+    def getmodel_spectro(self, lm):
+        eeg_model = L.Classifier(lm)
         return eeg_model
 
     # noinspection PyCallingNonCallable
@@ -120,6 +152,9 @@ class eeg_learner:
         accuracy = F.accuracy(y, current_output)
 
         return accuracy, loss, y
+
+    def forward_spectrogram(self):
+        pass
 
     def train_timeonly(self, savemodel=True):
         train_plot = plt.figure()
@@ -354,26 +389,61 @@ class eeg_learner:
 
     def train_timefreq(self, print_frequency_graph=True):
 
-        #spectro_data = [f, t, Sxx]
+        # spectro_data = [f, t, Sxx]
 
+        # Specify the range of channels to grab from raw EEG input
+        channel_lower = 5
+        channel_upper = 13
 
         # Get raw data
         train_X_raw = eeg_data.main.getdatasets_eeg()
 
         # Get fft values
-        xf, fft_data, spectro_data, csd_data = eeg_data.main.getfft(train_X_raw, print_frequency_graph)
+        xf, fft_data, spectro_data, csd_data = eeg_data.main.getfft(train_X_raw, print_frequency_graph,
+                                                                    channel_bottom=channel_lower)
 
         fft_data = np.asarray(fft_data)
         xf = np.asarray(xf)
 
+        # Print details about the FFT, spectrogram and CSD datasets
+        #self.print_fft_data(xf, fft_data, channel_lower)
+        spectro_shape = self.print_spectro_data(spectro_data, channel_lower)
+
+        # Setup RNNLM model
+        lm = RNNLM(2655760, 512)
+        self.model_freq = self.getmodel_spectro(lm)
+        self.optimizer_freq = optimizers.SGD(lr=0.1)
+        self.optimizer_freq.setup(self.model_freq)
+        self.evaluate(fft_data)
+
+    def evaluate(self, dataset):
+        # Evaluation routine
+        evaluator = self.model_freq.copy()  # to use different state
+        evaluator.predictor.reset_state()  # initialize state
+        evaluator.predictor.train = False  # dropout does nothing
+
+        sum_log_perp = 0
+        for i in range(dataset.size - 1):
+            x = Variable(np.asarray(np.abs(dataset[i:i + 1])).astype(np.int), volatile='on')
+            t = Variable(np.asarray(np.abs(dataset[i + 1:i + 2])).astype(np.int), volatile='on')
+            loss = evaluator(x, t)
+            sum_log_perp += loss.data
+        return math.exp(float(sum_log_perp) / (dataset.size - 1))
 
 
-        print("t: ", xf.__len__())
-        print("FFT: ", fft_data.shape)
-        self.print_spectro_data(spectro_data)
 
-    def print_spectro_data(self, spectro_data):
-        i = 5
+    def print_fft_data(self, xf, fft_data, channel_lower):
+        i = channel_lower
+        print("\nFFT data")
+        print("Time-series points: ", xf.__len__())
+        for channel in fft_data:
+            i += 1
+            print("Channel %d FFT size: %d" % (i, channel.__len__()))
+
+    def print_spectro_data(self, spectro_data, channel_lower):
+        i = channel_lower
+        print("\nSpectrogram output")
+        freqshape = []
         for channel in spectro_data:
             i += 1
             freqs, t, sxx = channel
@@ -390,9 +460,8 @@ class eeg_learner:
             print("\tSpectrogram: ", sxx.shape)
             print("\t\tMin: ", np.min(sxx))
             print("\t\tMax: ", np.max(sxx))
-
-
-
+            freqshape = freqs.shape
+        return freqshape
 
     def normalizevalues_eeg(self, raw_eeg):
 
@@ -504,12 +573,14 @@ class eeg_learner:
         return test_X, normalized_preds
 
     def savernn(self):
+        serializers.save_npz(self.model_path, self.model_to_use)
         pickle.dump(self.model_to_use, open(self.model_path, 'wb'))
 
     # noinspection PyBroadException
     def get_savedrnn(self):
         try:
-            eeg_model = pickle.load(open(self.model_path, "rb"))
+            # eeg_model = pickle.load(open(self.model_path, "rb"))
+            eeg_model = serializers.load_npz(self.model_path)
             return eeg_model
         except:
             return -1
