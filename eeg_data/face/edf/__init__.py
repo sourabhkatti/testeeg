@@ -66,8 +66,11 @@ def importfile(path):
     time_ms = []
     time_s = []
 
-    raw_edf = np.loadtxt(path, dtype=str, delimiter=', ', skiprows=1)
-    sanitized_edf = sanitizeedf(raw_edf)
+    raw_edf = np.loadtxt(path, dtype=str, delimiter=',', skiprows=1)
+    try:
+        sanitized_edf = sanitizeedf(raw_edf)
+    except:
+        sanitized_edf = raw_edf
 
     electrodes = sanitized_edf[:, 2:16]
 

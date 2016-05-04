@@ -23,31 +23,6 @@ class Logger(object):
         pass
 
 
-class RNNLM(Chain):
-    """Recurrent neural net languabe model for penn tree bank corpus.
-    This is an example of deep LSTM network for infinite length input.
-    """
-
-    def __init__(self, n_vocab, n_units, train=True):
-        super(RNNLM, self).__init__(
-            embed=L.EmbedID(n_vocab, n_units),
-            l1=L.LSTM(n_units, n_units),
-            l2=L.LSTM(n_units, n_units),
-            l3=L.Linear(n_units, n_vocab),
-        )
-        self.train = train
-
-    def reset_state(self):
-        self.l1.reset_state()
-        self.l2.reset_state()
-
-    def __call__(self, x):
-        h0 = self.embed(x)
-        h1 = self.l1(F.dropout(h0, train=self.train))
-        h2 = self.l2(F.dropout(h1, train=self.train))
-        y = self.l3(F.dropout(h2, train=self.train))
-        return y
-
 
 # noinspection PyMethodMayBeStatic,PyUnusedLocal,PyShadowingNames,PyTypeChecker
 class eeg_learner:
@@ -396,7 +371,7 @@ class eeg_learner:
         channel_upper = 13
 
         # Get raw data
-        train_X_raw = eeg_data.main.getdatasets_eeg()
+        train_X_raw = eeg_data.main.getdatasets_eyes_open()
 
         # Get fft values
         xf, fft_data, spectro_data, csd_data = eeg_data.main.getfft(train_X_raw, print_frequency_graph,
@@ -406,15 +381,9 @@ class eeg_learner:
         xf = np.asarray(xf)
 
         # Print details about the FFT, spectrogram and CSD datasets
-        #self.print_fft_data(xf, fft_data, channel_lower)
+        self.print_fft_data(xf, fft_data, channel_lower)
         spectro_shape = self.print_spectro_data(spectro_data, channel_lower)
 
-        # Setup RNNLM model
-        lm = RNNLM(2655760, 512)
-        self.model_freq = self.getmodel_spectro(lm)
-        self.optimizer_freq = optimizers.SGD(lr=0.1)
-        self.optimizer_freq.setup(self.model_freq)
-        self.evaluate(fft_data)
 
     def evaluate(self, dataset):
         # Evaluation routine
@@ -657,5 +626,5 @@ eeg_learner = eeg_learner()
 # eeg_learner.plot_predictions(test_input, predictions)
 
 
-eeg_learner.train_timefreq(print_frequency_graph=False)
+eeg_learner.train_timefreq(print_frequency_graph=True)
 
