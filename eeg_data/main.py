@@ -32,14 +32,16 @@ def getdatasets_test_eye_states():
     return eeg_input
 
 
-def getfft(raw_data_all, print_frequency_graph):
-    # Define the channels to get from the 14 channel raw data
-    rs = np.asarray(raw_data_all[0])
-    rs_shape = np.shape(rs)
+def getdatasets_blink_ten():
+    eeg_input, output = face.get_blink_ten_ds()
+    return eeg_input[2], output
 
+
+def getfft(raw_data_all):
+    # Define the channels to get from the 14 channel raw data
     channel_bottom = 5
     channel_top = 13
-    raw_data = rs[:, channel_bottom:channel_top]
+    raw_data = np.asarray(raw_data_all[:, channel_bottom:channel_top])
 
     # Sampling frequency
     fs = 128.0
@@ -52,9 +54,8 @@ def getfft(raw_data_all, print_frequency_graph):
     n = data_shape[0]
 
     # Get x values
+    x = np.linspace(0.0, n * T, n)
     xf = np.linspace(0.0, 1.0 / (2.0 * T), n / 2)
-    yf = []
-
     fft_data = []
 
     # Plot fft of each EEG channel
@@ -68,17 +69,16 @@ def getfft(raw_data_all, print_frequency_graph):
     plt.grid()
     plt.xlabel("Frequency")
     plt.ylabel("Magnitude (db)")
-    plt.savefig("C:/testeeg/testeeg/mozart/logs/fft.png")
+    plt.savefig("C:/Users/SourabhKatti/Documents/engine/mozart/logs/fft.png")
 
-    if print_frequency_graph:
-        plt.show()
-    spectro_data = plot_spectrogram(raw_data, n, fs, channel_bottom + 1, print_frequency_graph)
-    csd_data = plot_csd(raw_data, n, fs, channel_bottom + 1, print_frequency_graph)
+    plt.show()
+    spectro_data = plot_spectrogram(raw_data, n, fs, channel_bottom + 1, batchsize=0)
+    csd_data = plot_csd(raw_data, n, fs, channel_bottom + 1)
 
     return xf, fft_data, spectro_data, csd_data
 
 
-def plot_spectrogram(raw_data, nfft, fs, channel_bottom, print_frequency_graph):
+def plot_spectrogram(raw_data, nfft, fs, channel_bottom, batchsize=0):
     data_shape = raw_data.shape
 
     print("Generating spectrogram...")
@@ -87,25 +87,26 @@ def plot_spectrogram(raw_data, nfft, fs, channel_bottom, print_frequency_graph):
     plt.figure(1)
 
     channel_data = []
-    for i in range(0, data_shape[1]):
-        plt.subplot(4, 2, plt_num)
+    # Get spectrogram for each channel
+    if batchsize == 0:
+        for i in range(0, data_shape[1]):
+            plt.subplot(4, 2, plt_num)
 
-        f, t, Sxx = signal.spectrogram(x=raw_data[:, i], nfft=nfft, fs=fs, noverlap=127, nperseg=128,
-                                       scaling='density')  # returns PSD power per Hz
-        plt.pcolormesh(t, f, Sxx)
+            f, t, Sxx = signal.spectrogram(x=raw_data[:, i], fs=256, noverlap=127, nperseg=128,
+                                           scaling='density')  # returns PSD power per Hz
+            plt.pcolormesh(t, f, Sxx)
 
-        plt.xlabel('Time (sec)')
-        plt.ylabel('Frequency (Hz)')
-        plt.title('Channel %s' % (i + channel_bottom))
-        plt_num += 1
-        channel_data.append([f, t, Sxx])
-        time.sleep(0.5)
-    if print_frequency_graph:
+            plt.xlabel('Time (sec)')
+            plt.ylabel('Frequency (Hz)')
+            plt.title('Channel %s' % (i + channel_bottom))
+            plt_num += 1
+            channel_data.append([f, t, Sxx])
+
         plt.show()
     return channel_data
 
 
-def plot_csd(raw_data, nfft, fs, channel_bottom, print_frequency_graph):
+def plot_csd(raw_data, nfft, fs, channel_bottom):
     data_shape = raw_data.shape
     channel_data = []
 
@@ -125,8 +126,7 @@ def plot_csd(raw_data, nfft, fs, channel_bottom, print_frequency_graph):
         plt_num += 1
         channel_data.append([f, Pxy])
 
-    if print_frequency_graph:
-        plt.show()
+    plt.show()
     return channel_data
 
 
