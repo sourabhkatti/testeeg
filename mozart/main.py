@@ -1,12 +1,14 @@
 import eeg_data.main
-from chainer import cuda, Function, FunctionSet, gradient_check, Variable, optimizers, utils
+from chainer import cuda, Function, FunctionSet, gradient_check, Variable, optimizers, utils, Chain
 import chainer.functions as F
+import chainer.links as L
 from scipy import *
 import numpy as np
 import time
 import sys
 import matplotlib.pyplot as plt
 import pickle
+from datetime import datetime
 
 
 class Logger(object):
@@ -22,18 +24,18 @@ class Logger(object):
         pass
 
 
-# noinspection PyMethodMayBeStatic,PyUnusedLocal,PyShadowingNames,PyTypeChecker
-class eeg_learner:
-    outputfile = ""
+# noinspection PyPep8Naming
+class eeg_learner():
+    outputfile = "my"
     model_to_use = FunctionSet(
-        x_h1=F.Linear(448, 512),
-        h1_h2=F.Linear(512, 1024),
-        h2_h3=F.Linear(1024, 1024),
-        h3_h4=F.Linear(1024, 512),
-        h4_y=F.Linear(512, 32),
+            x_h1=F.Linear(448, 512),
+            h1_h2=F.Linear(512, 1024),
+            h2_h3=F.Linear(1024, 1024),
+            h3_h4=F.Linear(1024, 512),
+            h4_y=F.Linear(512, 32),
     )
-    optimizer = optimizers.SGD(lr=0.01)
-    model_path = "C:/Users/SourabhKatti/Documents/engine/mozart/models" + outputfile + ".model"
+    optimizer = optimizers.SGD(lr=0.05)
+    model_path = "C:/Users/SourabhKatti/Documents/engine/mozart/models/" + outputfile + ".model"
 
     def __init__(self):
         self.initialsetup()
@@ -41,19 +43,54 @@ class eeg_learner:
     def initialsetup(self):
         self.outputfile = str(time.time())
 
-    # noinspection PyMethodMayBeStatic
     def getmodel_eeg(self):
         eeg_model = FunctionSet(
-            x_h1=F.Linear(448, 512),
-            h1_h2=F.Linear(512, 1024),
-            h2_h3=F.Linear(1024, 1024),
-            h3_h4=F.Linear(1024, 512),
-            h4_y=F.Linear(512, 32),
+                x_h1=F.Linear(448, 512),
+                h1_h2=F.Linear(512, 1024),
+                h2_h3=F.Linear(1024, 1024),
+                h3_h4=F.Linear(1024, 512),
+                h4_y=F.Linear(512, 32),
         )
         return eeg_model
 
-    # noinspection PyCallingNonCallable
+    def getmodel_lstm(self, n_units):
+        eeg_model = FunctionSet(x_h1=L.Linear(n_units, 4 * n_units),
+                                h1_h2=L.Linear(4 * n_units, 4 * n_units),
+                                h2_h3=L.Linear(4 * n_units, 4 * n_units),
+                                h3_h4=L.Linear(4 * n_units, 4 * n_units),
+                                h4_y=L.Linear(4 * n_units, 4 * n_units))
+        return eeg_model
+
+    def forward_lstm(self, c, train_X, prev_Y, volatile=False):
+
+        current_sample = Variable(train_X, volatile=volatile)
+
+        y_batch_curr = np.asarray(prev_Y).reshape(1, -1)
+        current_output = Variable(y_batch_curr, volatile=volatile)
+
+        h1_current = F.sigmoid(self.model_to_use.x_h1(current_sample))
+
+        h2_current = F.sigmoid(self.model_to_use.h1_h2(h1_current))
+
+        h3_current = F.sigmoid(self.model_to_use.h2_h3(h2_current))
+
+        h4_current = F.sigmoid(self.model_to_use.h3_h4(h3_current))
+
+        h4 = self.model_to_use.h4_y(h4_current)
+
+        c, y = F.lstm(c, h4)
+
+        c.data = np.asarray(c.data).astype(int32)
+
+        loss = F.sigmoid_cross_entropy(y, c)
+        y.data = y.data.reshape(-1, 1)
+        accuracy = F.accuracy(y, current_output)
+
+        return accuracy, loss, c, y
+
     def forward(self, x_batch_curr, y_batch_curr, volatile=False):
+        accuracy = 0
+        loss = 0
 
         current_sample = Variable(x_batch_curr, volatile=volatile)
 
@@ -61,41 +98,26 @@ class eeg_learner:
         current_output = Variable(y_batch_curr, volatile=volatile)
 
         h1_current = F.sigmoid(self.model_to_use.x_h1(current_sample))
-        # h1_previous = F.sigmoid(self.model_to_use.x_h1(previous_sample))
-        # h1_next = F.sigmoid(self.model_to_use.x_h1(next_sample))
-        # h1_diff_previous = h1_current - h1_previous
-        # h1_diff_next = h1_next - h1_current
 
         h2_current = F.sigmoid(self.model_to_use.h1_h2(h1_current))
-        # h2_diff_n = F.sigmoid(self.model_to_use.h1_h2(h1_diff_next))
-        # h2_diff_p = F.sigmoid(self.model_to_use.h1_h2(h1_diff_previous))
-        # h2_diff_next = h2_diff_n - h2_current
-        # h2_diff_previous = h2_current - h2_diff_p
 
         h3_current = F.sigmoid(self.model_to_use.h2_h3(h2_current))
-        # h3_diff_p = F.sigmoid(self.model_to_use.h2_h3(h2_diff_previous))
-        # h3_diff_n = F.sigmoid(self.model_to_use.h2_h3(h2_diff_next))
-        # h3_diff_next = h3_diff_n - h3_current
-        # h3_diff_previous = h3_current - h3_diff_p
 
         h4_current = F.sigmoid(self.model_to_use.h3_h4(h3_current))
-        # h4_diff_previous = F.sigmoid(self.model_to_use.h3_h4(h3_diff_previous))
-        # h4_diff_next = F.sigmoid(self.model_to_use.h3_h4(h3_diff_next))
-        # h4_diff = h4_diff_next + h4_diff_previous
-        # h4 = h4_current * h4_diff
 
         h4 = h4_current
         y = self.model_to_use.h4_y(h4)
 
-        loss = F.sigmoid_cross_entropy(y, current_output)
+        loss = F.sigmoid_cross_entropy(y, current_output, normalize=True)
         current_output.data = np.squeeze(current_output.data)
         y.data = y.data.reshape(-1, 1)
         accuracy = F.accuracy(y, current_output)
 
         return accuracy, loss, y
 
-    # noinspection PyCallingNonCallable
     def forward_eye_states(self, x_batch_curr, y_batch_curr, volatile):
+        accuracy = 0
+        loss = 0
 
         current_sample = Variable(x_batch_curr, volatile=volatile)
 
@@ -121,67 +143,90 @@ class eeg_learner:
 
         return accuracy, loss, y
 
-    def train_timeonly(self, savemodel=True):
+    def train_timeonly(self, lstm=False, savemodel=True):
         train_plot = plt.figure()
         plt1 = train_plot.add_subplot(211)
         plt2 = train_plot.add_subplot(212)
 
-        # Get a fresh neural net and setup the optimizer with it
-        self.model_to_use = self.getmodel_eeg()
-        self.optimizer.setup(self.model_to_use)
+        batchsize = 32
+
+        ## Get a fresh neural net and setup the optimizer with it
+        #
+        # Use a model with LSTM activations
+        if lstm:
+            self.model_to_use = self.getmodel_lstm(batchsize)
+            self.optimizer.setup(self.model_to_use)
+        else:
+            self.model_to_use = self.getmodel_eeg()
+            self.optimizer.setup(self.model_to_use)
 
         # Get EEG data to train with
-        train_X_raw, train_Y = eeg_data.main.getdatasets_eeg()
+        train_X_raw, train_Y = eeg_data.main.getdatasets_blink_ten()
 
         train_X = self.normalizevalues_eeg(train_X_raw)
 
         epochcount = 0
         datasize = train_X.shape[0]
 
-        train_Y = self.gettargetdataset(target_state, datasize)
-
         epoch_sums = []
         epoch_loss = []
         epochs = []
 
-        outputpath = "C:/Users/SourabhKatti/Documents/engine/mozart/logs" + self.outputfile + ".txt"
+        volatile = False
+
+        outputpath = "C:/Users/SourabhKatti/Documents/engine/mozart/logs/" + self.outputfile + ".txt"
         sys.stdout = Logger(outputpath)
         #        for layer in self.model_to_use._children:
         #            print(layer[0], layer[1].W.shape)
 
-        for epoch in range(20):
+        for epoch in range(200):
+            t1 = datetime.now()
             epochcount += 1
-            print('epoch %d' % epoch)
+            print('epoch %d' % (epoch + 1))
             sum_accuracy = 0.0
             sum_loss = 0.0
-            batchsize = 32
 
-            for i in range(2, datasize - batchsize):
+            y_batch_prev = Variable(np.zeros([batchsize, 14]), volatile=volatile)
+
+            for i in range(0, datasize - batchsize):
                 # Get current, previous and next sample from EEG recording to send through the net
-                x_batch_curr = np.asarray(train_X[i:i + batchsize]).astype(np.float32).reshape(1, -1)
+                x_batch_curr = np.asarray(train_X[i:i + batchsize]).astype(np.float32).reshape(-1, batchsize)
 
                 # Get current, previous and next sample from target output ready
-                y_batch_curr = np.asarray(train_Y[i:i + batchsize]).astype(np.int32)
+                y_batch_curr = np.asarray(train_Y[i:i + batchsize]).astype(np.float32).reshape(-1, batchsize)
 
                 self.optimizer.zero_grads()
-                accuracy, loss, output = self.forward(x_batch_curr, y_batch_curr, volatile=False)
+
+                # Use the LSTM neural network
+                if lstm:
+                    x_batch_curr_np = np.mean(x_batch_curr, axis=0).reshape(-1, batchsize)
+                    c = Variable(y_batch_curr, volatile=volatile)
+                    accuracy, loss, c, y_batch_prev = self.forward_lstm(c, x_batch_curr_np, y_batch_prev)
+
+                else:
+                    x_batch_curr = x_batch_curr.reshape(1, -1)
+                    y_batch_curr = y_batch_curr.astype(int32)
+                    accuracy, loss, output = self.forward(x_batch_curr, y_batch_curr, volatile=False)
 
                 sum_accuracy += accuracy.data
-                sum_loss += loss.data
+                sum_loss += abs(loss.data)
 
                 output.data = output.data.reshape(1, -1)
 
                 loss.backward()
                 self.optimizer.update()
 
+            t2 = datetime.now()
             print("\tAccuracy of training: ", sum_accuracy / datasize)
             print("\tLoss of training: ", sum_loss / datasize)
+            time_diff = t2 - t1
+            print("\tSeconds for epoch: ", time_diff.seconds)
 
             epoch_sums.append(sum_accuracy / datasize)
             epoch_loss.append(sum_loss / datasize)
             epochs.append(epoch)
 
-            # self.optimizer.lr += 0.00005
+            self.optimizer.lr += 0.00005
 
         plt1.plot(epochs, epoch_sums)
         plt2.plot(epochs, epoch_loss)
@@ -348,51 +393,32 @@ class eeg_learner:
             self.outputfile += str(np.max(epochs))
             self.savernn()
 
-    # noinspection PyShadowingNames
     def gettargetdataset(self, target_state, size):
         return np.full((size, 1), target_state, dtype=int)
 
-    def train_timefreq(self, print_frequency_graph=True):
+    def train_blink_ten(self, epochs_total, savemodel=True):
+        train_X, train_Y = eeg_data.main.getdatasets_blink_ten()
+        samples_lenth = train_X.__len__()
+        for i in range(samples_lenth):
+            print(train_X[i], " ", train_Y[i])
 
-        #spectro_data = [f, t, Sxx]
-
+    def train_timefreq(self, savemodel=True):
 
         # Get raw data
-        train_X_raw = eeg_data.main.getdatasets_eeg()
+        train_X_raw, y = eeg_data.main.getdatasets_eeg()
 
         # Get fft values
-        xf, fft_data, spectro_data, csd_data = eeg_data.main.getfft(train_X_raw, print_frequency_graph)
+        # t.shape = 320
+        # fft_y.shape = 640
+        # spectro_data = [f, t, Sxx]
+        #   f.shape = 321
+        #   t.shape = 513
+        #   sxx.shape = 321, 513
+        # csd_data = [f, Pxy]
+        #   f.shape = 321
+        #   pxy.shape = 321
 
-        fft_data = np.asarray(fft_data)
-        xf = np.asarray(xf)
-
-
-
-        print("t: ", xf.__len__())
-        print("FFT: ", fft_data.shape)
-        self.print_spectro_data(spectro_data)
-
-    def print_spectro_data(self, spectro_data):
-        i = 5
-        for channel in spectro_data:
-            i += 1
-            freqs, t, sxx = channel
-            freqs = np.asarray(freqs)
-            t = np.asarray(t)
-            sxx = np.asarray(sxx)
-            print("Channel %d data" % i)
-            print("\tFrequency: ", freqs.shape)
-            print("\t\tMin: ", np.min(freqs))
-            print("\t\tMax: ", np.max(freqs))
-            print("\tTime: ", t.shape)
-            print("\t\tMin: ", np.min(t))
-            print("\t\tMax: ", np.max(t))
-            print("\tSpectrogram: ", sxx.shape)
-            print("\t\tMin: ", np.min(sxx))
-            print("\t\tMax: ", np.max(sxx))
-
-
-
+        t, fft_y, spectro_data, csd_data = eeg_data.main.getfft(train_X_raw)
 
     def normalizevalues_eeg(self, raw_eeg):
 
@@ -414,7 +440,7 @@ class eeg_learner:
         return eeg_norm
 
     def test_eeg_sample(self):
-        test_X, test_Y = eeg_data.main.getdatasets_eeg()
+        test_X, test_Y = eeg_data.main.getdatasets_blink_ten()
 
         datasize = test_X.shape[0]
 
@@ -425,8 +451,12 @@ class eeg_learner:
         batchsize = 32
 
         # Check if there is a saved model to use and load it if there is
+        print(self.get_savedrnn())
         if self.get_savedrnn() != -1:
             self.model_to_use = self.get_savedrnn()
+            self.optimizer.setup(self.model_to_use)
+        else:
+            self.model_to_use = pickle.load(open("C:/Users/SourabhKatti/Documents/engine/mozart/models/my.model", "rb"))
             self.optimizer.setup(self.model_to_use)
 
         for i in range(2, datasize - batchsize):
@@ -506,7 +536,6 @@ class eeg_learner:
     def savernn(self):
         pickle.dump(self.model_to_use, open(self.model_path, 'wb'))
 
-    # noinspection PyBroadException
     def get_savedrnn(self):
         try:
             eeg_model = pickle.load(open(self.model_path, "rb"))
@@ -577,13 +606,17 @@ class eeg_learner:
 
 eeg_learner = eeg_learner()
 
-# training_data = eeg_learner.train_timeonly()
-# raw_data, predictions = eeg_learner.test_eeg_sample()
-# eeg_learner.plot_predictions(raw_data, predictions)
+# training_data = eeg_learner.train_blink_ten(10)
+
+
+raw_data = eeg_learner.train_timeonly()
+test_X, predictions = eeg_learner.test_eeg_sample()
+eeg_learner.plot_predictions(test_X, predictions)
+
 
 # eeg_learner.train_eyes_open_close()
 # test_input, predictions = eeg_learner.test_eye_states_model()
 # eeg_learner.plot_predictions(test_input, predictions)
 
 
-eeg_learner.train_timefreq(print_frequency_graph=True)
+# eeg_learner.train_timefreq()
