@@ -68,6 +68,7 @@ def get_eyes_closed_ds():
     return [gyro_x_all, gyro_y_all, electrodes_all, sample_numbers_all, time_ms_all, time_s_all]
 
 
+# Merge multiple CSV files together through indices
 def addfiles(master, newfile):
     newfilenp = np.asarray(newfile)
     newfileshape = newfilenp.shape
