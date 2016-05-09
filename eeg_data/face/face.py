@@ -18,6 +18,15 @@ def get_blink_twice_ds():
     return [gyro_x, gyro_y, electrodes, sample_numbers, time_ms, time_s], train_y
 
 
+def get_blink_ten_ds():
+    path_blink_ten_csv = "C:/testeeg/testeeg/eeg_data/face/edf/converted_csv/blink-ten/blink_10.csv"
+    path_blink_ten_target = "C:/testeeg/testeeg/eeg_data/face/edf/converted_csv/blink-ten/blink_10_targets.txt"
+    gyro_x, gyro_y, electrodes, sample_numbers, time_ms, time_s = edf.importfile(path_blink_ten_csv)
+    train_y = edf.get_targets_by_ms(path_blink_ten_target, time_ms)
+
+    return [gyro_x, gyro_y, electrodes, sample_numbers, time_ms, time_s], train_y
+
+
 def get_eyes_open_ds():
     path_eyes_open_csv = "C:/testeeg/testeeg/eeg_data/face/edf/converted_csv/eyes-open"
     files = os.listdir(path_eyes_open_csv)

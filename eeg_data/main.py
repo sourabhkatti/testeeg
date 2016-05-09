@@ -33,6 +33,7 @@ def getdatasets_test_eye_states():
     eeg_input = face.get_eye_states_test_ds()
     return eeg_input
 
+
 def pickle_freq_data(fft_raw, spectro_raw, csd_raw, timestamp):
     path_to_save = "C:/testeeg/testeeg/eeg_data/freqs/"
     fft_string = timestamp + "-fft.p"
@@ -40,9 +41,9 @@ def pickle_freq_data(fft_raw, spectro_raw, csd_raw, timestamp):
     csd_string = timestamp + "-csd.p"
 
     try:
-        pickle.dump(fft_raw, open(path_to_save+fft_string, "wb"))
-        pickle.dump(spectro_raw, open(path_to_save+spectro_string, "wb"))
-        pickle.dump(csd_raw, open(path_to_save+csd_string, "wb"))
+        pickle.dump(fft_raw, open(path_to_save + fft_string, "wb"))
+        pickle.dump(spectro_raw, open(path_to_save + spectro_string, "wb"))
+        pickle.dump(csd_raw, open(path_to_save + csd_string, "wb"))
         return 1
     except:
         return -1
@@ -58,21 +59,17 @@ def load_pickled_freq_data():
             freq_types = file.split("-")
 
             if freq_types[1] == "fft.p":
-                fft_raw = pickle.load(open(path_to_load+file))
+                fft_raw = pickle.load(open(path_to_load + file))
             elif freq_types[1] == "spectro.p":
-                spectro_raw = pickle.load(open(path_to_load+file))
+                spectro_raw = pickle.load(open(path_to_load + file))
             elif freq_types[1] == "csd.p":
-                csd_raw = pickle.load(open(path_to_load+file))
+                csd_raw = pickle.load(open(path_to_load + file))
         return fft_raw, spectro_raw, csd_raw
     except:
         return -1
 
 
-
-
-
 def getfft(raw_data_all, print_frequency_graph, channel_bottom=5, channel_top=13, load=False):
-
     if load is True:
         try:
             fft_raw, spectro_raw, csd_raw = load_pickled_freq_data()
@@ -82,9 +79,7 @@ def getfft(raw_data_all, print_frequency_graph, channel_bottom=5, channel_top=13
 
     timestamp = str(time.time())
 
-
     # Define the channels to get from the 14 channel raw data
-    rs = np.asarray(raw_data_all[0])
     rs_shape = np.shape(raw_data_all)
     if rs_shape[1] < 30:
         raw_data = raw_data_all
@@ -102,36 +97,47 @@ def getfft(raw_data_all, print_frequency_graph, channel_bottom=5, channel_top=13
     # Number of samples
     n = rs_shape[0]
 
-    # Get x values
-    xf = np.linspace(0.0, 1.0 / (2.0 * T), n / 2)
-
-
     batchsize = 256
+
+    # Get x values
+    xf = np.linspace(0.0, 1.0 / (2.0 * T), batchsize / 2)
 
     fft_channels = []
 
+    plt.grid()
+    plt.xlabel("Frequency")
+    plt.ylabel("Magnitude (db)")
 
+    plt.savefig("C:/testeeg/testeeg/mozart/logs/fft.png")
+    plt.ion()
 
     # Get fft of each EEG channel by batch size
     for i in range(0, rs_shape[1]):
         fft_data = []
         x_f = 0
-        yf = []
         channel_data = raw_data[:, i]
+
         print("Channel %d starting" % i)
         while x_f < n:
-            #print("\tIndex: %d" % x_f)
+            # print("\tIndex: %d" % x_f)
             y = channel_data[x_f:x_f + batchsize]
             yf = fft(y)
-#            plt.semilogy(xf[0: n / 2], 2.0 / n * np.abs(yf[0:n / 2]))
-            fft_data.append(yf)
-            x_f += (batchsize / 2)
-        fft_channels.append(fft_data)
+            try:
+                plt.clf()
+                plt.semilogy(xf[0: batchsize / 2], 2.0 / batchsize * np.abs(yf[0:batchsize / 2]))
+                plt.ylim([0.0001, 10000])
+                plt.show()
+                plt.pause(0.01)
+            except:
+                continue
+
+            fft_data.append(yf)  # Append data from all batches in the current channel
+            x_f += (batchsize / 8)
+
+        fft_channels.append(fft_data)  # Append data from all channels together
 
     np_fft = np.asarray(fft_channels)
     print(np_fft.shape)
-
-
 
     plt.grid()
     plt.xlabel("Frequency")
@@ -143,12 +149,14 @@ def getfft(raw_data_all, print_frequency_graph, channel_bottom=5, channel_top=13
 
     status = pickle_freq_data(fft_channels, 1, 1, timestamp)
     print(status)
+
+
 #        spectro_data = plot_spectrogram(raw_data, n, fs, channel_bottom + 1, print_frequency_graph)
 #        csd_data = plot_csd(raw_data, n, fs, channel_bottom + 1, print_frequency_graph)
 
 
 
-    #return xf, fft_data, spectro_data, csd_data
+# return xf, fft_data, spectro_data, csd_data
 
 
 def plot_spectrogram(raw_data, nfft, fs, channel_bottom, print_frequency_graph):
@@ -205,6 +213,11 @@ def plot_csd(raw_data, nfft, fs, channel_bottom, print_frequency_graph):
 
 def getdatasets_blinkonce():
     eeg_input, output = face.get_blink_once_ds()
+    return eeg_input[2], output
+
+
+def getdatasets_blink_ten():
+    eeg_input, output = face.get_blink_ten_ds()
     return eeg_input[2], output
 
 
