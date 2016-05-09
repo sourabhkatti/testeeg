@@ -141,7 +141,7 @@ class eeg_learner:
         self.optimizer.setup(self.model_to_use)
 
         # Get EEG data to train with
-        train_X_raw, train_Y = eeg_data.main.getdatasets_eyes_open()
+        train_X_raw, train_Y = eeg_data.main.get()
 
         train_X = self.normalizevalues_eeg(train_X_raw)
 
