@@ -1,6 +1,5 @@
 import eeg_data.main
-from chainer import cuda, Function, FunctionSet, gradient_check, Variable, optimizers, utils, serializers, Chain
-import chainer.links as L
+from chainer import cuda, Function, FunctionSet, gradient_check, Variable, optimizers, utils
 import chainer.functions as F
 from scipy import *
 import numpy as np
@@ -23,7 +22,6 @@ class Logger(object):
         pass
 
 
-
 # noinspection PyMethodMayBeStatic,PyUnusedLocal,PyShadowingNames,PyTypeChecker
 class eeg_learner:
     outputfile = ""
@@ -35,8 +33,7 @@ class eeg_learner:
         h4_y=F.Linear(512, 32),
     )
     optimizer = optimizers.SGD(lr=0.01)
-    model_path = "C:/Users/SourabhKatti/Documents/engine/mozart/models" + outputfile + ".lr" + str(
-        optimizer.lr) + ".model"
+    model_path = "C:/Users/SourabhKatti/Documents/engine/mozart/models" + outputfile + ".model"
 
     def __init__(self):
         self.initialsetup()
@@ -53,10 +50,6 @@ class eeg_learner:
             h3_h4=F.Linear(1024, 512),
             h4_y=F.Linear(512, 32),
         )
-        return eeg_model
-
-    def getmodel_spectro(self, lm):
-        eeg_model = L.Classifier(lm)
         return eeg_model
 
     # noinspection PyCallingNonCallable
@@ -128,9 +121,6 @@ class eeg_learner:
 
         return accuracy, loss, y
 
-    def forward_spectrogram(self):
-        pass
-
     def train_timeonly(self, savemodel=True):
         train_plot = plt.figure()
         plt1 = train_plot.add_subplot(211)
@@ -141,7 +131,7 @@ class eeg_learner:
         self.optimizer.setup(self.model_to_use)
 
         # Get EEG data to train with
-        train_X_raw, train_Y = eeg_data.main.get()
+        train_X_raw, train_Y = eeg_data.main.getdatasets_eeg()
 
         train_X = self.normalizevalues_eeg(train_X_raw)
 
@@ -362,57 +352,32 @@ class eeg_learner:
     def gettargetdataset(self, target_state, size):
         return np.full((size, 1), target_state, dtype=int)
 
-    def train_timefreq(self, print_frequency_graph=True):
+    def train_blink_ten(self, epochs_total, savemodel=True):
+        train_X, train_Y = eeg_data.main.getdatasets_blink_ten()
+        samples_lenth = train_X.__len__()
+        for i in range(samples_lenth):
+            print(train_X[i], " ", train_Y[i])
 
-        # spectro_data = [f, t, Sxx]
+        #spectro_data = [f, t, Sxx]
 
-        # Specify the range of channels to grab from raw EEG input
-        channel_lower = 5
-        channel_upper = 13
 
         # Get raw data
-        train_X_raw = eeg_data.main.getdatasets_eyes_open()
+        train_X_raw = eeg_data.main.getdatasets_eeg()
 
         # Get fft values
-        xf, fft_data, spectro_data, csd_data = eeg_data.main.getfft(train_X_raw, print_frequency_graph,
-                                                                    channel_bottom=channel_lower)
+        xf, fft_data, spectro_data, csd_data = eeg_data.main.getfft(train_X_raw, print_frequency_graph)
 
         fft_data = np.asarray(fft_data)
         xf = np.asarray(xf)
 
-        # Print details about the FFT, spectrogram and CSD datasets
-        self.print_fft_data(xf, fft_data, channel_lower)
-        spectro_shape = self.print_spectro_data(spectro_data, channel_lower)
 
 
-    def evaluate(self, dataset):
-        # Evaluation routine
-        evaluator = self.model_freq.copy()  # to use different state
-        evaluator.predictor.reset_state()  # initialize state
-        evaluator.predictor.train = False  # dropout does nothing
+        print("t: ", xf.__len__())
+        print("FFT: ", fft_data.shape)
+        self.print_spectro_data(spectro_data)
 
-        sum_log_perp = 0
-        for i in range(dataset.size - 1):
-            x = Variable(np.asarray(np.abs(dataset[i:i + 1])).astype(np.int), volatile='on')
-            t = Variable(np.asarray(np.abs(dataset[i + 1:i + 2])).astype(np.int), volatile='on')
-            loss = evaluator(x, t)
-            sum_log_perp += loss.data
-        return math.exp(float(sum_log_perp) / (dataset.size - 1))
-
-
-
-    def print_fft_data(self, xf, fft_data, channel_lower):
-        i = channel_lower
-        print("\nFFT data")
-        print("Time-series points: ", xf.__len__())
-        for channel in fft_data:
-            i += 1
-            print("Channel %d FFT size: %d" % (i, channel.__len__()))
-
-    def print_spectro_data(self, spectro_data, channel_lower):
-        i = channel_lower
-        print("\nSpectrogram output")
-        freqshape = []
+    def print_spectro_data(self, spectro_data):
+        i = 5
         for channel in spectro_data:
             i += 1
             freqs, t, sxx = channel
@@ -429,8 +394,9 @@ class eeg_learner:
             print("\tSpectrogram: ", sxx.shape)
             print("\t\tMin: ", np.min(sxx))
             print("\t\tMax: ", np.max(sxx))
-            freqshape = freqs.shape
-        return freqshape
+
+
+
 
     def normalizevalues_eeg(self, raw_eeg):
 
@@ -452,7 +418,7 @@ class eeg_learner:
         return eeg_norm
 
     def test_eeg_sample(self):
-        test_X, test_Y = eeg_data.main.getdatasets_eeg()
+        test_X, test_Y = eeg_data.main.getdatasets_blink_ten()
 
         datasize = test_X.shape[0]
 
@@ -463,8 +429,12 @@ class eeg_learner:
         batchsize = 32
 
         # Check if there is a saved model to use and load it if there is
+        print(self.get_savedrnn())
         if self.get_savedrnn() != -1:
             self.model_to_use = self.get_savedrnn()
+            self.optimizer.setup(self.model_to_use)
+        else:
+            self.model_to_use = pickle.load(open("C:/Users/SourabhKatti/Documents/engine/mozart/models/my.model", "rb"))
             self.optimizer.setup(self.model_to_use)
 
         for i in range(2, datasize - batchsize):
@@ -542,14 +512,12 @@ class eeg_learner:
         return test_X, normalized_preds
 
     def savernn(self):
-        serializers.save_npz(self.model_path, self.model_to_use)
         pickle.dump(self.model_to_use, open(self.model_path, 'wb'))
 
     # noinspection PyBroadException
     def get_savedrnn(self):
         try:
-            # eeg_model = pickle.load(open(self.model_path, "rb"))
-            eeg_model = serializers.load_npz(self.model_path)
+            eeg_model = pickle.load(open(self.model_path, "rb"))
             return eeg_model
         except:
             return -1
@@ -617,7 +585,7 @@ class eeg_learner:
 
 eeg_learner = eeg_learner()
 
-training_data = eeg_learner.train_timeonly()
+# training_data = eeg_learner.train_timeonly()
 # raw_data, predictions = eeg_learner.test_eeg_sample()
 # eeg_learner.plot_predictions(raw_data, predictions)
 
@@ -627,4 +595,3 @@ training_data = eeg_learner.train_timeonly()
 
 
 eeg_learner.train_timefreq(print_frequency_graph=True)
-
