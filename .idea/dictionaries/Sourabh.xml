@@ -22,9 +22,11 @@
       <w>savedrnn</w>
       <w>savemodel</w>
       <w>spectro</w>
+      <w>streamfft</w>
       <w>testeeg</w>
       <w>timefreq</w>
       <w>timeonly</w>
+      <w>xeeg</w>
     </words>
   </dictionary>
 </component>

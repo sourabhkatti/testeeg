@@ -69,7 +69,90 @@ def load_pickled_freq_data():
         return -1
 
 
-def getfft(raw_data_all, print_frequency_graph, channel_bottom=5, channel_top=13, load=False):
+def streamfft(yf, eeg_data, batch_size):
+    plt.grid()
+    plt.xlabel("Frequency")
+    plt.ylabel("Magnitude (db)")
+    #plt.savefig("C:/testeeg/testeeg/mozart/logs/fft.png")
+
+
+    #plt.ion()
+    fft_size = np.shape(yf)
+    T = 1 / 128.0
+    end_x = (fft_size[1] + batch_size) / 128.0
+    xeeg = np.linspace(0.0, end_x, num=(fft_size[1] + batch_size))
+
+    for channel_num in range(0, fft_size[0]):
+        print("Streaming channel %d" % (channel_num + 1))
+        for batch_num in range(0, fft_size[1]):
+            current_batch_fft = np.asarray(yf[channel_num][batch_num])
+            current_batch_eeg = np.asarray(eeg_data[channel_num][batch_num])
+            xf = np.linspace(0.0, 1.0 / (2.0 * T), batch_size / 2)
+            xeeg_batch = xeeg[batch_num: batch_num + 256]
+            index_time = xeeg[254 + batch_num]
+            #print("plotting @%f seconds" % index_time)
+            try:
+                plt.ion()
+                plt.figure(1)
+                plt.clf()
+                #plt.title("Plotting channel %d" % channel_num+1)
+
+                plt.subplot(211)
+                plt.grid()
+                plt.xlabel("Frequency")
+                plt.ylabel("Magnitude (db)")
+                plt.title("Plotting channel %d at %f seconds" % (channel_num + 1, index_time))
+                # plt.savefig("C:/testeeg/testeeg/mozart/logs/fft.png")
+                plt.semilogy(xf[0: batch_size / 2], T / batch_size * np.abs(current_batch_fft[0:batch_size / 2]) ** 2)
+                plt.ylim([0.00001, 10000])
+
+                plt.subplot(212)
+                plt.grid()
+                plt.xlabel("Time (s)")
+                plt.ylabel("Magnitude (V)")
+                plt.title("Plotting channel %d at %f seconds" % (channel_num + 1, index_time))
+                plt.ylim([4050, 4500])
+                #print(xeeg.__len__(), current_batch_eeg.__len__())
+
+                plt.plot(xeeg_batch, current_batch_eeg)
+                plt.pause(0.01)
+
+                plt.show()
+
+            except:
+                print("Error streaming graphs")
+                continue
+
+
+def gettimeseriesdata(raw_data_all, batchsize, channel_bottom=5, channel_top=13, load=False):
+    timestamp = str(time.time())
+    rs_shape = np.shape(raw_data_all)
+    if rs_shape[1] < 30:
+        raw_data = raw_data_all
+    else:
+        raw_data = raw_data_all[:, channel_bottom:channel_top]
+
+    raw_data = np.asarray(raw_data)
+    raw_data_shape = np.shape(raw_data)
+
+    eeg_ch_data = []
+
+    for channel_num in range(0, raw_data_shape[1]):
+        channel_data = raw_data[:, channel_num]
+        eeg_data = []
+        x_f = 0
+        while x_f + batchsize < raw_data_shape[0]:
+            # print("\tIndex: %d" % x_f)
+            y = channel_data[x_f:x_f + batchsize]
+            eeg_data.append(y)  # Append data from all batches in the current channel
+            x_f += 1
+        eeg_ch_data.append(eeg_data)
+
+    np_eeg = np.asarray(eeg_ch_data)
+    return np_eeg
+
+
+def getfft(raw_data_all, batchsize, print_frequency_graph, channel_bottom=5, channel_top=13, load=False):
     if load is True:
         try:
             fft_raw, spectro_raw, csd_raw = load_pickled_freq_data()
@@ -97,8 +180,6 @@ def getfft(raw_data_all, print_frequency_graph, channel_bottom=5, channel_top=13
     # Number of samples
     n = rs_shape[0]
 
-    batchsize = 256
-
     # Get x values
     xf = np.linspace(0.0, 1.0 / (2.0 * T), batchsize / 2)
 
@@ -118,37 +199,41 @@ def getfft(raw_data_all, print_frequency_graph, channel_bottom=5, channel_top=13
         channel_data = raw_data[:, i]
 
         print("Channel %d starting" % i)
-        while x_f < n:
+        while x_f + batchsize < n:
             # print("\tIndex: %d" % x_f)
             y = channel_data[x_f:x_f + batchsize]
             yf = fft(y)
             try:
-                plt.clf()
-                plt.semilogy(xf[0: batchsize / 2], 2.0 / batchsize * np.abs(yf[0:batchsize / 2]))
-                plt.ylim([0.0001, 10000])
-                plt.show()
-                plt.pause(0.01)
+                pass
+                # plt.clf()
+                # plt.semilogy(xf[0: batchsize / 2], 2.0 / batchsize * np.abs(yf[0:batchsize / 2]))
+                # plt.ylim([0.0001, 10000])
+                # plt.show()
+                # plt.pause(0.01)
             except:
                 continue
 
             fft_data.append(yf)  # Append data from all batches in the current channel
-            x_f += (batchsize / 8)
+            x_f += 1
+            # x_f += (batchsize / 8)
 
         fft_channels.append(fft_data)  # Append data from all channels together
 
     np_fft = np.asarray(fft_channels)
     print(np_fft.shape)
+    # streamfft(np_fft, T)
 
-    plt.grid()
-    plt.xlabel("Frequency")
-    plt.ylabel("Magnitude (db)")
-    plt.savefig("C:/testeeg/testeeg/mozart/logs/fft.png")
+    # plt.grid()
+    # plt.xlabel("Frequency")
+    # plt.ylabel("Magnitude (db)")
+    # plt.savefig("C:/testeeg/testeeg/mozart/logs/fft.png")
 
     if print_frequency_graph:
         plt.show()
 
     status = pickle_freq_data(fft_channels, 1, 1, timestamp)
     print(status)
+    return xf, np_fft, 0, 0
 
 
 #        spectro_data = plot_spectrogram(raw_data, n, fs, channel_bottom + 1, print_frequency_graph)

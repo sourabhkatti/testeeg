@@ -388,14 +388,16 @@ class eeg_learner:
         train_X_raw, train_Y_raw = eeg_data.main.getdatasets_blink_ten()
 
         # Get fft values
-        xf, fft_data, spectro_data, csd_data = eeg_data.main.getfft(train_X_raw, print_frequency_graph)
+        xf, fft_data, spectro_data, csd_data = eeg_data.main.getfft(train_X_raw, 256, print_frequency_graph)
+        batched_eeg_data = eeg_data.main.gettimeseriesdata(train_X_raw, 256)
+        eeg_data.main.streamfft(fft_data, batched_eeg_data, 256)
 
         fft_data = np.asarray(fft_data)
         xf = np.asarray(xf)
 
         # Print details about the FFT, spectrogram and CSD datasets
-        self.print_fft_data(xf, fft_data, channel_lower)
-        spectro_shape = self.print_spectro_data(spectro_data, channel_lower)
+        # self.print_fft_data(xf, fft_data, channel_lower)
+        # spectro_shape = self.print_spectro_data(spectro_data, channel_lower)
 
 
     def evaluate(self, dataset):
