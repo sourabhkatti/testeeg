@@ -23,20 +23,19 @@ class Logger(object):
         pass
 
 
-
 # noinspection PyMethodMayBeStatic,PyUnusedLocal,PyShadowingNames,PyTypeChecker
 class eeg_learner:
     outputfile = ""
     model_to_use = FunctionSet(
-        x_h1=F.Linear(448, 512),
-        h1_h2=F.Linear(512, 1024),
-        h2_h3=F.Linear(1024, 1024),
-        h3_h4=F.Linear(1024, 512),
-        h4_y=F.Linear(512, 32),
+            x_h1=F.Linear(448, 512),
+            h1_h2=F.Linear(512, 1024),
+            h2_h3=F.Linear(1024, 1024),
+            h3_h4=F.Linear(1024, 512),
+            h4_y=F.Linear(512, 32),
     )
     optimizer = optimizers.SGD(lr=0.01)
     model_path = "C:/Users/SourabhKatti/Documents/engine/mozart/models" + outputfile + ".lr" + str(
-        optimizer.lr) + ".model"
+            optimizer.lr) + ".model"
 
     def __init__(self):
         self.initialsetup()
@@ -47,11 +46,11 @@ class eeg_learner:
     # noinspection PyMethodMayBeStatic
     def getmodel_eeg(self):
         eeg_model = FunctionSet(
-            x_h1=F.Linear(448, 512),
-            h1_h2=F.Linear(512, 1024),
-            h2_h3=F.Linear(1024, 1024),
-            h3_h4=F.Linear(1024, 512),
-            h4_y=F.Linear(512, 32),
+                x_h1=F.Linear(448, 512),
+                h1_h2=F.Linear(512, 1024),
+                h2_h3=F.Linear(1024, 1024),
+                h3_h4=F.Linear(1024, 512),
+                h4_y=F.Linear(512, 32),
         )
         return eeg_model
 
@@ -374,7 +373,8 @@ class eeg_learner:
         train_X_raw = eeg_data.main.getdatasets_blink_ten()
 
         # Get fft values
-        xf, fft_data, spectro_data, csd_data = eeg_data.main.getfft(train_X_raw, print_frequency_graph, channel_bottom=channel_lower)
+        xf, fft_data, spectro_data, csd_data = eeg_data.main.getfft(train_X_raw, print_frequency_graph,
+                                                                    channel_bottom=channel_lower)
 
         fft_data = np.asarray(fft_data)
         xf = np.asarray(xf)
@@ -384,12 +384,20 @@ class eeg_learner:
         spectro_shape = self.print_spectro_data(spectro_data, channel_lower)
 
     def train_blink_ten(self, print_frequency_graph=True):
+        print("Training on BLINK-TEN dataset\n")
         # Get raw data
         train_X_raw, train_Y_raw = eeg_data.main.getdatasets_blink_ten()
 
         # Get fft values
-        xf, fft_data, spectro_data, csd_data = eeg_data.main.getfft(train_X_raw, 256, print_frequency_graph)
-        batched_eeg_data = eeg_data.main.gettimeseriesdata(train_X_raw, 256)
+        # Load fft + time data
+        xf, fft_data, spectro_data, csd_data = eeg_data.main.getfft(train_X_raw, 256, path_to_load="C:/testeeg/testeeg/eeg_data/face/edf/X_eeg_fft/blink-ten/")
+
+        # Generate new set of fft + time data
+        # xf, fft_data, spectro_data, csd_data = eeg_data.main.getfft(train_X_raw, 256)
+        batched_eeg_data = eeg_data.main.gettimeseriesdata(train_X_raw, 256, path_to_load="C:/testeeg/testeeg/eeg_data/face/edf/X_eeg_fft/blink-ten/")
+
+        print("\nFinal output-fft batched shape: ", fft_data.shape)
+        print("Final output-time batched shape: ", batched_eeg_data.shape)
         eeg_data.main.streamfft(fft_data, batched_eeg_data, 256)
 
         fft_data = np.asarray(fft_data)
@@ -398,7 +406,6 @@ class eeg_learner:
         # Print details about the FFT, spectrogram and CSD datasets
         # self.print_fft_data(xf, fft_data, channel_lower)
         # spectro_shape = self.print_spectro_data(spectro_data, channel_lower)
-
 
     def evaluate(self, dataset):
         # Evaluation routine
@@ -413,8 +420,6 @@ class eeg_learner:
             loss = evaluator(x, t)
             sum_log_perp += loss.data
         return math.exp(float(sum_log_perp) / (dataset.size - 1))
-
-
 
     def print_fft_data(self, xf, fft_data, channel_lower):
         i = channel_lower
