@@ -81,15 +81,16 @@ def streamfft(yf, eeg_data, batch_size):
     T = 1 / 128.0
     end_x = (fft_size[1] + batch_size) / 128.0
     xeeg = np.linspace(0.0, end_x, num=(fft_size[1] + batch_size))
+    xf = np.linspace(0.0, 1.0 / (2.0 * T), batch_size / 2)
 
     for channel_num in range(0, fft_size[0]):
         print("Streaming channel %d" % (channel_num + 1))
         for batch_num in range(0, fft_size[1]):
             current_batch_fft = np.asarray(yf[channel_num][batch_num])
             current_batch_eeg = np.asarray(eeg_data[channel_num][batch_num])
-            xf = np.linspace(0.0, 1.0 / (2.0 * T), batch_size / 2)
+
             xeeg_batch = xeeg[batch_num: batch_num + 256]
-            index_time = xeeg[254 + batch_num]
+            index_time = xeeg[255 + batch_num]
             #print("plotting @%f seconds" % index_time)
             try:
                 plt.ion()
@@ -102,7 +103,6 @@ def streamfft(yf, eeg_data, batch_size):
                 plt.xlabel("Frequency")
                 plt.ylabel("Magnitude (db)")
                 plt.title("Plotting channel %d at %f seconds" % (channel_num + 1, index_time))
-                # plt.savefig("C:/testeeg/testeeg/mozart/logs/fft.png")
                 plt.semilogy(xf[0: batch_size / 2], T / batch_size * np.abs(current_batch_fft[0:batch_size / 2]) ** 2)
                 plt.ylim([0.00001, 10000])
 
@@ -112,10 +112,9 @@ def streamfft(yf, eeg_data, batch_size):
                 plt.ylabel("Magnitude (V)")
                 plt.title("Plotting channel %d at %f seconds" % (channel_num + 1, index_time))
                 plt.ylim([4050, 4500])
-                #print(xeeg.__len__(), current_batch_eeg.__len__())
 
                 plt.plot(xeeg_batch, current_batch_eeg)
-                plt.pause(0.01)
+                plt.pause(0.001)
 
                 plt.show()
 
