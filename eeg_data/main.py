@@ -115,7 +115,12 @@ def load_pickled_freq_data(path_to_load="C:/Users/SourabhKatti/Documents/engine/
     return fft_raw, spectro_raw, csd_raw, time_raw
 
 
-def streamfft(yf, eeg_data, batch_size):
+def streamfft(yf, eeg_data, batch_size, target_output=0):
+    printoutput = False
+
+    if target_output is not 0:
+        printoutput = True
+
     plt.grid()
     plt.xlabel("Frequency")
     plt.ylabel("Magnitude (db)")
@@ -130,6 +135,8 @@ def streamfft(yf, eeg_data, batch_size):
 
     for channel_num in range(0, fft_size[0]):
         print("Streaming channel %d" % (channel_num + 1))
+        event_num = 1
+        next_event_num = 2
         for batch_num in range(0, fft_size[1]):
             current_batch_fft = np.asarray(yf[channel_num][batch_num])
             current_batch_eeg = np.asarray(eeg_data[channel_num][batch_num])
@@ -137,7 +144,18 @@ def streamfft(yf, eeg_data, batch_size):
             xf = np.linspace(0.0, 1.0 / (2.0 * T), batch_size / 2)
             xeeg_batch = xeeg[batch_num: batch_num + 256]
             index_time = xeeg[254 + batch_num]
+            # print(int((batch_num + 255) * 1000 / 128))
             # print("plotting @%f seconds" % index_time)
+
+
+            if printoutput:
+                if target_output[255 + batch_num] == 1.0:
+                    print("Eye Open")
+                elif target_output[255 + batch_num] == 2.0:
+                    print("Eye Close")
+                else:
+                    print("none")
+
             try:
                 plt.ion()
                 plt.figure(1)
@@ -150,8 +168,9 @@ def streamfft(yf, eeg_data, batch_size):
                 plt.ylabel("Magnitude (db)")
                 plt.title("Plotting channel %d at %f seconds" % (channel_num + 1, index_time))
                 # plt.savefig("C:/testeeg/testeeg/mozart/logs/fft.png")
-                #plt.semilogy(xf[0: batch_size / 2], T / batch_size * np.abs(current_batch_fft[0:batch_size / 2]) ** 2)
-                plt.plot(xf[0: batch_size / 2], 20 * np.log(T / batch_size * np.abs(current_batch_fft[0:batch_size / 2]) ** 2))
+                # plt.semilogy(xf[0: batch_size / 2], T / batch_size * np.abs(current_batch_fft[0:batch_size / 2]) ** 2)
+                plt.plot(xf[0: batch_size / 2],
+                         20 * np.log(T / batch_size * np.abs(current_batch_fft[0:batch_size / 2]) ** 2))
                 plt.ylim([-200, 300])
 
                 plt.subplot(212)
@@ -303,39 +322,27 @@ def getfreqmag_batch(batched_freq_raw_data, period):
     xf = np.linspace(0, 64, 128)
     batch_power = 20 * np.log(period / batch_shape[0] * np.abs(batched_freq_raw_data[0:batch_shape[0] / 2]) ** 2)
 
-    alpha_indices = [int(8 * batch_shape[0]/2 / (sample_freq / 2)), int(12 * batch_shape[0]/2 / (sample_freq / 2))]
+    alpha_indices = [int(8 * batch_shape[0] / 2 / (sample_freq / 2)), int(12 * batch_shape[0] / 2 / (sample_freq / 2))]
     alpha_values = batch_power[alpha_indices[0]:alpha_indices[1]]
     alpha_values_avg = np.mean(alpha_values)
 
-    delta_indices = [int(0.5 * batch_shape[0]/2 / (sample_freq / 2)), int(3 * batch_shape[0]/2 / (sample_freq / 2))]
+    delta_indices = [int(0.5 * batch_shape[0] / 2 / (sample_freq / 2)), int(3 * batch_shape[0] / 2 / (sample_freq / 2))]
     delta_values = batch_power[delta_indices[0]:delta_indices[1]]
     delta_values_avg = np.mean(delta_values)
 
-    theta_indices = [int(3 * batch_shape[0]/2 / (sample_freq / 2)), int(8 * batch_shape[0]/2 / (sample_freq / 2))]
+    theta_indices = [int(3 * batch_shape[0] / 2 / (sample_freq / 2)), int(8 * batch_shape[0] / 2 / (sample_freq / 2))]
     theta_values = batch_power[theta_indices[0]:theta_indices[1]]
     theta_values_avg = np.mean(theta_values)
 
-    gamma_indices = [int(38 * batch_shape[0]/2 / (sample_freq / 2)), int(42 * batch_shape[0]/2 / (sample_freq / 2))]
+    gamma_indices = [int(38 * batch_shape[0] / 2 / (sample_freq / 2)), int(42 * batch_shape[0] / 2 / (sample_freq / 2))]
     gamma_values = batch_power[gamma_indices[0]:gamma_indices[1]]
     gamma_values_avg = np.mean(gamma_values)
 
-    beta_indices = [int(12 * batch_shape[0]/2 / (sample_freq / 2)), int(38 * batch_shape[0]/2 / (sample_freq / 2))]
+    beta_indices = [int(12 * batch_shape[0] / 2 / (sample_freq / 2)), int(38 * batch_shape[0] / 2 / (sample_freq / 2))]
     beta_values = batch_power[beta_indices[0]:beta_indices[1]]
     beta_values_avg = np.mean(beta_values)
 
-
-
-
-
-
-
     print(delta_values_avg, theta_values_avg, alpha_values_avg, beta_values_avg, gamma_values_avg)
-
-
-
-
-
-
 
 
 def plot_spectrogram(raw_data, nfft, fs, channel_bottom, print_frequency_graph):
