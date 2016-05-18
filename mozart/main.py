@@ -44,14 +44,17 @@ class eeg_learner:
         self.outputfile = str(time.time())
 
     # noinspection PyMethodMayBeStatic
-    def getmodel_eeg(self):
+    def getmodel_eeg(self, batchsize=1):
+        print("\n-- Loading new model --")
+
         eeg_model = FunctionSet(
-                x_h1=F.Linear(448, 512),
-                h1_h2=F.Linear(512, 1024),
-                h2_h3=F.Linear(1024, 1024),
-                h3_h4=F.Linear(1024, 512),
-                h4_y=F.Linear(512, 32),
+                x_h1=F.Linear(14 * batchsize, 14 * batchsize),
+                h1_h2=F.Linear(14 * batchsize, 14 * batchsize),
+                h2_h3=F.Linear(14 * batchsize, 8 * batchsize),
+                h3_h4=F.Linear(8 * batchsize, 4 * batchsize),
+                h4_y=F.Linear(4 * batchsize, batchsize),
         )
+        print("Model Loaded!\n")
         return eeg_model
 
     def getmodel_spectro(self, lm):
@@ -67,34 +70,18 @@ class eeg_learner:
         current_output = Variable(y_batch_curr, volatile=volatile)
 
         h1_current = F.sigmoid(self.model_to_use.x_h1(current_sample))
-        # h1_previous = F.sigmoid(self.model_to_use.x_h1(previous_sample))
-        # h1_next = F.sigmoid(self.model_to_use.x_h1(next_sample))
-        # h1_diff_previous = h1_current - h1_previous
-        # h1_diff_next = h1_next - h1_current
 
         h2_current = F.sigmoid(self.model_to_use.h1_h2(h1_current))
-        # h2_diff_n = F.sigmoid(self.model_to_use.h1_h2(h1_diff_next))
-        # h2_diff_p = F.sigmoid(self.model_to_use.h1_h2(h1_diff_previous))
-        # h2_diff_next = h2_diff_n - h2_current
-        # h2_diff_previous = h2_current - h2_diff_p
 
         h3_current = F.sigmoid(self.model_to_use.h2_h3(h2_current))
-        # h3_diff_p = F.sigmoid(self.model_to_use.h2_h3(h2_diff_previous))
-        # h3_diff_n = F.sigmoid(self.model_to_use.h2_h3(h2_diff_next))
-        # h3_diff_next = h3_diff_n - h3_current
-        # h3_diff_previous = h3_current - h3_diff_p
 
         h4_current = F.sigmoid(self.model_to_use.h3_h4(h3_current))
-        # h4_diff_previous = F.sigmoid(self.model_to_use.h3_h4(h3_diff_previous))
-        # h4_diff_next = F.sigmoid(self.model_to_use.h3_h4(h3_diff_next))
-        # h4_diff = h4_diff_next + h4_diff_previous
-        # h4 = h4_current * h4_diff
-
         h4 = h4_current
         y = self.model_to_use.h4_y(h4)
 
         loss = F.sigmoid_cross_entropy(y, current_output)
         current_output.data = np.squeeze(current_output.data)
+
         y.data = y.data.reshape(-1, 1)
         accuracy = F.accuracy(y, current_output)
 
@@ -383,29 +370,140 @@ class eeg_learner:
         self.print_fft_data(xf, fft_data, channel_lower)
         spectro_shape = self.print_spectro_data(spectro_data, channel_lower)
 
-    def train_blink_ten(self, print_frequency_graph=True):
+    def train_blink_ten(self, print_frequency_graph=True, savemodel=False):
         print("Training on BLINK-TEN dataset\n")
         # Get raw data
         train_X_raw, train_Y_raw = eeg_data.main.getdatasets_blink_ten()
+        for index, value in enumerate(train_Y_raw):
+            print(index, value)
+
+        train_plot = plt.figure()
 
         # Get fft values
         # Load fft + time data
-        xf, fft_data, spectro_data, csd_data = eeg_data.main.getfft(train_X_raw, 256, path_to_load="C:/Users/SourabhKatti/Documents/engine/eeg_data/face/edf/X_eeg_fft/blink-ten/")
+        batchsize = 256
+        xf, fft_data, spectro_data, csd_data = eeg_data.main.getfft(train_X_raw, batchsize,
+                                                                    path_to_load="C:/Users/SourabhKatti/Documents/engine/eeg_data/face/edf/X_eeg_fft/blink-ten/")
 
         # Generate new set of fft + time data
         # xf, fft_data, spectro_data, csd_data = eeg_data.main.getfft(train_X_raw, 256)
-        batched_eeg_data = eeg_data.main.gettimeseriesdata(train_X_raw, 256, path_to_load="C:/Users/SourabhKatti/Documents/engine/eeg_data/face/edf/X_eeg_fft/blink-ten/")
+        batched_eeg_data = eeg_data.main.gettimeseriesdata(train_X_raw, batchsize,
+                                                           path_to_load="C:/Users/SourabhKatti/Documents/engine/eeg_data/face/edf/X_eeg_fft/blink-ten/")
 
         print("\nFinal output-fft batched shape: ", fft_data.shape)
         print("Final output-time batched shape: ", batched_eeg_data.shape)
-        eeg_data.main.streamfft(fft_data, batched_eeg_data, 256)
+
+        # eeg_data.main.streamfft(fft_data, batched_eeg_data, batchsize)
 
         fft_data = np.asarray(fft_data)
         xf = np.asarray(xf)
 
-        # Print details about the FFT, spectrogram and CSD datasets
-        # self.print_fft_data(xf, fft_data, channel_lower)
-        # spectro_shape = self.print_spectro_data(spectro_data, channel_lower)
+        # Get a fresh neural net and setup the optimizer with it
+        self.model_to_use = self.getmodel_eeg(batchsize)
+        self.optimizer.setup(self.model_to_use)
+
+        train_X = batched_eeg_data
+
+        epochcount = 0
+        datasize = batched_eeg_data.shape[1]
+
+        epoch_sums = []
+        epoch_loss = []
+        epochs = []
+
+        outputpath = "C:/Users/SourabhKatti/Documents/engine/mozart/logs/" + "blink-ten" + self.outputfile + ".txt"
+        sys.stdout = Logger(outputpath)
+        #        for layer in self.model_to_use._children:
+        #            print(layer[0], layer[1].W.shape)
+
+        plot = True
+
+        for epoch in range(20):
+            outputpath = "C:/Users/SourabhKatti/Documents/engine/mozart/logs/" + "blink-ten" + self.outputfile + ".txt"
+            epochcount += 1
+            print('epoch %d' % epoch)
+            sum_accuracy = 0.0
+            sum_loss = 0.0
+            total_loss = []
+            total_accuracy = []
+            total_x = []
+
+            for i in range(0, datasize):
+
+                # Get current, previous and next sample from EEG recording to send through the net
+                x_batch_curr = np.asarray(train_X[:, i, :]).astype(np.float32).reshape(1, -1)
+
+                # Get current, previous and next sample from target output ready
+                y_batch_curr = np.asarray(train_Y_raw[i: i + batchsize]).astype(np.int32)
+
+                self.optimizer.zero_grads()
+                accuracy, loss, output = self.forward(x_batch_curr, y_batch_curr, volatile=False)
+
+                sum_accuracy += accuracy.data
+                sum_loss += loss.data
+
+                total_x.append(i)
+                total_loss.append(loss.data)
+                total_accuracy.append(accuracy.data)
+
+                # print(sum_loss / i, sum_accuracy / i)
+                if plot:
+                    plt.title("Training epoch %d" % (epoch + 1))
+                    plt.figure(1)
+
+                    plt.clf()
+                    plt.ion()
+
+                    plt.subplot(211)
+                    plt.ylim([0.0, 1.2])
+                    plt.plot(total_x, total_loss)
+                    plt.xlabel("Sample number")
+                    plt.ylabel("Loss (%)")
+                    plt.title("Training epoch %d\nLoss: %f" % (epoch + 1, sum_loss / i))
+
+                    plt.subplot(212)
+                    plt.ylim([0.0, 1.2])
+                    plt.plot(total_x, total_accuracy)
+                    plt.xlabel("Sample number")
+                    plt.ylabel("Accuracy (%)")
+                    plt.title("Accuracy: %f" % (sum_accuracy / i))
+
+                    plt.pause(0.001)
+                    plt.show()
+
+                output.data = output.data.reshape(1, -1)
+
+                loss.backward()
+                self.optimizer.update()
+
+            print("\tAccuracy of training: ", sum_accuracy / datasize)
+            print("\tLoss of training: ", sum_loss / datasize)
+
+            pltimage = outputpath + '.png'
+            # train_plot.show()
+            plt.savefig(pltimage)
+
+            epoch_sums.append(sum_accuracy / datasize)
+            epoch_loss.append(sum_loss / datasize)
+            epochs.append(epoch)
+
+            # self.optimizer.lr += 0.00005
+
+        plt.clf()
+        plt.subplot(211)
+        plt.plot(epochs, epoch_sums)
+        plt.subplot(212)
+        plt.plot(epochs, epoch_loss)
+        pltimage = outputpath + '.png'
+        # train_plot.show()
+        train_plot.savefig(pltimage)
+        if savemodel:
+            self.outputfile += str(np.max(epochs))
+            self.savernn()
+
+            # Print details about the FFT, spectrogram and CSD datasets
+            # self.print_fft_data(xf, fft_data, channel_lower)
+            # spectro_shape = self.print_spectro_data(spectro_data, channel_lower)
 
     def evaluate(self, dataset):
         # Evaluation routine
@@ -472,29 +570,36 @@ class eeg_learner:
         return eeg_norm
 
     def test_eeg_sample(self):
-        test_X, test_Y = eeg_data.main.getdatasets_eeg()
+        # test_X, test_Y = eeg_data.main.getdatasets_eeg()
 
-        datasize = test_X.shape[0]
+        batchsize = 256
+        train_X_raw, train_Y_raw = eeg_data.main.getdatasets_blink_ten()
+        xf, fft_data, spectro_data, csd_data = eeg_data.main.getfft(train_X_raw, batchsize,
+                                                                    path_to_load="C:/Users/SourabhKatti/Documents/engine/eeg_data/face/edf/X_eeg_fft/blink-ten/")
+
+        # Generate new set of fft + time data
+        # xf, fft_data, spectro_data, csd_data = eeg_data.main.getfft(train_X_raw, 256)
+        batched_eeg_data = eeg_data.main.gettimeseriesdata(train_X_raw, batchsize,
+                                                           path_to_load="C:/Users/SourabhKatti/Documents/engine/eeg_data/face/edf/X_eeg_fft/blink-ten/")
+
+        test_X = batched_eeg_data
+        test_Y = train_Y_raw
+        datasize = test_X.shape[1]
 
         sum_accuracy = 0.0
         sum_loss = 0.0
 
         sample_preds = []
-        batchsize = 32
 
         # Check if there is a saved model to use and load it if there is
         if self.get_savedrnn() != -1:
             self.model_to_use = self.get_savedrnn()
             self.optimizer.setup(self.model_to_use)
 
-        for i in range(2, datasize - batchsize):
-            x_batch_prev = np.asarray(test_X[i - 1:i - 1 + batchsize]).astype(np.float32).reshape(1, -1)
-            x_batch_prev2 = np.asarray(test_X[i - 2:i - 2 + batchsize]).astype(np.float32).reshape(1, -1)
-            x_batch_curr = np.asarray(test_X[i:i + batchsize]).astype(np.float32).reshape(1, -1)
+        for i in range(0, datasize):
+            x_batch_curr = np.asarray(test_X[:, i, :]).astype(np.float32).reshape(1, -1)
 
             # Get current, previous and next sample from target output ready
-            y_batch_prev2 = np.asarray(test_Y[i - 2:i - 2 + batchsize]).astype(np.int32)
-            y_batch_prev = np.asarray(test_Y[i - 1:i - 1 + batchsize]).astype(np.int32)
             y_batch_curr = np.asarray(test_Y[i:i + batchsize]).astype(np.int32)
 
             self.optimizer.zero_grads()
@@ -515,7 +620,7 @@ class eeg_learner:
         # max_preds = np.max(normalized_preds)
         # normalized_max_preds = np.divide(normalized_preds, max_preds)
 
-        return test_X, normalized_preds
+        return test_X, normalized_preds, test_Y
 
     def test_eye_states_model(self):
         test_X_raw = eeg_data.main.getdatasets_test_eye_states()
@@ -575,7 +680,7 @@ class eeg_learner:
             return -1
 
     # Refine the predictions and plot the results along with the original EEG waveforms
-    def plot_predictions(self, raw_data, predictions):
+    def plot_predictions(self, raw_data, predictions, targetoutputs):
         indices = []
         preds = []
         raw_data_indices = []
@@ -610,7 +715,7 @@ class eeg_learner:
             raw_data_values.append(value)
 
         predictions = np.asarray(preds_norm).reshape(-1, 1)
-        raw_data_values = np.asarray(raw_data_values).reshape(-1, 14)
+        raw_data_values = np.asarray(raw_data_values).reshape(14, -1, 256)
         raw_data_indices = np.asarray(raw_data_indices).reshape(-1, 1)
         raw_data_shape = raw_data_values.shape
 
@@ -619,15 +724,10 @@ class eeg_learner:
         predsfile = "C:/Users/SourabhKatti/Documents/engine/mozart/logs/" + self.outputfile + "-preds.png"
         predsfig = plt.figure(2)
         predfigsb = predsfig.add_subplot(211)
-        predfigsb.plot(indices, predictions)
+        predfigsb.plot(indices, preds)
         predfigsb.set_ylim([np.min(predictions), np.max(predictions)])
 
-        actualfigdb = predsfig.add_subplot(212)
         data_index = 0
-        while data_index < raw_data_shape[1]:
-            actualfigdb.plot(raw_data_indices, raw_data_values[:, data_index])
-            data_index += 1
-        actualfigdb.set_ylim([np.min(raw_data_values), np.max(raw_data_values)])
         predsfig.show()
         predsfig.savefig(predsfile)
 
@@ -646,4 +746,6 @@ eeg_learner = eeg_learner()
 # eeg_learner.plot_predictions(test_input, predictions)
 
 
-eeg_learner.train_blink_ten(print_frequency_graph=True)
+eeg_learner.train_blink_ten(print_frequency_graph=True, savemodel=True)
+raw_data, predictions, targetoutputs = eeg_learner.test_eeg_sample()
+eeg_learner.plot_predictions(raw_data, predictions, targetoutputs)
